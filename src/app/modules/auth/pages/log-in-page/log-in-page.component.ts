@@ -63,7 +63,7 @@ export class LogInPageComponent implements OnInit {
     ).subscribe({
       next: () => this.handleLogInSuccess(),
       error: (error) => this.handleLogInError(error),
-    })
+    });
   }
 
   async handleLogInSuccess(): Promise<void> {

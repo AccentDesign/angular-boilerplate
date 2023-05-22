@@ -51,7 +51,7 @@ export class ForgotPwPageComponent {
     ).subscribe({
       next: () => this.handleSubmitSuccess(),
       error: (error) => this.handleSubmitError(error),
-    })
+    });
   }
 
   handleSubmitSuccess(): void {

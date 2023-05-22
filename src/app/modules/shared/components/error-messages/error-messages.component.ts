@@ -24,6 +24,6 @@ export class ErrorMessagesComponent {
   ) {
     this.error$ = this.errorService.getError().pipe(
       filter(msg => msg.location === this.location)
-    )
+    );
   }
 }

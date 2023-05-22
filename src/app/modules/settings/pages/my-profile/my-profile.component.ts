@@ -61,7 +61,7 @@ export class MyProfileComponent implements OnInit, OnDestroy {
           first_name: user.first_name,
           last_name: user.last_name,
           email: user.email
-        })
+        });
       } else {
         this.form.reset();
       }

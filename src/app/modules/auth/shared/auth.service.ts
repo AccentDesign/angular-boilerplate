@@ -51,7 +51,7 @@ export class AuthService {
           switchMap(() => of(original))
         );
       })
-    )
+    );
   }
 
   logOut(): Observable<null> {
@@ -86,7 +86,7 @@ export class AuthService {
       return throwError(() => new Error('no current user'));
     }
     const url = `${this.baseURL}/auth/verify-request`;
-    const request = { email: user.email }
+    const request = { email: user.email };
     return this.http.post<null>(url, request);
   }
 
