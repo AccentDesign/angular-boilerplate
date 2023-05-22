@@ -1,0 +1,48 @@
+<main class="container mx-auto px-6 mt-10 sm:mt-16 md:mt-24 lg:mt-32 xl:mt-40">
+  <header>
+    <a href="/">
+      <img alt="logo" class="mb-8 w-[300px]" height="348" ngSrc="assets/logo.png" width="1280"/>
+    </a>
+    <hgroup class="mb-10">
+      <h1>Register</h1>
+      <h2>Please complete the below to create and access your account.</h2>
+    </hgroup>
+  </header>
+  <section class="max-w-[500px]">
+    <app-message-ok *ngIf="success; else formBlock">
+      Thank you, your registration was successful. You can now
+      <a class="text-green-800 underline" href="/auth/login">login</a> to access the site.
+    </app-message-ok>
+    <ng-template #formBlock>
+      <app-error-messages location="register"></app-error-messages>
+      <form #ngForm="ngForm" (ngSubmit)="register()" [formGroup]="form" class="space-y-6">
+        <div>
+          <label for="first_name">First Name</label>
+          <input formControlName="first_name" id="first_name" type="text">
+          <app-form-errors [control]="form.controls.first_name" [formRef]="ngForm"></app-form-errors>
+        </div>
+        <div>
+          <label for="last_name">Last Name</label>
+          <input formControlName="last_name" id="last_name" type="text">
+          <app-form-errors [control]="form.controls.last_name" [formRef]="ngForm"></app-form-errors>
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input formControlName="email" id="email" type="email">
+          <app-form-errors [control]="form.controls.email" [formRef]="ngForm"></app-form-errors>
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input formControlName="password" id="password" type="password">
+          <app-form-errors [control]="form.controls.password" [formRef]="ngForm"></app-form-errors>
+        </div>
+        <div>
+          <label for="confirm_password">Confirm your Password</label>
+          <input formControlName="confirm_password" id="confirm_password" type="password">
+          <app-form-errors [control]="form.controls.confirm_password" [formRef]="ngForm"></app-form-errors>
+        </div>
+        <button [disabled]="loading" type="submit">Register</button>
+      </form>
+    </ng-template>
+  </section>
+</main>

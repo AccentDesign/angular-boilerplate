@@ -1,0 +1,25 @@
+<main class="container mx-auto px-6 mt-10 sm:mt-16 md:mt-24 lg:mt-32 xl:mt-40">
+  <header class="mb-10">
+    <a href="/">
+      <img alt="logo" class="mb-8 w-[300px]" height="348" ngSrc="assets/logo.png" width="1280"/>
+    </a>
+    <hgroup>
+      <h1>Forgot Password</h1>
+      <h2>Request details to reset your password.</h2>
+    </hgroup>
+  </header>
+  <section class="max-w-[500px]">
+    <app-message-ok *ngIf="success">
+      Assuming the email exists in our system. We will send details of what to do next.
+    </app-message-ok>
+    <app-error-messages *ngIf="!success" location="forgotPw"></app-error-messages>
+    <form #ngForm="ngForm" (ngSubmit)="submit()" [formGroup]="form" class="space-y-6">
+      <div>
+        <label for="email">Email</label>
+        <input formControlName="email" id="email" type="email">
+        <app-form-errors [control]="form.controls.email" [formRef]="ngForm"></app-form-errors>
+      </div>
+      <button [disabled]="loading" type="submit">Request Details</button>
+    </form>
+  </section>
+</main>

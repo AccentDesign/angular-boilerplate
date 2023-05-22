@@ -1,0 +1,19 @@
+<app-nav></app-nav>
+<main class="container mx-auto px-6">
+  <header>
+    <h1 class="mb-0">Settings</h1>
+  </header>
+  <div class="sm:grid sm:grid-cols-4 gap-8">
+    <aside class="pt-4">
+      <nav>
+        <ul class="space-y-2">
+          <li><a routerLink="profile" routerLinkActive="underline">Profile</a></li>
+          <li><a routerLink="password" routerLinkActive="underline">Password</a></li>
+        </ul>
+      </nav>
+    </aside>
+    <section class="sm:col-span-3">
+      <router-outlet></router-outlet>
+    </section>
+  </div>
+</main>

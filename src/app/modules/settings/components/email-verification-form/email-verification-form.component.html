@@ -1,0 +1,21 @@
+<section *ngIf="authRepository.user$|async as user" class="mb-16">
+  <h3 class="mb-1">Email Verification</h3>
+  <hr class="mb-6">
+  <app-message-ok *ngIf="user.is_verified; else verifyBlock">
+    <span>Your email address has been verified.</span>
+  </app-message-ok>
+  <ng-template #verifyBlock>
+    <div class="mb-6">
+      <p class="mb-4">Your email address needs to be verified before you can use this site.</p>
+      <a (click)="requestToken()" (keyup.enter)="requestToken()" href="#">Send me a verification email</a>
+    </div>
+    <form #ngForm="ngForm" (ngSubmit)="submitToken()" *ngIf="requested" [formGroup]="form" class="space-y-6">
+      <div>
+        <textarea formControlName="token"
+                  placeholder="Please enter the verification token provided in the email"></textarea>
+        <app-form-errors [control]="form.controls.token" [formRef]="ngForm"></app-form-errors>
+      </div>
+      <button [disabled]="loading" class="w-auto">Verify Account</button>
+    </form>
+  </ng-template>
+</section>

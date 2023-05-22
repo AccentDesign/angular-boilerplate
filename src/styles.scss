@@ -1,0 +1,21 @@
+@use "tailwindcss/base";
+
+@use "scss/themes/styles";
+@use "scss/themes/light";
+
+@use "@stuartaccent/tailwind-starter/scss/layout/document";
+
+@use "@stuartaccent/tailwind-starter/scss/content/typography";
+@use "@stuartaccent/tailwind-starter/scss/content/button";
+@use "@stuartaccent/tailwind-starter/scss/content/form";
+@use "@stuartaccent/tailwind-starter/scss/content/input-file";
+@use "@stuartaccent/tailwind-starter/scss/content/checkbox-radio-switch";
+@use "@stuartaccent/tailwind-starter/scss/content/table";
+
+@use "tailwindcss/components";
+
+@use "@stuartaccent/tailwind-starter/scss/components/accordion";
+@use "@stuartaccent/tailwind-starter/scss/components/dialog";
+@use "@stuartaccent/tailwind-starter/scss/components/group";
+
+@use "tailwindcss/utilities";

@@ -1,0 +1,14 @@
+<ul *ngIf="formRef && control && control.errors && (control.touched || formRef.submitted)" class="text-red-800">
+  <li *ngIf="control.errors['required']">
+    {{ name }} is required.
+  </li>
+  <li *ngIf="control.errors['email']">
+    {{ name }} is not a valid email.
+  </li>
+  <li *ngIf="control.errors['minlength']">
+    {{ name }} must be at least {{ control.errors['minlength'].requiredLength }} characters long.
+  </li>
+  <li *ngIf="control.errors['notMatched']">
+    {{ name }} does not match {{ control.errors['notMatched'].controlName1 }}.
+  </li>
+</ul>
