@@ -2,17 +2,23 @@
   <h3 class="mb-1">Email Verification</h3>
   <hr class="mb-6">
   <app-message-ok *ngIf="user.is_verified; else verifyBlock">
-    <span>Your email address has been verified.</span>
+    Your email address has been verified.
   </app-message-ok>
   <ng-template #verifyBlock>
+    <app-error-messages location="verifyEmail"></app-error-messages>
     <div class="mb-6">
-      <p class="mb-4">Your email address needs to be verified before you can use this site.</p>
-      <a (click)="requestToken()" (keyup.enter)="requestToken()" href="#">Send me a verification email</a>
+      <p class="mb-4">
+        Your email address needs to be verified before you can use this site.
+      </p>
+      <a (click)="request($event);" (keyup.enter)="request($event)" href="javascript:void(0)">
+        Send me a verification email
+      </a>
     </div>
-    <form #ngForm="ngForm" (ngSubmit)="submitToken()" *ngIf="requested" [formGroup]="form" class="space-y-6">
+    <form #ngForm="ngForm" (ngSubmit)="submit()" *ngIf="requested" [formGroup]="form" class="space-y-6">
       <div>
-        <textarea formControlName="token"
-                  placeholder="Please enter the verification token provided in the email"></textarea>
+        <textarea
+          formControlName="token"
+          placeholder="Please enter the verification token provided in the email"></textarea>
         <app-form-errors [control]="form.controls.token" [formRef]="ngForm"></app-form-errors>
       </div>
       <button [disabled]="loading" class="w-auto">Verify Account</button>
