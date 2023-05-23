@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MessageErrorComponent } from '@modules/shared/components/message-error/message-error.component';
 import { ErrorMessage } from '@modules/shared/interfaces/error-message';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
-import { filter, Observable } from 'rxjs';
+import { BehaviorSubject, filter, Observable, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-error-messages',
@@ -12,18 +12,31 @@ import { filter, Observable } from 'rxjs';
     CommonModule,
     MessageErrorComponent
   ],
-  templateUrl: './error-messages.component.html'
+  templateUrl: './error-messages.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ErrorMessagesComponent {
+export class ErrorMessagesComponent implements OnChanges {
   @Input() location!: string;
 
-  error$: Observable<ErrorMessage>;
+  private locationSubject = new BehaviorSubject<string>(this.location);
+
+  error$: Observable<ErrorMessage> = this.locationSubject.pipe(
+    switchMap(location =>
+      this.errorService.getError().pipe(
+        filter(msg => msg.location === location)
+      )
+    )
+  );
 
   constructor(
     private errorService: ErrorMessageService,
   ) {
-    this.error$ = this.errorService.getError().pipe(
-      filter(msg => msg.location === this.location)
-    );
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const location = changes['location'];
+    if (location && location.currentValue !== location.previousValue) {
+      this.locationSubject.next(location.currentValue);
+    }
   }
 }
