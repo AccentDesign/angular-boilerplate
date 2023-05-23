@@ -2,11 +2,11 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
+import { environment } from '@environments/environment';
 import { GlobalHttpInterceptor } from '@modules/shared/interceptors/global-http.interceptor';
 import { Error404PageComponent } from '@modules/shared/pages/error404-page/error404-page.component';
 import { WelcomePageComponent } from '@modules/shared/pages/welcome-page/welcome-page.component';
 import { AppComponent } from './app/app.component';
-import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();

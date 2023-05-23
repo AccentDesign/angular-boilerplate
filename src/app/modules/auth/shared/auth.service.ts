@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '@environments/environment';
 import { AuthRepository } from '@modules/auth/shared/auth.repository';
 import { LoginRequest } from '@modules/auth/shared/interfaces/login-request';
 import { LoginResponse } from '@modules/auth/shared/interfaces/login-response';
@@ -8,7 +9,6 @@ import { ResetPasswordRequest } from '@modules/auth/shared/interfaces/reset-pass
 import { UpdateUserRequest } from '@modules/auth/shared/interfaces/update-user-request';
 import { User } from '@modules/auth/shared/interfaces/user';
 import { catchError, finalize, first, map, Observable, of, switchMap, tap, throwError } from 'rxjs';
-import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
