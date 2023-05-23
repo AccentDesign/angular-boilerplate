@@ -1,5 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-nav',
@@ -8,7 +8,8 @@ import { Component } from '@angular/core';
     CommonModule,
     NgOptimizedImage
   ],
-  templateUrl: './nav.component.html'
+  templateUrl: './nav.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavComponent {
 

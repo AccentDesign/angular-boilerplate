@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-message-error',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './message-error.component.html',
-  styles: []
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MessageErrorComponent {
 
