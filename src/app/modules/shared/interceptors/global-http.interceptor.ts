@@ -16,7 +16,7 @@ export class GlobalHttpInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     let headers = request.headers;
 
-    const token = this.authRepository.accessToken;
+    const token = this.authRepository.accessToken();
     if (token) {
       headers = headers.set('Authorization', `bearer ${token}`);
     }

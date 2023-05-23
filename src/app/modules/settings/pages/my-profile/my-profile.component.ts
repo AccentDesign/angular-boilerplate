@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, effect, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthRepository } from '@modules/auth/shared/auth.repository';
 import { AuthService } from '@modules/auth/shared/auth.service';
@@ -8,12 +8,11 @@ import { UpdateUserRequest } from '@modules/auth/shared/interfaces/update-user-r
 import {
   EmailVerificationFormComponent
 } from '@modules/settings/components/email-verification-form/email-verification-form.component';
-import { Unsubscribe } from '@modules/shared/abstract/unsubscribe';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
 import { FormErrorsComponent } from '@modules/shared/components/form-errors/form-errors.component';
 import { MessageOkComponent } from '@modules/shared/components/message-ok/message-ok.component';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
-import { finalize, first, takeUntil } from 'rxjs';
+import { finalize, first } from 'rxjs';
 
 @Component({
   selector: 'app-my-profile',
@@ -28,7 +27,7 @@ import { finalize, first, takeUntil } from 'rxjs';
   ],
   templateUrl: './my-profile.component.html'
 })
-export class MyProfileComponent extends Unsubscribe implements OnInit {
+export class MyProfileComponent {
   form = new FormGroup({
     first_name: new FormControl('', [
       Validators.required
@@ -44,28 +43,24 @@ export class MyProfileComponent extends Unsubscribe implements OnInit {
   loading = signal<boolean>(false);
   success = signal<boolean>(false);
 
+  private _ = effect(() => {
+    const user = this.authRepository.currentUser();
+    if (user) {
+      this.form.setValue({
+        first_name: user.first_name,
+        last_name: user.last_name,
+        email: user.email
+      });
+    } else {
+      this.form.reset();
+    }
+  });
+
   constructor(
     private authRepository: AuthRepository,
     private authService: AuthService,
     private errorService: ErrorMessageService
   ) {
-    super();
-  }
-
-  ngOnInit() {
-    this.authRepository.user$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(user => {
-      if (user) {
-        this.form.setValue({
-          first_name: user.first_name,
-          last_name: user.last_name,
-          email: user.email
-        });
-      } else {
-        this.form.reset();
-      }
-    });
   }
 
   submit(): void {

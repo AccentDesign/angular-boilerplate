@@ -1,4 +1,4 @@
-<section *ngIf="authRepository.user$|async as user" class="mb-16">
+<section *ngIf="authRepository.currentUser() as user" class="mb-16">
   <h3 class="mb-1">Email Verification</h3>
   <hr class="mb-6">
   <app-message-ok *ngIf="success() || user.is_verified; else verifyBlock">

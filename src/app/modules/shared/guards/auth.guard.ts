@@ -20,12 +20,10 @@ export class AuthGuard {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Promise<boolean> {
-    if (!this.authRepository.isLoggedIn()) {
-      return this.navigateLogin();
-    }
+    const user = this.authRepository.currentUser();
+    const token = this.authRepository.accessToken();
 
-    const user = this.authRepository.currentUser;
-    if (!user) {
+    if (!user || !token) {
       return this.navigateLogin();
     }
 

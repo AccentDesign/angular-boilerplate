@@ -20,7 +20,7 @@ export class AuthService {
     private authRepository: AuthRepository,
     private http: HttpClient
   ) {
-    if (this.authRepository.accessToken && !this.authRepository.currentUser) {
+    if (this.authRepository.accessToken() && !this.authRepository.currentUser()) {
       this.getUser().pipe(first()).subscribe({
         error: (err) => console.error(err),
       });
@@ -81,7 +81,7 @@ export class AuthService {
   }
 
   verifyRequest(): Observable<null> {
-    const user = this.authRepository.currentUser;
+    const user = this.authRepository.currentUser();
     if (user === null) {
       return throwError(() => new Error('no current user'));
     }

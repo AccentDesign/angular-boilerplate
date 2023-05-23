@@ -1,48 +1,35 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { User } from '@modules/auth/shared/interfaces/user';
 import { LocalStorageService } from '@modules/shared/services/local-storage.service';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthRepository {
-  private _user$ = new BehaviorSubject<User | null>(null);
-  user$ = this._user$.asObservable();
+  readonly currentUser = signal<User | null>(null);
+  readonly accessToken = signal<string | null>(null);
 
   constructor(
     private storageService: LocalStorageService
   ) {
-    const storedUser = this.storageService.get('user');
-    if (storedUser) {
-      this._user$.next(storedUser);
-    }
+    this.currentUser.set(this.storageService.get(LocalStorageService.USER_KEY));
+    this.accessToken.set(this.storageService.get(LocalStorageService.TOKEN_KEY));
   }
 
-  get accessToken() {
-    return localStorage.getItem('accessToken');
-  }
-
-  get currentUser(): User | null {
-    return this._user$.getValue();
-  }
-
-  setAccessToken(accessToken: string) {
-    this.storageService.set('accessToken', accessToken);
-  }
-
-  isLoggedIn(): boolean {
-    return this.accessToken != null;
+  setAccessToken(token: string) {
+    this.storageService.set(LocalStorageService.TOKEN_KEY, token);
+    this.accessToken.set(token);
   }
 
   setUser(user: User) {
-    this._user$.next(user);
-     this.storageService.set('user', user);
+    this.storageService.set(LocalStorageService.USER_KEY, user);
+    this.currentUser.set(user);
   }
 
   clear() {
-    this.storageService.remove('accessToken');
-    this.storageService.remove('user');
-    this._user$.next(null);
+    this.storageService.remove(LocalStorageService.TOKEN_KEY);
+    this.storageService.remove(LocalStorageService.USER_KEY);
+    this.currentUser.set(null);
+    this.accessToken.set(null);
   }
 }

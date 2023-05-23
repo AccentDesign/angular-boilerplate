@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class LocalStorageService {
+  static USER_KEY = 'user';
+  static TOKEN_KEY = 'token';
 
   set(key: string, value: string | object) {
     if (typeof value === 'object') {
@@ -27,7 +29,7 @@ export class LocalStorageService {
     localStorage.removeItem(key);
   }
 
-  clear() {
+  clear(): void {
     localStorage.clear();
   }
 }
