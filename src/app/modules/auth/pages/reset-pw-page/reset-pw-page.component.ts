@@ -1,6 +1,6 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, ViewChild } from '@angular/core';
+import { Component, signal, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '@modules/auth/shared/auth.service';
@@ -15,7 +15,15 @@ import { finalize, first } from 'rxjs';
 @Component({
   selector: 'app-reset-pw-page',
   standalone: true,
-  imports: [CommonModule, FormErrorsComponent, MessageOkComponent, NgOptimizedImage, ReactiveFormsModule, MessageErrorComponent, ErrorMessagesComponent],
+  imports: [
+    CommonModule,
+    FormErrorsComponent,
+    MessageOkComponent,
+    NgOptimizedImage,
+    ReactiveFormsModule,
+    MessageErrorComponent,
+    ErrorMessagesComponent
+  ],
   templateUrl: './reset-pw-page.component.html'
 })
 export class ResetPwPageComponent {
@@ -30,8 +38,8 @@ export class ResetPwPageComponent {
       Validators.required
     ]),
   });
-  loading = false;
-  success = false;
+  loading = signal<boolean>(false);
+  success = signal<boolean>(false);
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   token = this.route.snapshot.paramMap.get('token')!;
 
@@ -49,7 +57,7 @@ export class ResetPwPageComponent {
 
   submit(): void {
     if (!this.form.valid) return;
-    this.success = false;
+    this.success.set(false);
     const data = {
       password: this.form.value.password,
       token: this.token
@@ -64,7 +72,7 @@ export class ResetPwPageComponent {
   }
 
   handleSubmitSuccess(): void {
-    this.success = true;
+    this.success.set(true);
   }
 
   handleSubmitError(error: Error | HttpErrorResponse): void {
@@ -77,7 +85,7 @@ export class ResetPwPageComponent {
   }
 
   handleSubmitFinish(): void {
-    this.loading = false;
+    this.loading.set(false);
     this.resetForm();
   }
 }

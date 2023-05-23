@@ -1,6 +1,6 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { RegisterRequest } from '@modules/auth/shared/interfaces/register-request';
@@ -14,7 +14,15 @@ import { finalize, first } from 'rxjs';
 @Component({
   selector: 'app-register-page',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, ReactiveFormsModule, FormErrorsComponent, MessageOkComponent, MessageErrorComponent, ErrorMessagesComponent],
+  imports: [
+    CommonModule,
+    NgOptimizedImage,
+    ReactiveFormsModule,
+    FormErrorsComponent,
+    MessageOkComponent,
+    MessageErrorComponent,
+    ErrorMessagesComponent
+  ],
   templateUrl: './register-page.component.html'
 })
 export class RegisterPageComponent {
@@ -37,8 +45,8 @@ export class RegisterPageComponent {
       Validators.required
     ])
   });
-  loading = false;
-  success = false;
+  loading = signal<boolean>(false);
+  success = signal<boolean>(false);
 
   constructor(
     private authService: AuthService,
@@ -48,7 +56,7 @@ export class RegisterPageComponent {
 
   register(): void {
     if (!this.form.valid) return;
-    this.loading = true;
+    this.loading.set(true);
     const data = {
       first_name: this.form.value.first_name,
       last_name: this.form.value.last_name,
@@ -65,7 +73,7 @@ export class RegisterPageComponent {
   }
 
   handleSubmitSuccess(): void {
-    this.success = true;
+    this.success.set(true);
   }
 
   handleSubmitError(error: Error | HttpErrorResponse): void {
@@ -78,6 +86,6 @@ export class RegisterPageComponent {
   }
 
   handleSubmitFinish(): void {
-    this.loading = false;
+    this.loading.set(false);
   }
 }

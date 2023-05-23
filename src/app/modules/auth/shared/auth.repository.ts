@@ -37,7 +37,7 @@ export class AuthRepository {
 
   setUser(user: User) {
     this._user$.next(user);
-    this.storageService.set('user', JSON.stringify(user));
+     this.storageService.set('user', user);
   }
 
   clear() {

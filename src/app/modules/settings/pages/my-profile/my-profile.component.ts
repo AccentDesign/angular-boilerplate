@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthRepository } from '@modules/auth/shared/auth.repository';
 import { AuthService } from '@modules/auth/shared/auth.service';
@@ -41,8 +41,8 @@ export class MyProfileComponent extends Unsubscribe implements OnInit {
       Validators.email
     ]),
   });
-  loading = false;
-  success = false;
+  loading = signal<boolean>(false);
+  success = signal<boolean>(false);
 
   constructor(
     private authRepository: AuthRepository,
@@ -70,8 +70,8 @@ export class MyProfileComponent extends Unsubscribe implements OnInit {
 
   submit(): void {
     if (!this.form.valid) return;
-    this.loading = true;
-    this.success = false;
+    this.loading.set(true);
+    this.success.set(false);
     const data = {
       first_name: this.form.value.first_name,
       last_name: this.form.value.last_name,
@@ -87,7 +87,7 @@ export class MyProfileComponent extends Unsubscribe implements OnInit {
   }
 
   handleSubmitSuccess(): void {
-    this.success = true;
+    this.success.set(true);
   }
 
   handleSubmitError(error: Error | HttpErrorResponse): void {
@@ -100,6 +100,6 @@ export class MyProfileComponent extends Unsubscribe implements OnInit {
   }
 
   handleSubmitFinish(): void {
-    this.loading = false;
+    this.loading.set(false);
   }
 }

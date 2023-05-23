@@ -1,6 +1,6 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthRepository } from '@modules/auth/shared/auth.repository';
@@ -36,7 +36,7 @@ export class LogInPageComponent implements OnInit {
       Validators.minLength(6)
     ])
   });
-  loading = false;
+  loading = signal<boolean>(false);
 
   constructor(
     private authRepository: AuthRepository,
@@ -52,18 +52,22 @@ export class LogInPageComponent implements OnInit {
 
   logIn(): void {
     if (!this.form.valid) return;
-    this.loading = true;
+    this.loading.set(true);
     const data = {
       username: this.form.value.email,
       password: this.form.value.password
     } as LoginRequest;
     this.authService.logIn(data).pipe(
       first(),
-      finalize(() => this.loading = false)
+      finalize(() => this.handleLogInFinish())
     ).subscribe({
       next: () => this.handleLogInSuccess(),
       error: (error) => this.handleLogInError(error),
     });
+  }
+
+  handleLogInFinish(): void {
+    this.loading.set(false);
   }
 
   async handleLogInSuccess(): Promise<void> {

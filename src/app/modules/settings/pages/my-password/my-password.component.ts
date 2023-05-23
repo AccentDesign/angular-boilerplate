@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, ViewChild } from '@angular/core';
+import { Component, signal, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { UpdateUserRequest } from '@modules/auth/shared/interfaces/update-user-request';
@@ -35,8 +35,8 @@ export class MyPasswordComponent {
       Validators.required
     ]),
   });
-  loading = false;
-  success = false;
+  loading = signal<boolean>(false);
+  success = signal<boolean>(false);
 
   constructor(
     private authService: AuthService,
@@ -51,8 +51,8 @@ export class MyPasswordComponent {
 
   submit(): void {
     if (!this.form.valid) return;
-    this.loading = true;
-    this.success = false;
+    this.loading.set(true);
+    this.success.set(false);
     const data = {
       password: this.form.value.password,
     } as UpdateUserRequest;
@@ -66,7 +66,7 @@ export class MyPasswordComponent {
   }
 
   handleSubmitSuccess(): void {
-    this.success = true;
+    this.success.set(true);
   }
 
   handleSubmitError(error: Error | HttpErrorResponse): void {
@@ -79,7 +79,7 @@ export class MyPasswordComponent {
   }
 
   handleSubmitFinish(): void {
-    this.loading = false;
+    this.loading.set(false);
     this.resetForm();
   }
 }

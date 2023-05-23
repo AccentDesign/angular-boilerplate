@@ -6,7 +6,10 @@ import { firstValueFrom } from 'rxjs';
 @Component({
   selector: 'app-log-out-page',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage],
+  imports: [
+    CommonModule,
+    NgOptimizedImage
+  ],
   templateUrl: './log-out-page.component.html'
 })
 export class LogOutPageComponent implements OnInit {

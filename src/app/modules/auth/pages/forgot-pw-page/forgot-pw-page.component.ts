@@ -1,6 +1,6 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
@@ -31,8 +31,8 @@ export class ForgotPwPageComponent {
       Validators.email
     ]),
   });
-  loading = false;
-  success = false;
+  loading = signal<boolean>(false);
+  success = signal<boolean>(false);
 
   constructor(
     private authService: AuthService,
@@ -42,20 +42,24 @@ export class ForgotPwPageComponent {
 
   submit(): void {
     if (!this.form.valid) return;
-    this.loading = true;
-    this.success = false;
+    this.loading.set(true);
+    this.success.set(false);
     const email = this.form.value.email ?? '';
     this.authService.forgotPassword(email).pipe(
       first(),
-      finalize(() => this.loading = false)
+      finalize(() => this.handleSubmitFinish())
     ).subscribe({
       next: () => this.handleSubmitSuccess(),
       error: (error) => this.handleSubmitError(error),
     });
   }
 
+  handleSubmitFinish(): void {
+    this.loading.set(false);
+  }
+
   handleSubmitSuccess(): void {
-    this.success = true;
+    this.success.set(true);
   }
 
   handleSubmitError(error: Error | HttpErrorResponse): void {
