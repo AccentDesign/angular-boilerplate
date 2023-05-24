@@ -25,15 +25,15 @@ bootstrapApplication(AppComponent, {
       },
       {
         path: AuthRoutes.base,
-        loadChildren: () => import('./app/modules/auth/auth.routes').then(m => m.AUTH_ROUTES),
+        loadChildren: () => import('@modules/auth/auth.routes').then(m => m.AUTH_ROUTES),
       },
       {
         path: DashboardRoutes.base,
-        loadChildren: () => import('./app/modules/dashboard/dashboard.routes').then(m => m.DASHBOARD_ROUTES),
+        loadChildren: () => import('@modules/dashboard/dashboard.routes').then(m => m.DASHBOARD_ROUTES),
       },
       {
         path: SettingsRoutes.base,
-        loadChildren: () => import('./app/modules/settings/settings.routes').then(m => m.SETTINGS_ROUTES),
+        loadChildren: () => import('@modules/settings/settings.routes').then(m => m.SETTINGS_ROUTES),
       },
       {
         path: '**',
