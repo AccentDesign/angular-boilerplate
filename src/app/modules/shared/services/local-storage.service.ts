@@ -10,7 +10,11 @@ export enum LocalStorageKeys {
 })
 export class LocalStorageService {
   set(key: LocalStorageKeys, value: string | object) {
-    localStorage.setItem(key, JSON.stringify(value));
+    if (typeof value === 'string') {
+      localStorage.setItem(key, value);
+    } else {
+      localStorage.setItem(key, JSON.stringify(value));
+    }
   }
 
   get(key: LocalStorageKeys) {
@@ -19,7 +23,7 @@ export class LocalStorageService {
     try {
       return JSON.parse(item);
     } catch (e) {
-      return null;
+      return item;
     }
   }
 
