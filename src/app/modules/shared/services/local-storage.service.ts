@@ -1,31 +1,29 @@
 import { Injectable } from '@angular/core';
 
+export enum LocalStorageKeys {
+  USER = 'user',
+  TOKEN = 'token',
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService {
-  static USER_KEY = 'user';
-  static TOKEN_KEY = 'token';
-
-  set(key: string, value: string | object) {
-    if (typeof value === 'object') {
-      localStorage.setItem(key, JSON.stringify(value));
-    } else {
-      localStorage.setItem(key, value);
-    }
+  set(key: LocalStorageKeys, value: string | object) {
+    localStorage.setItem(key, JSON.stringify(value));
   }
 
-  get(key: string) {
+  get(key: LocalStorageKeys) {
     const item = localStorage.getItem(key);
-    if (item === null) return item;
+    if (item === null) return null;
     try {
       return JSON.parse(item);
     } catch (e) {
-      return item;
+      return null;
     }
   }
 
-  remove(key: string) {
+  remove(key: LocalStorageKeys) {
     localStorage.removeItem(key);
   }
 
