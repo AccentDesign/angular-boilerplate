@@ -31,14 +31,18 @@ export class LogInPageComponent implements OnInit {
   protected readonly AuthPaths = AuthPaths;
 
   form = new FormGroup({
-    email: new FormControl('', [
-      Validators.required,
-      Validators.email
-    ]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(6)
-    ])
+    email: new FormControl('', {
+      nonNullable: true, validators: [
+        Validators.required,
+        Validators.email
+      ]
+    }),
+    password: new FormControl('', {
+      nonNullable: true, validators: [
+        Validators.required,
+        Validators.minLength(6)
+      ]
+    })
   });
   loading = signal<boolean>(false);
 

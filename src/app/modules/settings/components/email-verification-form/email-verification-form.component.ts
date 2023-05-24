@@ -25,9 +25,11 @@ import { finalize, first } from 'rxjs';
 })
 export class EmailVerificationFormComponent {
   form = new FormGroup({
-    token: new FormControl('', [
-      Validators.required
-    ]),
+    token: new FormControl('', {
+      nonNullable: true, validators: [
+        Validators.required
+      ]
+    }),
   });
   loading = signal<boolean>(false);
   success = signal<boolean>(false);

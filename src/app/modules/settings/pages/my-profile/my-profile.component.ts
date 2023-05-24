@@ -29,16 +29,22 @@ import { finalize, first } from 'rxjs';
 })
 export class MyProfileComponent {
   form = new FormGroup({
-    first_name: new FormControl('', [
-      Validators.required
-    ]),
-    last_name: new FormControl('', [
-      Validators.required
-    ]),
-    email: new FormControl('', [
-      Validators.required,
-      Validators.email
-    ]),
+    first_name: new FormControl('', {
+      nonNullable: true, validators: [
+        Validators.required
+      ]
+    }),
+    last_name: new FormControl('', {
+      nonNullable: true, validators: [
+        Validators.required
+      ]
+    }),
+    email: new FormControl('', {
+      nonNullable: true, validators: [
+        Validators.required,
+        Validators.email
+      ]
+    }),
   });
   loading = signal<boolean>(false);
   success = signal<boolean>(false);

@@ -31,23 +31,33 @@ export class RegisterPageComponent {
   protected readonly AuthPaths = AuthPaths;
 
   form = new FormGroup({
-    first_name: new FormControl('', [
-      Validators.required
-    ]),
-    last_name: new FormControl('', [
-      Validators.required
-    ]),
-    email: new FormControl('', [
-      Validators.required,
-      Validators.email
-    ]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(6)
-    ]),
-    password_confirm: new FormControl('', [
-      Validators.required
-    ])
+    first_name: new FormControl('', {
+      nonNullable: true, validators: [
+        Validators.required
+      ]
+    }),
+    last_name: new FormControl('', {
+      nonNullable: true, validators: [
+        Validators.required
+      ]
+    }),
+    email: new FormControl('', {
+      nonNullable: true, validators: [
+        Validators.required,
+        Validators.email
+      ]
+    }),
+    password: new FormControl('', {
+      nonNullable: true, validators: [
+        Validators.required,
+        Validators.minLength(6)
+      ]
+    }),
+    password_confirm: new FormControl('', {
+      nonNullable: true, validators: [
+        Validators.required
+      ]
+    })
   }, { validators: passwordsMatchValidator });
   loading = signal<boolean>(false);
   success = signal<boolean>(false);

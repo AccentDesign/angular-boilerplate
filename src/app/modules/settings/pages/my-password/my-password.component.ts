@@ -28,13 +28,17 @@ export class MyPasswordComponent {
   @ViewChild('ngForm') ngForm!: NgForm;
 
   form = new FormGroup({
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(6)
-    ]),
-    password_confirm: new FormControl('', [
-      Validators.required
-    ]),
+    password: new FormControl('', {
+      nonNullable: true, validators: [
+        Validators.required,
+        Validators.minLength(6)
+      ]
+    }),
+    password_confirm: new FormControl('', {
+      nonNullable: true, validators: [
+        Validators.required
+      ]
+    }),
   }, { validators: passwordsMatchValidator });
   loading = signal<boolean>(false);
   success = signal<boolean>(false);

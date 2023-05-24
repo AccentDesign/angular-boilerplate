@@ -26,10 +26,12 @@ import { finalize, first } from 'rxjs';
 })
 export class ForgotPwPageComponent {
   form = new FormGroup({
-    email: new FormControl('', [
-      Validators.required,
-      Validators.email
-    ]),
+    email: new FormControl('', {
+      nonNullable: true, validators: [
+        Validators.required,
+        Validators.email
+      ]
+    }),
   });
   loading = signal<boolean>(false);
   success = signal<boolean>(false);
