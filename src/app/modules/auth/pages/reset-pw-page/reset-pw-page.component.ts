@@ -1,8 +1,7 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, signal, ViewChild } from '@angular/core';
+import { Component, Input, signal, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { AuthPaths } from '@modules/auth/shared/auth-routes';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { ResetPasswordRequest } from '@modules/auth/shared/interfaces/reset-password-request';
@@ -31,6 +30,8 @@ import { finalize, first } from 'rxjs';
 export class ResetPwPageComponent {
   protected readonly AuthPaths = AuthPaths;
 
+  @Input({ required: true }) token!: string;
+
   @ViewChild('ngForm') ngForm!: NgForm;
 
   form = new FormGroup({
@@ -44,12 +45,9 @@ export class ResetPwPageComponent {
   }, { validators: passwordsMatchValidator });
   loading = signal<boolean>(false);
   success = signal<boolean>(false);
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  token = this.route.snapshot.paramMap.get('token')!;
 
   constructor(
     private authService: AuthService,
-    private route: ActivatedRoute,
     private errorService: ErrorMessageService,
   ) {
   }

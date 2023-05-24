@@ -1,7 +1,7 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { environment } from '@environments/environment';
 import { AuthRoutes } from '@modules/auth/shared/auth-routes';
 import { DashboardRoutes } from '@modules/dashboard/shared/dashboard-routes';
@@ -19,7 +19,10 @@ bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(HttpClientModule),
     provideRouter([
-      { path: '', component: WelcomePageComponent },
+      {
+        path: '',
+        component: WelcomePageComponent
+      },
       {
         path: AuthRoutes.base,
         loadChildren: () => import('./app/modules/auth/auth.routes').then(m => m.AUTH_ROUTES),
@@ -32,8 +35,11 @@ bootstrapApplication(AppComponent, {
         path: SettingsRoutes.base,
         loadChildren: () => import('./app/modules/settings/settings.routes').then(m => m.SETTINGS_ROUTES),
       },
-      { path: '**', component: Error404PageComponent }
-    ]),
+      {
+        path: '**',
+        component: Error404PageComponent
+      }
+    ], withComponentInputBinding()),
     { provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptor, multi: true }
   ]
 }).catch((err) => console.error(err));
