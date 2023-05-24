@@ -8,6 +8,7 @@ import { ErrorMessagesComponent } from '@modules/shared/components/error-message
 import { FormErrorsComponent } from '@modules/shared/components/form-errors/form-errors.component';
 import { MessageOkComponent } from '@modules/shared/components/message-ok/message-ok.component';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
+import { passwordsMatchValidator } from '@modules/shared/validators/passwords-match';
 import { finalize, first } from 'rxjs';
 
 @Component({
@@ -31,10 +32,10 @@ export class MyPasswordComponent {
       Validators.required,
       Validators.minLength(6)
     ]),
-    confirm_password: new FormControl('', [
+    password_confirm: new FormControl('', [
       Validators.required
     ]),
-  });
+  }, { validators: passwordsMatchValidator });
   loading = signal<boolean>(false);
   success = signal<boolean>(false);
 

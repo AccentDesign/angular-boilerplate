@@ -8,7 +8,7 @@
   <li *ngIf="control.errors['minlength']">
     {{ name }} must be at least {{ control.errors['minlength'].requiredLength }} characters long.
   </li>
-  <li *ngIf="control.errors['notMatched']">
-    {{ name }} does not match {{ control.errors['notMatched'].controlName1 }}.
+  <li *ngIf="control.errors['passwordsMatch']">
+    The passwords do not match.
   </li>
 </ul>
