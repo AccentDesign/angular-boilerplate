@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
+import { AuthPaths } from '@modules/auth/shared/auth-routes';
 import { AuthRepository } from '@modules/auth/shared/auth.repository';
+import { SettingsPaths } from '@modules/settings/shared/settings-routes';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard {
   private readonly allowedPaths = [
-    '/settings/profile'
+    SettingsPaths.profile,
+    SettingsPaths.password
   ];
 
   constructor(
@@ -37,12 +40,12 @@ export class AuthGuard {
   }
 
   async navigateLogin(): Promise<boolean> {
-    await this.router.navigateByUrl('/auth/login');
+    await this.router.navigateByUrl(AuthPaths.logIn);
     return false;
   }
 
   async navigateProfile(): Promise<boolean> {
-    await this.router.navigateByUrl('/settings/profile');
+    await this.router.navigateByUrl(SettingsPaths.profile);
     return false;
   }
 }

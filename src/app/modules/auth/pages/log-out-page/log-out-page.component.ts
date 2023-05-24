@@ -1,5 +1,6 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { AuthPaths } from '@modules/auth/shared/auth-routes';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { firstValueFrom } from 'rxjs';
 
@@ -13,6 +14,7 @@ import { firstValueFrom } from 'rxjs';
   templateUrl: './log-out-page.component.html'
 })
 export class LogOutPageComponent implements OnInit {
+  protected readonly AuthPaths = AuthPaths;
 
   constructor(
     private authService: AuthService
@@ -26,5 +28,4 @@ export class LogOutPageComponent implements OnInit {
       // do nothing
     }
   }
-
 }

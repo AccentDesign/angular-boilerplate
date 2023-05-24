@@ -3,6 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, signal, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { AuthPaths } from '@modules/auth/shared/auth-routes';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { ResetPasswordRequest } from '@modules/auth/shared/interfaces/reset-password-request';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
@@ -27,6 +28,8 @@ import { finalize, first } from 'rxjs';
   templateUrl: './reset-pw-page.component.html'
 })
 export class ResetPwPageComponent {
+  protected readonly AuthPaths = AuthPaths;
+
   @ViewChild('ngForm') ngForm!: NgForm;
 
   form = new FormGroup({

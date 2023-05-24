@@ -11,7 +11,7 @@
   <section class="max-w-[500px]">
     <app-message-ok *ngIf="success()">
       Your password has been reset. You can now
-      <a class="text-green-800 underline" href="/auth/login">Login</a>
+      <a class="text-green-800 underline" href="{{ AuthPaths.logIn }}">Login</a>
       using your new password.
     </app-message-ok>
     <app-error-messages *ngIf="!success()" location="resetPw"></app-error-messages>

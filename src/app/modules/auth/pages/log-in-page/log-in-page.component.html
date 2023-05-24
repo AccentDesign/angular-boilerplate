@@ -22,7 +22,7 @@
         <app-form-errors [control]="form.controls.password" [formRef]="ngForm"></app-form-errors>
       </div>
       <div class="flex justify-end">
-        <a href="/auth/forgot-password">Forgot password</a>
+        <a href="{{ AuthPaths.forgotPassword }}">Forgot password</a>
       </div>
       <button [disabled]="loading()" type="submit">Login</button>
     </form>

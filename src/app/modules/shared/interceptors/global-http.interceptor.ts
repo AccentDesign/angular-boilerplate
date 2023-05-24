@@ -1,6 +1,7 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthPaths } from '@modules/auth/shared/auth-routes';
 import { AuthRepository } from '@modules/auth/shared/auth.repository';
 import { catchError, Observable, of, throwError } from 'rxjs';
 
@@ -33,7 +34,7 @@ export class GlobalHttpInterceptor implements HttpInterceptor {
             switch (error.status) {
               case 401:
               case 403:
-                this.router.navigateByUrl('/auth/logout').then(() => console.log('redirect to logout'));
+                this.router.navigateByUrl(AuthPaths.logOut).then(() => console.log('redirect to logout'));
                 handled = true;
                 break;
             }

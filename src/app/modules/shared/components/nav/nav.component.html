@@ -1,9 +1,9 @@
 <header class="px-6 py-4 mb-8 bg-gray-100 flex items-center justify-between shadow-md">
-  <a class="text-slate-600" href="/dashboard">
+  <a class="text-slate-600" href="{{ DashboardPaths.dashboard }}">
     <img alt="logo" class="w-[150px]" height="348" ngSrc="assets/logo.png" width="1280"/>
   </a>
   <div class="space-x-5">
-    <a href="/settings">Settings</a>
-    <a href="/auth/logout">Logout</a>
+    <a href="{{ SettingsPaths.profile }}">Settings</a>
+    <a href="{{ AuthPaths.logOut }}">Logout</a>
   </div>
 </header>

@@ -2,6 +2,7 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthPaths } from '@modules/auth/shared/auth-routes';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { RegisterRequest } from '@modules/auth/shared/interfaces/register-request';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
@@ -26,6 +27,8 @@ import { finalize, first } from 'rxjs';
   templateUrl: './register-page.component.html'
 })
 export class RegisterPageComponent {
+  protected readonly AuthPaths = AuthPaths;
+
   form = new FormGroup({
     first_name: new FormControl('', [
       Validators.required
