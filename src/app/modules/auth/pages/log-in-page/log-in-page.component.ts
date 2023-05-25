@@ -28,8 +28,6 @@ import { finalize, first } from 'rxjs';
   templateUrl: './log-in-page.component.html'
 })
 export class LogInPageComponent implements OnInit {
-  protected readonly AuthPaths = AuthPaths;
-
   form = new FormGroup({
     email: new FormControl('', {
       nonNullable: true, validators: [
@@ -45,6 +43,7 @@ export class LogInPageComponent implements OnInit {
     })
   });
   loading = signal<boolean>(false);
+  protected readonly AuthPaths = AuthPaths;
 
   constructor(
     private authRepository: AuthRepository,

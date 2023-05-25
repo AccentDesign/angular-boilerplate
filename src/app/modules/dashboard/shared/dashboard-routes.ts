@@ -4,5 +4,5 @@ export const DashboardRoutes = {
 };
 
 export const DashboardPaths = {
-    dashboard: `/${DashboardRoutes.base}`,
+  dashboard: `/${DashboardRoutes.base}`,
 };

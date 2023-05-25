@@ -28,8 +28,6 @@ import { finalize, first } from 'rxjs';
   templateUrl: './register-page.component.html'
 })
 export class RegisterPageComponent {
-  protected readonly AuthPaths = AuthPaths;
-
   form = new FormGroup({
     first_name: new FormControl('', {
       nonNullable: true, validators: [
@@ -61,6 +59,7 @@ export class RegisterPageComponent {
   }, { validators: passwordsMatchValidator });
   loading = signal<boolean>(false);
   success = signal<boolean>(false);
+  protected readonly AuthPaths = AuthPaths;
 
   constructor(
     private authService: AuthService,

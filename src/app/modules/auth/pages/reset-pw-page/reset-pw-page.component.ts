@@ -28,12 +28,8 @@ import { finalize, first } from 'rxjs';
   templateUrl: './reset-pw-page.component.html'
 })
 export class ResetPwPageComponent {
-  protected readonly AuthPaths = AuthPaths;
-
   @Input({ required: true }) token!: string;
-
   @ViewChild('ngForm') ngForm!: NgForm;
-
   form = new FormGroup({
     password: new FormControl('', {
       nonNullable: true, validators: [
@@ -49,6 +45,7 @@ export class ResetPwPageComponent {
   }, { validators: passwordsMatchValidator });
   loading = signal<boolean>(false);
   success = signal<boolean>(false);
+  protected readonly AuthPaths = AuthPaths;
 
   constructor(
     private authService: AuthService,
