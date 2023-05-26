@@ -1,6 +1,6 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
@@ -25,6 +25,9 @@ import { finalize, first } from 'rxjs';
   templateUrl: './forgot-pw-page.component.html'
 })
 export class ForgotPwPageComponent {
+  private authService = inject(AuthService);
+  private errorService = inject(ErrorMessageService);
+
   form = new FormGroup({
     email: new FormControl('', {
       nonNullable: true, validators: [
@@ -33,14 +36,9 @@ export class ForgotPwPageComponent {
       ]
     }),
   });
+
   loading = signal<boolean>(false);
   success = signal<boolean>(false);
-
-  constructor(
-    private authService: AuthService,
-    private errorService: ErrorMessageService,
-  ) {
-  }
 
   submit(): void {
     if (!this.form.valid) return;

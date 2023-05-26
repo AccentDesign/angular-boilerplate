@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthRepository } from '@modules/auth/shared/auth.repository';
 import { AuthService } from '@modules/auth/shared/auth.service';
@@ -26,6 +26,10 @@ import { finalize, first } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmailVerificationFormComponent {
+  authRepository = inject(AuthRepository);
+  private authService = inject(AuthService);
+  private errorService = inject(ErrorMessageService);
+
   form = new FormGroup({
     token: new FormControl('', {
       nonNullable: true, validators: [
@@ -33,16 +37,10 @@ export class EmailVerificationFormComponent {
       ]
     }),
   });
+
   loading = signal<boolean>(false);
   success = signal<boolean>(false);
   requested = signal<boolean>(false);
-
-  constructor(
-    public authRepository: AuthRepository,
-    private authService: AuthService,
-    private errorService: ErrorMessageService,
-  ) {
-  }
 
   request(event: Event | MouseEvent): void {
     event.stopPropagation();

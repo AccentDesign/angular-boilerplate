@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck, Input } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck, inject, Input } from '@angular/core';
 import { FormControl, FormGroupDirective } from '@angular/forms';
 
 @Component({
@@ -10,12 +10,11 @@ import { FormControl, FormGroupDirective } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormErrorsComponent implements DoCheck {
+  private changeDetectorRef = inject(ChangeDetectorRef);
+
   @Input() formRef: FormGroupDirective | undefined;
   @Input() control: FormControl | undefined;
   @Input() name = 'This';
-
-  constructor(private changeDetectorRef: ChangeDetectorRef) {
-  }
 
   ngDoCheck() {
     this.changeDetectorRef.markForCheck();

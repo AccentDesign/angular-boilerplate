@@ -1,6 +1,6 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, signal, ViewChild } from '@angular/core';
+import { Component, inject, Input, signal, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthPaths } from '@modules/auth/shared/auth-routes';
 import { AuthService } from '@modules/auth/shared/auth.service';
@@ -28,8 +28,13 @@ import { finalize, first } from 'rxjs';
   templateUrl: './reset-pw-page.component.html'
 })
 export class ResetPwPageComponent {
+  protected readonly AuthPaths = AuthPaths;
+  private authService = inject(AuthService);
+  private errorService = inject(ErrorMessageService);
+
   @Input({ required: true }) token!: string;
   @ViewChild('ngForm') ngForm!: NgForm;
+
   form = new FormGroup({
     password: new FormControl('', {
       nonNullable: true, validators: [
@@ -43,15 +48,9 @@ export class ResetPwPageComponent {
       ]
     }),
   }, { validators: passwordsMatchValidator });
+
   loading = signal<boolean>(false);
   success = signal<boolean>(false);
-  protected readonly AuthPaths = AuthPaths;
-
-  constructor(
-    private authService: AuthService,
-    private errorService: ErrorMessageService,
-  ) {
-  }
 
   resetForm() {
     this.form.reset();

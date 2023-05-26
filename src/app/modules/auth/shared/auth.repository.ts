@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { User } from '@modules/auth/shared/interfaces/user';
 import { LocalStorageKeys, LocalStorageService } from '@modules/shared/services/local-storage.service';
 
@@ -6,12 +6,12 @@ import { LocalStorageKeys, LocalStorageService } from '@modules/shared/services/
   providedIn: 'root'
 })
 export class AuthRepository {
+  private storageService = inject(LocalStorageService);
+
   readonly currentUser = signal<User | null>(null);
   readonly accessToken = signal<string | null>(null);
 
-  constructor(
-    private storageService: LocalStorageService
-  ) {
+  constructor() {
     this.currentUser.set(this.storageService.get(LocalStorageKeys.USER));
     this.accessToken.set(this.storageService.get(LocalStorageKeys.TOKEN));
   }

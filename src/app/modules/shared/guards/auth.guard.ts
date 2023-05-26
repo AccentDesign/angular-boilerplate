@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { AuthPaths } from '@modules/auth/shared/auth-routes';
 import { AuthRepository } from '@modules/auth/shared/auth.repository';
@@ -8,16 +8,13 @@ import { SettingsPaths } from '@modules/settings/shared/settings-routes';
   providedIn: 'root',
 })
 export class AuthGuard {
+  private authRepository = inject(AuthRepository);
+  private router = inject(Router);
+
   private readonly allowedPaths = [
     SettingsPaths.profile,
     SettingsPaths.password
   ];
-
-  constructor(
-    private authRepository: AuthRepository,
-    private router: Router
-  ) {
-  }
 
   async canActivate(
     route: ActivatedRouteSnapshot,

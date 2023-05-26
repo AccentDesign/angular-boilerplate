@@ -1,6 +1,6 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthPaths } from '@modules/auth/shared/auth-routes';
@@ -28,6 +28,12 @@ import { finalize, first } from 'rxjs';
   templateUrl: './log-in-page.component.html'
 })
 export class LogInPageComponent implements OnInit {
+  protected readonly AuthPaths = AuthPaths;
+  private authRepository = inject(AuthRepository);
+  private authService = inject(AuthService);
+  private errorService = inject(ErrorMessageService);
+  private router = inject(Router);
+
   form = new FormGroup({
     email: new FormControl('', {
       nonNullable: true, validators: [
@@ -42,16 +48,8 @@ export class LogInPageComponent implements OnInit {
       ]
     })
   });
-  loading = signal<boolean>(false);
-  protected readonly AuthPaths = AuthPaths;
 
-  constructor(
-    private authRepository: AuthRepository,
-    private authService: AuthService,
-    private errorService: ErrorMessageService,
-    private router: Router
-  ) {
-  }
+  loading = signal<boolean>(false);
 
   ngOnInit(): void {
     this.authRepository.clear();

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { AuthRepository } from '@modules/auth/shared/auth.repository';
 import { LoginRequest } from '@modules/auth/shared/interfaces/login-request';
@@ -14,12 +14,12 @@ import { catchError, finalize, first, map, Observable, of, switchMap, tap, throw
   providedIn: 'root'
 })
 export class AuthService {
+  private authRepository = inject(AuthRepository);
+  private http = inject(HttpClient);
+
   private baseURL = environment.apiHost;
 
-  constructor(
-    private authRepository: AuthRepository,
-    private http: HttpClient
-  ) {
+  constructor() {
     if (this.authRepository.accessToken() && !this.authRepository.currentUser()) {
       this.getUser().pipe(first()).subscribe({
         error: (err) => console.error(err),

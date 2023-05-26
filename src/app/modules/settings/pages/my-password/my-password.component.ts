@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, signal, ViewChild } from '@angular/core';
+import { Component, inject, signal, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { UpdateUserRequest } from '@modules/auth/shared/interfaces/update-user-request';
@@ -27,6 +27,9 @@ import { finalize, first } from 'rxjs';
   templateUrl: './my-password.component.html'
 })
 export class MyPasswordComponent {
+  private authService = inject(AuthService);
+  private errorService = inject(ErrorMessageService);
+
   @ViewChild('ngForm') ngForm!: NgForm;
 
   form = new FormGroup({
@@ -42,14 +45,9 @@ export class MyPasswordComponent {
       ]
     }),
   }, { validators: passwordsMatchValidator });
+
   loading = signal<boolean>(false);
   success = signal<boolean>(false);
-
-  constructor(
-    private authService: AuthService,
-    private errorService: ErrorMessageService
-  ) {
-  }
 
   resetForm() {
     this.form.reset();

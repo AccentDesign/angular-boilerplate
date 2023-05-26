@@ -1,6 +1,6 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthPaths } from '@modules/auth/shared/auth-routes';
 import { AuthService } from '@modules/auth/shared/auth.service';
@@ -28,6 +28,10 @@ import { finalize, first } from 'rxjs';
   templateUrl: './register-page.component.html'
 })
 export class RegisterPageComponent {
+  protected readonly AuthPaths = AuthPaths;
+  private authService = inject(AuthService);
+  private errorService = inject(ErrorMessageService);
+
   form = new FormGroup({
     first_name: new FormControl('', {
       nonNullable: true, validators: [
@@ -57,15 +61,9 @@ export class RegisterPageComponent {
       ]
     })
   }, { validators: passwordsMatchValidator });
+
   loading = signal<boolean>(false);
   success = signal<boolean>(false);
-  protected readonly AuthPaths = AuthPaths;
-
-  constructor(
-    private authService: AuthService,
-    private errorService: ErrorMessageService,
-  ) {
-  }
 
   register(): void {
     if (!this.form.valid) return;

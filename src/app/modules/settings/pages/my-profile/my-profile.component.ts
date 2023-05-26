@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, effect, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthRepository } from '@modules/auth/shared/auth.repository';
 import { AuthService } from '@modules/auth/shared/auth.service';
@@ -30,6 +30,10 @@ import { finalize, first } from 'rxjs';
   templateUrl: './my-profile.component.html'
 })
 export class MyProfileComponent {
+  private authRepository = inject(AuthRepository);
+  private authService = inject(AuthService);
+  private errorService = inject(ErrorMessageService);
+
   form = new FormGroup({
     first_name: new FormControl('', {
       nonNullable: true, validators: [
@@ -48,6 +52,7 @@ export class MyProfileComponent {
       ]
     }),
   });
+
   loading = signal<boolean>(false);
   success = signal<boolean>(false);
 
@@ -63,13 +68,6 @@ export class MyProfileComponent {
       this.form.reset();
     }
   });
-
-  constructor(
-    private authRepository: AuthRepository,
-    private authService: AuthService,
-    private errorService: ErrorMessageService
-  ) {
-  }
 
   submit(): void {
     if (!this.form.valid) return;

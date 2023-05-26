@@ -1,5 +1,5 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthPaths } from '@modules/auth/shared/auth-routes';
 import { AuthRepository } from '@modules/auth/shared/auth.repository';
@@ -7,12 +7,8 @@ import { catchError, Observable, of, throwError } from 'rxjs';
 
 @Injectable()
 export class GlobalHttpInterceptor implements HttpInterceptor {
-
-  constructor(
-    private router: Router,
-    private authRepository: AuthRepository
-  ) {
-  }
+  private authRepository = inject(AuthRepository);
+  private router = inject(Router);
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     let headers = request.headers;
