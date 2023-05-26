@@ -2,6 +2,7 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AuthPaths } from '@modules/auth/shared/auth-routes';
 import { AuthService } from '@modules/auth/shared/auth.service';
+import { ButtonStyleDirective } from '@modules/shared/directives/button-style.directive';
 import { firstValueFrom } from 'rxjs';
 
 @Component({
@@ -9,7 +10,8 @@ import { firstValueFrom } from 'rxjs';
   standalone: true,
   imports: [
     CommonModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    ButtonStyleDirective
   ],
   templateUrl: './log-out-page.component.html'
 })

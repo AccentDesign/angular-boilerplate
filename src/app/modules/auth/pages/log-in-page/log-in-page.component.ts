@@ -10,7 +10,7 @@ import { LoginRequest } from '@modules/auth/shared/interfaces/login-request';
 import { DashboardPaths } from '@modules/dashboard/shared/dashboard-routes';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
 import { FormErrorsComponent } from '@modules/shared/components/form-errors/form-errors.component';
-import { MessageErrorComponent } from '@modules/shared/components/message-error/message-error.component';
+import { ButtonStyleDirective } from '@modules/shared/directives/button-style.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
 import { finalize, first } from 'rxjs';
 
@@ -22,8 +22,8 @@ import { finalize, first } from 'rxjs';
     NgOptimizedImage,
     ReactiveFormsModule,
     FormErrorsComponent,
-    MessageErrorComponent,
-    ErrorMessagesComponent
+    ErrorMessagesComponent,
+    ButtonStyleDirective
   ],
   templateUrl: './log-in-page.component.html'
 })

@@ -10,7 +10,8 @@ import {
 } from '@modules/settings/components/email-verification-form/email-verification-form.component';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
 import { FormErrorsComponent } from '@modules/shared/components/form-errors/form-errors.component';
-import { MessageOkComponent } from '@modules/shared/components/message-ok/message-ok.component';
+import { ButtonStyleDirective } from '@modules/shared/directives/button-style.directive';
+import { MessageStyleDirective } from '@modules/shared/directives/message-style.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
 import { finalize, first } from 'rxjs';
 
@@ -21,9 +22,10 @@ import { finalize, first } from 'rxjs';
     CommonModule,
     ReactiveFormsModule,
     FormErrorsComponent,
-    MessageOkComponent,
     EmailVerificationFormComponent,
-    ErrorMessagesComponent
+    ErrorMessagesComponent,
+    MessageStyleDirective,
+    ButtonStyleDirective
   ],
   templateUrl: './my-profile.component.html'
 })

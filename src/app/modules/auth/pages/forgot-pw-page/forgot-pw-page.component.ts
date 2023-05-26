@@ -5,8 +5,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
 import { FormErrorsComponent } from '@modules/shared/components/form-errors/form-errors.component';
-import { MessageErrorComponent } from '@modules/shared/components/message-error/message-error.component';
-import { MessageOkComponent } from '@modules/shared/components/message-ok/message-ok.component';
+import { ButtonStyleDirective } from '@modules/shared/directives/button-style.directive';
+import { MessageStyleDirective } from '@modules/shared/directives/message-style.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
 import { finalize, first } from 'rxjs';
 
@@ -18,9 +18,9 @@ import { finalize, first } from 'rxjs';
     NgOptimizedImage,
     ReactiveFormsModule,
     FormErrorsComponent,
-    MessageOkComponent,
-    MessageErrorComponent,
-    ErrorMessagesComponent
+    ErrorMessagesComponent,
+    MessageStyleDirective,
+    ButtonStyleDirective
   ],
   templateUrl: './forgot-pw-page.component.html'
 })

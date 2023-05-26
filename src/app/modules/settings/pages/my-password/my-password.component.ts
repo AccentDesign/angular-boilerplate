@@ -6,7 +6,8 @@ import { AuthService } from '@modules/auth/shared/auth.service';
 import { UpdateUserRequest } from '@modules/auth/shared/interfaces/update-user-request';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
 import { FormErrorsComponent } from '@modules/shared/components/form-errors/form-errors.component';
-import { MessageOkComponent } from '@modules/shared/components/message-ok/message-ok.component';
+import { ButtonStyleDirective } from '@modules/shared/directives/button-style.directive';
+import { MessageStyleDirective } from '@modules/shared/directives/message-style.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
 import { passwordsMatchValidator } from '@modules/shared/validators/passwords-match';
 import { finalize, first } from 'rxjs';
@@ -19,8 +20,9 @@ import { finalize, first } from 'rxjs';
     FormsModule,
     ReactiveFormsModule,
     FormErrorsComponent,
-    MessageOkComponent,
-    ErrorMessagesComponent
+    ErrorMessagesComponent,
+    MessageStyleDirective,
+    ButtonStyleDirective
   ],
   templateUrl: './my-password.component.html'
 })

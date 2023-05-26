@@ -9,9 +9,9 @@
     </hgroup>
   </header>
   <section class="max-w-[500px]">
-    <app-message-ok *ngIf="success()">
+    <div *ngIf="success()" appMessageStyle="success">
       Assuming the email exists in our system. We will send details of what to do next.
-    </app-message-ok>
+    </div>
     <app-error-messages *ngIf="!success()" location="forgotPw"></app-error-messages>
     <form #ngForm="ngForm" (ngSubmit)="submit()" [formGroup]="form" class="space-y-6">
       <div>
@@ -19,7 +19,7 @@
         <input formControlName="email" id="email" type="email">
         <app-form-errors [control]="form.controls.email" [formRef]="ngForm"></app-form-errors>
       </div>
-      <button [disabled]="loading()" type="submit">Request Details</button>
+      <button [disabled]="loading()" appButtonStyle="primary" class="w-full" type="submit">Request Details</button>
     </form>
   </section>
 </main>
