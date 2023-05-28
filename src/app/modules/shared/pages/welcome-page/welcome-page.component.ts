@@ -1,7 +1,7 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { AuthPaths } from '@modules/auth/shared/auth-routes';
-import { ButtonStyleDirective } from '@modules/shared/directives/button-style.directive';
+import { ElementStyleDirective } from '@modules/shared/directives/element-style.directive';
 
 @Component({
   selector: 'app-welcome-page',
@@ -9,7 +9,7 @@ import { ButtonStyleDirective } from '@modules/shared/directives/button-style.di
   imports: [
     CommonModule,
     NgOptimizedImage,
-    ButtonStyleDirective
+    ElementStyleDirective
   ],
   templateUrl: './welcome-page.component.html'
 })

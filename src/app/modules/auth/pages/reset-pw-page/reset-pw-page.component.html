@@ -9,7 +9,7 @@
     </hgroup>
   </header>
   <section class="max-w-[500px]">
-    <div *ngIf="success()" appMessageStyle="success">
+    <div *ngIf="success()" [appElementStyle]="{ type: 'message', style: 'success' }">
       Your password has been reset. You can now
       <a class="text-green-800 underline" href="{{ AuthPaths.logIn }}">Login</a>
       using your new password.
@@ -26,7 +26,9 @@
         <input formControlName="password_confirm" id="password_confirm" type="password">
         <app-form-errors [control]="form.controls.password_confirm" [formRef]="ngForm"></app-form-errors>
       </div>
-      <button [disabled]="loading()" appButtonStyle="primary" class="w-full" type="submit">Change Password</button>
+      <button [appElementStyle]="{ type: 'button', style: 'primary' }" [disabled]="loading()" class="w-full"
+              type="submit">Change Password
+      </button>
     </form>
   </section>
 </main>

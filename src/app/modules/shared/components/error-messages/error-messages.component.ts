@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { MessageStyleDirective } from '@modules/shared/directives/message-style.directive';
+import { ElementStyleDirective } from '@modules/shared/directives/element-style.directive';
 import { ErrorMessage } from '@modules/shared/interfaces/error-message';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
 import { BehaviorSubject, filter, Observable, switchMap } from 'rxjs';
@@ -10,16 +10,14 @@ import { BehaviorSubject, filter, Observable, switchMap } from 'rxjs';
   standalone: true,
   imports: [
     CommonModule,
-    MessageStyleDirective
+    ElementStyleDirective
   ],
   templateUrl: './error-messages.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ErrorMessagesComponent implements OnChanges {
-  private errorService = inject(ErrorMessageService);
-
   @Input() location!: string;
-
+  private errorService = inject(ErrorMessageService);
   private locationSubject = new BehaviorSubject<string>(this.location);
 
   error$: Observable<ErrorMessage> = this.locationSubject.pipe(

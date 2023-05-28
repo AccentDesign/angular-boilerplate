@@ -24,7 +24,9 @@
       <div class="flex justify-end">
         <a href="{{ AuthPaths.forgotPassword }}">Forgot password</a>
       </div>
-      <button [disabled]="loading()" appButtonStyle="primary" class="w-full" type="submit">Login</button>
+      <button [appElementStyle]="{ type: 'button', style: 'primary' }" [disabled]="loading()" class="w-full"
+              type="submit">Login
+      </button>
     </form>
   </section>
 </main>

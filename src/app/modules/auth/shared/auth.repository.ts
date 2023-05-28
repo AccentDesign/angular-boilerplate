@@ -6,10 +6,9 @@ import { LocalStorageKeys, LocalStorageService } from '@modules/shared/services/
   providedIn: 'root'
 })
 export class AuthRepository {
-  private storageService = inject(LocalStorageService);
-
   readonly currentUser = signal<User | null>(null);
   readonly accessToken = signal<string | null>(null);
+  private storageService = inject(LocalStorageService);
 
   constructor() {
     this.currentUser.set(this.storageService.get(LocalStorageKeys.USER));

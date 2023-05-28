@@ -10,11 +10,10 @@ import { FormControl, FormGroupDirective } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormErrorsComponent implements DoCheck {
-  private changeDetectorRef = inject(ChangeDetectorRef);
-
   @Input() formRef: FormGroupDirective | undefined;
   @Input() control: FormControl | undefined;
   @Input() name = 'This';
+  private changeDetectorRef = inject(ChangeDetectorRef);
 
   ngDoCheck() {
     this.changeDetectorRef.markForCheck();

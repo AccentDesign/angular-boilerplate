@@ -6,8 +6,7 @@ import { AuthService } from '@modules/auth/shared/auth.service';
 import { UpdateUserRequest } from '@modules/auth/shared/interfaces/update-user-request';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
 import { FormErrorsComponent } from '@modules/shared/components/form-errors/form-errors.component';
-import { ButtonStyleDirective } from '@modules/shared/directives/button-style.directive';
-import { MessageStyleDirective } from '@modules/shared/directives/message-style.directive';
+import { ElementStyleDirective } from '@modules/shared/directives/element-style.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
 import { passwordsMatchValidator } from '@modules/shared/validators/passwords-match';
 import { finalize, first } from 'rxjs';
@@ -21,17 +20,12 @@ import { finalize, first } from 'rxjs';
     ReactiveFormsModule,
     FormErrorsComponent,
     ErrorMessagesComponent,
-    MessageStyleDirective,
-    ButtonStyleDirective
+    ElementStyleDirective
   ],
   templateUrl: './my-password.component.html'
 })
 export class MyPasswordComponent {
-  private authService = inject(AuthService);
-  private errorService = inject(ErrorMessageService);
-
   @ViewChild('ngForm') ngForm!: NgForm;
-
   form = new FormGroup({
     password: new FormControl('', {
       nonNullable: true, validators: [
@@ -45,9 +39,10 @@ export class MyPasswordComponent {
       ]
     }),
   }, { validators: passwordsMatchValidator });
-
   loading = signal<boolean>(false);
   success = signal<boolean>(false);
+  private authService = inject(AuthService);
+  private errorService = inject(ErrorMessageService);
 
   resetForm() {
     this.form.reset();

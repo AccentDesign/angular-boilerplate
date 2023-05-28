@@ -2,7 +2,7 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { AuthPaths } from '@modules/auth/shared/auth-routes';
 import { AuthService } from '@modules/auth/shared/auth.service';
-import { ButtonStyleDirective } from '@modules/shared/directives/button-style.directive';
+import { ElementStyleDirective } from '@modules/shared/directives/element-style.directive';
 import { firstValueFrom } from 'rxjs';
 
 @Component({
@@ -11,14 +11,13 @@ import { firstValueFrom } from 'rxjs';
   imports: [
     CommonModule,
     NgOptimizedImage,
-    ButtonStyleDirective
+    ElementStyleDirective
   ],
   templateUrl: './log-out-page.component.html'
 })
 export class LogOutPageComponent implements OnInit {
-  private authService = inject(AuthService);
-
   protected readonly AuthPaths = AuthPaths;
+  private authService = inject(AuthService);
 
   async ngOnInit(): Promise<void> {
     try {

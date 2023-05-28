@@ -7,8 +7,7 @@ import { AuthService } from '@modules/auth/shared/auth.service';
 import { RegisterRequest } from '@modules/auth/shared/interfaces/register-request';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
 import { FormErrorsComponent } from '@modules/shared/components/form-errors/form-errors.component';
-import { ButtonStyleDirective } from '@modules/shared/directives/button-style.directive';
-import { MessageStyleDirective } from '@modules/shared/directives/message-style.directive';
+import { ElementStyleDirective } from '@modules/shared/directives/element-style.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
 import { passwordsMatchValidator } from '@modules/shared/validators/passwords-match';
 import { finalize, first } from 'rxjs';
@@ -22,16 +21,11 @@ import { finalize, first } from 'rxjs';
     ReactiveFormsModule,
     FormErrorsComponent,
     ErrorMessagesComponent,
-    MessageStyleDirective,
-    ButtonStyleDirective
+    ElementStyleDirective
   ],
   templateUrl: './register-page.component.html'
 })
 export class RegisterPageComponent {
-  protected readonly AuthPaths = AuthPaths;
-  private authService = inject(AuthService);
-  private errorService = inject(ErrorMessageService);
-
   form = new FormGroup({
     first_name: new FormControl('', {
       nonNullable: true, validators: [
@@ -61,9 +55,11 @@ export class RegisterPageComponent {
       ]
     })
   }, { validators: passwordsMatchValidator });
-
   loading = signal<boolean>(false);
   success = signal<boolean>(false);
+  protected readonly AuthPaths = AuthPaths;
+  private authService = inject(AuthService);
+  private errorService = inject(ErrorMessageService);
 
   register(): void {
     if (!this.form.valid) return;

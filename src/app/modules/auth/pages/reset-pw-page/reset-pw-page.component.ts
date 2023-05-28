@@ -7,8 +7,7 @@ import { AuthService } from '@modules/auth/shared/auth.service';
 import { ResetPasswordRequest } from '@modules/auth/shared/interfaces/reset-password-request';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
 import { FormErrorsComponent } from '@modules/shared/components/form-errors/form-errors.component';
-import { ButtonStyleDirective } from '@modules/shared/directives/button-style.directive';
-import { MessageStyleDirective } from '@modules/shared/directives/message-style.directive';
+import { ElementStyleDirective } from '@modules/shared/directives/element-style.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
 import { passwordsMatchValidator } from '@modules/shared/validators/passwords-match';
 import { finalize, first } from 'rxjs';
@@ -22,19 +21,13 @@ import { finalize, first } from 'rxjs';
     NgOptimizedImage,
     ReactiveFormsModule,
     ErrorMessagesComponent,
-    MessageStyleDirective,
-    ButtonStyleDirective
+    ElementStyleDirective
   ],
   templateUrl: './reset-pw-page.component.html'
 })
 export class ResetPwPageComponent {
-  protected readonly AuthPaths = AuthPaths;
-  private authService = inject(AuthService);
-  private errorService = inject(ErrorMessageService);
-
   @Input({ required: true }) token!: string;
   @ViewChild('ngForm') ngForm!: NgForm;
-
   form = new FormGroup({
     password: new FormControl('', {
       nonNullable: true, validators: [
@@ -48,9 +41,11 @@ export class ResetPwPageComponent {
       ]
     }),
   }, { validators: passwordsMatchValidator });
-
   loading = signal<boolean>(false);
   success = signal<boolean>(false);
+  protected readonly AuthPaths = AuthPaths;
+  private authService = inject(AuthService);
+  private errorService = inject(ErrorMessageService);
 
   resetForm() {
     this.form.reset();

@@ -6,8 +6,7 @@ import { AuthRepository } from '@modules/auth/shared/auth.repository';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
 import { FormErrorsComponent } from '@modules/shared/components/form-errors/form-errors.component';
-import { ButtonStyleDirective } from '@modules/shared/directives/button-style.directive';
-import { MessageStyleDirective } from '@modules/shared/directives/message-style.directive';
+import { ElementStyleDirective } from '@modules/shared/directives/element-style.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
 import { finalize, first } from 'rxjs';
 
@@ -19,17 +18,13 @@ import { finalize, first } from 'rxjs';
     ReactiveFormsModule,
     FormErrorsComponent,
     ErrorMessagesComponent,
-    MessageStyleDirective,
-    ButtonStyleDirective
+    ElementStyleDirective
   ],
   templateUrl: './email-verification-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmailVerificationFormComponent {
   authRepository = inject(AuthRepository);
-  private authService = inject(AuthService);
-  private errorService = inject(ErrorMessageService);
-
   form = new FormGroup({
     token: new FormControl('', {
       nonNullable: true, validators: [
@@ -37,10 +32,11 @@ export class EmailVerificationFormComponent {
       ]
     }),
   });
-
   loading = signal<boolean>(false);
   success = signal<boolean>(false);
   requested = signal<boolean>(false);
+  private authService = inject(AuthService);
+  private errorService = inject(ErrorMessageService);
 
   request(event: Event | MouseEvent): void {
     event.stopPropagation();
