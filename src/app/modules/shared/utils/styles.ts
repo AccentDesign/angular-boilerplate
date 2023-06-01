@@ -14,6 +14,8 @@ export const buttonDefaultClasses: string[] = [
   'rounded',
   'shadow-md',
   'text-center',
+  'disabled:opacity-75',
+  'disabled:cursor-not-allowed'
 ];
 
 export const buttonStylesMap: Record<ButtonStyle, ButtonStyleClasses> = {
