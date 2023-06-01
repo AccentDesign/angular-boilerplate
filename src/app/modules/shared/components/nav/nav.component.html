@@ -2,8 +2,13 @@
   <a class="text-slate-600" href="{{ DashboardPaths.dashboard }}">
     <img alt="logo" class="w-[150px]" height="348" ngSrc="assets/logo.png" width="1280"/>
   </a>
-  <div class="space-x-5">
-    <a href="{{ SettingsPaths.profile }}">Settings</a>
-    <a href="{{ AuthPaths.logOut }}">Logout</a>
+  <div class="flex gap-4">
+    <a aria-label="Settings" class="text-gray-500 hover:text-gray-600" href="{{ SettingsPaths.profile }}"
+       title="Settings">
+      <span appSvgIcon="majestic-settings-cog"></span>
+    </a>
+    <a aria-label="Logout" class="text-gray-500 hover:text-gray-600" href="{{ AuthPaths.logOut }}" title="Logout">
+      <span appSvgIcon="majestic-door-exit-line"></span>
+    </a>
   </div>
 </header>
