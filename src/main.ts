@@ -80,7 +80,7 @@ const providers = [
     useValue: Sentry.createErrorHandler({ showDialog: true }),
   } : {
     provide: ErrorHandler,
-    useValue: ErrorHandler,
+    useClass: ErrorHandler,
   }
 ];
 
