@@ -5,11 +5,15 @@
     </a>
     <hgroup>
       <h1>See you soon</h1>
-      <h2>You have been logged out. If you need to you can log back in.</h2>
+      <h2 class="flex items-center">
+        <div appSvgIcon="majestic-door-exit-line" class="w-4 h-4 mr-2"></div>
+        You have been logged out. If you need to you can log back in.
+      </h2>
     </hgroup>
   </header>
   <section class="max-w-[500px]">
-    <a [appElementStyle]="{ type: 'button', style: 'primary' }" class="w-full" href="{{ AuthPaths.logIn }}">Back to
-      Login</a>
+    <a [appElementStyle]="{ type: 'button', style: 'primary' }" class="w-full" href="{{ AuthPaths.logIn }}">
+      Back to Login
+    </a>
   </section>
 </main>

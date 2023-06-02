@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { NavComponent } from '@modules/shared/components/nav/nav.component';
+import { SvgIconDirective } from '@modules/shared/directives/svg-icon.directive';
 
 @Component({
   selector: 'app-my-settings',
@@ -11,7 +12,8 @@ import { NavComponent } from '@modules/shared/components/nav/nav.component';
     NavComponent,
     RouterLinkActive,
     RouterLink,
-    RouterOutlet
+    RouterOutlet,
+    SvgIconDirective
   ],
   templateUrl: './my-settings.component.html'
 })

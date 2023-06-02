@@ -3,6 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { AuthPaths } from '@modules/auth/shared/auth-routes';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { ElementStyleDirective } from '@modules/shared/directives/element-style.directive';
+import { SvgIconDirective } from '@modules/shared/directives/svg-icon.directive';
 import { firstValueFrom } from 'rxjs';
 
 @Component({
@@ -11,7 +12,8 @@ import { firstValueFrom } from 'rxjs';
   imports: [
     CommonModule,
     NgOptimizedImage,
-    ElementStyleDirective
+    ElementStyleDirective,
+    SvgIconDirective
   ],
   templateUrl: './log-out-page.component.html'
 })

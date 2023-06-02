@@ -7,8 +7,18 @@
     <aside class="pt-4">
       <nav>
         <ul class="space-y-2">
-          <li><a routerLink="profile" routerLinkActive="underline">Profile</a></li>
-          <li><a routerLink="password" routerLinkActive="underline">Password</a></li>
+          <li>
+            <a routerLink="profile" routerLinkActive="text-gray-800 font-medium" class="flex items-center">
+              <div appSvgIcon="akar-person" class="w-4 h-4 mr-2"></div>
+              Profile
+            </a>
+          </li>
+          <li>
+            <a routerLink="password" routerLinkActive="text-gray-800 font-medium" class="flex items-center">
+              <div appSvgIcon="majestic-key-line" class="w-4 h-4 mr-2"></div>
+              Password
+            </a>
+          </li>
         </ul>
       </nav>
     </aside>

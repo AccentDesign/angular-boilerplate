@@ -2,6 +2,7 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { AuthPaths } from '@modules/auth/shared/auth-routes';
 import { ElementStyleDirective } from '@modules/shared/directives/element-style.directive';
+import { SvgIconDirective } from '@modules/shared/directives/svg-icon.directive';
 
 @Component({
   selector: 'app-welcome-page',
@@ -9,7 +10,8 @@ import { ElementStyleDirective } from '@modules/shared/directives/element-style.
   imports: [
     CommonModule,
     NgOptimizedImage,
-    ElementStyleDirective
+    ElementStyleDirective,
+    SvgIconDirective
   ],
   templateUrl: './welcome-page.component.html'
 })
