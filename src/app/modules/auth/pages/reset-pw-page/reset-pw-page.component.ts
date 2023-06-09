@@ -7,7 +7,8 @@ import { AuthService } from '@modules/auth/shared/auth.service';
 import { ResetPasswordRequest } from '@modules/auth/shared/interfaces/reset-password-request';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
 import { FormErrorsComponent } from '@modules/shared/components/form-errors/form-errors.component';
-import { ElementStyleDirective } from '@modules/shared/directives/element-style.directive';
+import { ButtonDirective } from '@modules/shared/directives/button.directive';
+import { MessageDirective } from '@modules/shared/directives/message.directive';
 import { SvgIconDirective } from '@modules/shared/directives/svg-icon.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
 import { passwordsMatchValidator } from '@modules/shared/validators/passwords-match';
@@ -22,8 +23,9 @@ import { finalize, first } from 'rxjs';
     NgOptimizedImage,
     ReactiveFormsModule,
     ErrorMessagesComponent,
-    ElementStyleDirective,
-    SvgIconDirective
+    SvgIconDirective,
+    ButtonDirective,
+    MessageDirective
   ],
   templateUrl: './reset-pw-page.component.html'
 })

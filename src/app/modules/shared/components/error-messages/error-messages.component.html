@@ -1,4 +1,4 @@
-<div *ngIf="error$|async as error" [appElementStyle]="{ type: 'message', style: 'error' }">
+<div *ngIf="error$|async as error" [options]="{ style: 'error' }" appMessage>
   <ul class="mb-0 text-red-800">
     <li *ngFor="let message of error.messages">{{ message }}</li>
   </ul>

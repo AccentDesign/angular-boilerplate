@@ -12,7 +12,7 @@
     </hgroup>
   </header>
   <section class="max-w-[500px]">
-    <div *ngIf="success()" [appElementStyle]="{ type: 'message', style: 'success' }">
+    <div *ngIf="success()" appMessage>
       Assuming the email exists in our system. We will send details of what to do next.
     </div>
     <app-error-messages *ngIf="!success()" location="forgotPw"></app-error-messages>
@@ -22,7 +22,7 @@
         <input formControlName="email" id="email" type="email">
         <app-form-errors [control]="form.controls.email" [formRef]="ngForm"></app-form-errors>
       </div>
-      <button [appElementStyle]="{ type: 'button', style: 'primary' }" [disabled]="loading()" class="w-full"
+      <button [disabled]="loading()" appButton class="w-full"
               type="submit">Request Details
       </button>
     </form>

@@ -5,7 +5,7 @@
   <h3 class="mb-1">Profile</h3>
   <hr class="mb-6">
   <form #ngForm="ngForm" (ngSubmit)="submit()" [formGroup]="form" class="sm:col-span-2 space-y-6">
-    <div *ngIf="success()" [appElementStyle]="{ type: 'message', style: 'success' }">
+    <div *ngIf="success()" appMessage>
       Your profile was updated successfully.
     </div>
     <app-error-messages *ngIf="!success()" location="myProfile"></app-error-messages>
@@ -24,7 +24,7 @@
       <input formControlName="email" id="email" type="email">
       <app-form-errors [control]="form.controls.email" [formRef]="ngForm"></app-form-errors>
     </div>
-    <button [appElementStyle]="{ type: 'button', style: 'primary' }" [disabled]="loading()" type="submit">Update
+    <button [disabled]="loading()" appButton type="submit">Update
       Profile
     </button>
   </form>

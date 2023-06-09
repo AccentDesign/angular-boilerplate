@@ -1,7 +1,7 @@
 <section *ngIf="authRepository.currentUser() as user" class="mb-16">
   <h3 class="mb-1">Email Verification</h3>
   <hr class="mb-6">
-  <div *ngIf="success() || user.is_verified; else verifyBlock" [appElementStyle]="{ type: 'message', style: 'white' }">
+  <div *ngIf="success() || user.is_verified; else verifyBlock" [options]="{ style: 'white' }" appMessage>
     Your email address has been verified.
   </div>
   <ng-template #verifyBlock>
@@ -11,7 +11,7 @@
         Your email address needs to be verified before you can use this site.
       </p>
       <a (click)="request($event);" (keyup.enter)="request($event)"
-         [appElementStyle]="{ type: 'button', style: 'white' }" href="javascript:void(0)">
+         [options]="{ style: 'white', size: 'md' }" appButton href="javascript:void(0)">
         Send me a verification email
       </a>
     </div>
@@ -22,7 +22,7 @@
           placeholder="Please enter the verification token provided in the email"></textarea>
         <app-form-errors [control]="form.controls.token" [formRef]="ngForm"></app-form-errors>
       </div>
-      <button [appElementStyle]="{ type: 'button', style: 'primary' }" [disabled]="loading()">Verify Account</button>
+      <button [disabled]="loading()" appButton>Verify Account</button>
     </form>
   </ng-template>
 </section>

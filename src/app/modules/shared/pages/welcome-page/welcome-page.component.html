@@ -11,9 +11,10 @@
   </header>
   <section>
     <div class="max-w-xl sm:grid sm:grid-cols-2 gap-4">
-      <a [appElementStyle]="{ type: 'button', style: 'primary' }" class="w-full mb-4"
+      <a appButton class="w-full mb-4"
          href="{{ AuthPaths.logIn }}">Login</a>
-      <a [appElementStyle]="{ type: 'button', style: 'white' }" class="w-full mb-4" href="{{ AuthPaths.register }}">Register</a>
+      <a [options]="{ style: 'white', size: 'md' }" appButton class="w-full mb-4"
+         href="{{ AuthPaths.register }}">Register</a>
     </div>
     <div class="mt-6 mb-2">Useful Links</div>
     <ul class="list-disc list-inside">
