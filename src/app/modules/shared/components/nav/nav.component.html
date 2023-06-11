@@ -3,12 +3,17 @@
     <img alt="logo" class="w-[150px]" height="348" ngSrc="assets/logo.png" width="1280"/>
   </a>
   <div class="flex gap-4">
-    <a aria-label="Settings" class="text-gray-500 hover:text-gray-600" href="{{ SettingsPaths.profile }}"
+    <a aria-label="Settings"
+       class="text-gray-400 hover:text-gray-500"
+       href="{{ SettingsPaths.profile }}"
        title="Settings">
-      <div appSvgIcon="majestic-settings-cog" class="w-8 h-8"></div>
+      <div appSvgIcon="majestic-settings-cog-line" class="w-7 h-7"></div>
     </a>
-    <a aria-label="Logout" class="text-gray-500 hover:text-gray-600" href="{{ AuthPaths.logOut }}" title="Logout">
-      <div appSvgIcon="majestic-door-exit-line" class="w-8 h-8"></div>
+    <a aria-label="Logout"
+       class="text-gray-400 hover:text-gray-500"
+       href="{{ AuthPaths.logOut }}"
+       title="Logout">
+      <div appSvgIcon="majestic-door-exit-line" class="w-7 h-7"></div>
     </a>
   </div>
 </header>
