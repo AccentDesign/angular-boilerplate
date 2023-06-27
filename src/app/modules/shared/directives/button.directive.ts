@@ -1,4 +1,4 @@
-import { Directive, ElementRef, inject, Input, OnInit, Renderer2 } from '@angular/core';
+import { Directive, HostBinding, Input } from '@angular/core';
 
 interface ButtonOptions {
   style: keyof typeof ButtonDirective.prototype.opts.styles;
@@ -9,10 +9,8 @@ interface ButtonOptions {
   selector: '[appButton]',
   standalone: true
 })
-export class ButtonDirective implements OnInit {
-  @Input() options!: ButtonOptions;
-
-  appButton: ButtonOptions = {
+export class ButtonDirective {
+  private appButton: ButtonOptions = {
     style: 'primary',
     size: 'md'
   };
@@ -53,23 +51,19 @@ export class ButtonDirective implements OnInit {
     },
   };
 
-  private el = inject(ElementRef);
-  private renderer = inject(Renderer2);
+  @HostBinding('class')
+  @Input()
+  set options(options: ButtonOptions) {
+    this.appButton = { ...this.appButton, ...options };
+  }
 
-  ngOnInit() {
-    this.appButton = { ...this.appButton, ...this.options };
-
+  get options(): string {
     const style = this.appButton.style;
     const size = this.appButton.size;
-
-    this.opts.defaults.forEach(className => {
-      this.renderer.addClass(this.el.nativeElement, className);
-    });
-    this.opts.styles[style].forEach(className => {
-      this.renderer.addClass(this.el.nativeElement, className);
-    });
-    this.opts.sizes[size].forEach(className => {
-      this.renderer.addClass(this.el.nativeElement, className);
-    });
+    return [
+      ...this.opts.defaults,
+      ...this.opts.styles[style],
+      ...this.opts.sizes[size],
+    ].join(' ');
   }
 }

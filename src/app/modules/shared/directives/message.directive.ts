@@ -1,4 +1,4 @@
-import { Directive, ElementRef, inject, Input, OnInit, Renderer2 } from '@angular/core';
+import { Directive, HostBinding, Input } from '@angular/core';
 
 interface MessageOptions {
   style: keyof typeof MessageDirective.prototype.opts.styles;
@@ -8,10 +8,8 @@ interface MessageOptions {
   selector: '[appMessage]',
   standalone: true
 })
-export class MessageDirective implements OnInit {
-  @Input() options!: MessageOptions;
-
-  appMessage: MessageOptions = {
+export class MessageDirective {
+  private appMessage: MessageOptions = {
     style: 'success'
   };
 
@@ -40,19 +38,17 @@ export class MessageDirective implements OnInit {
     }
   };
 
-  private el = inject(ElementRef);
-  private renderer = inject(Renderer2);
+  @HostBinding('class')
+  @Input()
+  set options(options: MessageOptions) {
+    this.appMessage = { ...this.appMessage, ...options };
+  }
 
-  ngOnInit() {
-    this.appMessage = { ...this.appMessage, ...this.options };
-
+  get options(): string {
     const style = this.appMessage.style;
-
-    this.opts.defaults.forEach(className => {
-      this.renderer.addClass(this.el.nativeElement, className);
-    });
-    this.opts.styles[style].forEach(className => {
-      this.renderer.addClass(this.el.nativeElement, className);
-    });
+    return [
+      ...this.opts.defaults,
+      ...this.opts.styles[style],
+    ].join(' ');
   }
 }
