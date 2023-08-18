@@ -65,7 +65,10 @@ export class MyProfileComponent {
   });
 
   submit(): void {
-    if (!this.form.valid) return;
+    if (!this.form.valid) {
+      this.form.markAllAsTouched();
+      return;
+    }
     this.loading.set(true);
     this.success.set(false);
     const data = {

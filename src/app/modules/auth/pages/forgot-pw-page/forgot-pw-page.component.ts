@@ -5,6 +5,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
 import { FormErrorsComponent } from '@modules/shared/components/form-errors/form-errors.component';
+import { LogoComponent } from '@modules/shared/components/logo/logo.component';
 import { SvgIconDirective } from '@modules/shared/directives/svg-icon.directive';
 import { TailwindDirective } from '@modules/shared/directives/tailwind.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
@@ -20,7 +21,8 @@ import { finalize, first } from 'rxjs';
     FormErrorsComponent,
     ErrorMessagesComponent,
     SvgIconDirective,
-    TailwindDirective
+    TailwindDirective,
+    LogoComponent
   ],
   templateUrl: './forgot-pw-page.component.html'
 })
@@ -39,7 +41,10 @@ export class ForgotPwPageComponent {
   private errorService = inject(ErrorMessageService);
 
   submit(): void {
-    if (!this.form.valid) return;
+    if (!this.form.valid) {
+      this.form.markAllAsTouched();
+      return;
+    }
     this.loading.set(true);
     this.success.set(false);
     const email = this.form.value.email ?? '';

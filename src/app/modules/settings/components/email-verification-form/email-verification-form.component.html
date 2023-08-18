@@ -1,7 +1,7 @@
 <section *ngIf="authRepository.currentUser() as user" class="mb-16">
-  <h3 class="mb-1">Email Verification</h3>
+  <h3 [appTailwind]="{kind: 'heading', size: '3'}" class="mb-1">Email Verification</h3>
   <hr class="mb-6">
-  <div *ngIf="success() || user.is_verified; else verifyBlock" appTailwind="alert.white">
+  <div *ngIf="success() || user.is_verified; else verifyBlock" [appTailwind]="{kind: 'alert', color: 'white'}">
     Your email address has been verified.
   </div>
   <ng-template #verifyBlock>
@@ -10,22 +10,19 @@
       <p class="mb-4">
         Your email address needs to be verified before you can use this site.
       </p>
-      <a (click)="request($event);"
-         (keyup.enter)="request($event)"
-         appTailwind="button.white"
-         href="javascript:void(0)"
-      >Send me a verification email
-      </a>
+      <button (click)="request($event);" [appTailwind]="{kind: 'button', color: 'white'}">
+        Send me a verification email
+      </button>
     </div>
-    <form #ngForm="ngForm" (ngSubmit)="submit()" *ngIf="requested()" [formGroup]="form" class="space-y-6">
+    <form (ngSubmit)="submit()" *ngIf="requested()" [formGroup]="form" class="space-y-6">
       <div>
         <textarea
-          appTailwind="textarea"
+          [appTailwind]="{kind: 'input', width: 'full'}"
           formControlName="token"
           placeholder="Please enter the verification token provided in the email"></textarea>
-        <app-form-errors [control]="form.controls.token" [formRef]="ngForm"></app-form-errors>
+        <app-form-errors [control]="form.controls.token"></app-form-errors>
       </div>
-      <button [disabled]="loading()" appTailwind="button.primary">Verify Account</button>
+      <button [appTailwind]="{kind: 'button'}" [disabled]="loading()">Verify Account</button>
     </form>
   </ng-template>
 </section>

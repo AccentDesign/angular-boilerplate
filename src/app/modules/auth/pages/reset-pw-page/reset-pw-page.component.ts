@@ -7,6 +7,7 @@ import { AuthService } from '@modules/auth/shared/auth.service';
 import { ResetPasswordRequest } from '@modules/auth/shared/interfaces/reset-password-request';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
 import { FormErrorsComponent } from '@modules/shared/components/form-errors/form-errors.component';
+import { LogoComponent } from '@modules/shared/components/logo/logo.component';
 import { SvgIconDirective } from '@modules/shared/directives/svg-icon.directive';
 import { TailwindDirective } from '@modules/shared/directives/tailwind.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
@@ -23,7 +24,8 @@ import { finalize, first } from 'rxjs';
     ReactiveFormsModule,
     ErrorMessagesComponent,
     SvgIconDirective,
-    TailwindDirective
+    TailwindDirective,
+    LogoComponent
   ],
   templateUrl: './reset-pw-page.component.html'
 })
@@ -55,7 +57,10 @@ export class ResetPwPageComponent {
   }
 
   submit(): void {
-    if (!this.form.valid) return;
+    if (!this.form.valid) {
+      this.form.markAllAsTouched();
+      return;
+    }
     this.success.set(false);
     const data = {
       password: this.form.value.password,

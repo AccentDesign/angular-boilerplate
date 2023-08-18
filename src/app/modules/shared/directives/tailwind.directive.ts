@@ -1,52 +1,58 @@
 import { computed, Directive, HostBinding, Input, signal } from '@angular/core';
-import { Paths } from '@modules/shared/types/path';
-import { uniq } from 'lodash';
-import { styles } from '../../../app.styles';
-
-export type StylePaths = Paths<typeof styles>;
+import { alertStyles, anchorStyles, buttonStyles, headingStyles, inputStyles, Styles } from '../../../app.styles';
 
 @Directive({
   selector: '[appTailwind]',
   standalone: true
 })
 export class TailwindDirective {
-  private path = signal<string[]>([]);
-  private extraStyles = signal<string[]>([]);
+  private style = signal<Styles | null>(null);
   private all = computed(() => {
-    const path = this.path();
-    switch (path.length) {
-      case 1: {
-        const style = styles[path[0] as keyof typeof styles];
-        return uniq([
-          ...style.default,
-          ...this.extraStyles(),
-        ]);
-      }
-      case 2: {
-        const style = styles[path[0] as keyof typeof styles];
-        return uniq([
-          ...style.default,
-          ...style[path[1] as keyof typeof style],
-          ...this.extraStyles(),
-        ]);
-      }
+    const style = this.style();
+
+    if (!style) return [];
+
+    switch (style.kind) {
+      case 'alert':
+        return [
+          ...alertStyles.base,
+          ...style.size ? alertStyles.sizes[style.size] : alertStyles.sizes.md,
+          ...style.color ? alertStyles.colors[style.color] : alertStyles.colors.success,
+        ];
+      case 'anchor':
+        return [
+          ...anchorStyles.base,
+          ...style.color ? anchorStyles.colors[style.color] : anchorStyles.colors.primary,
+        ];
+      case 'button':
+        return [
+          ...buttonStyles.base,
+          ...style.size ? buttonStyles.sizes[style.size] : buttonStyles.sizes.md,
+          ...style.color ? buttonStyles.colors[style.color] : buttonStyles.colors.primary,
+        ];
+      case 'heading':
+        return [
+          ...headingStyles.base,
+          ...headingStyles.sizes[style.size],
+        ];
+      case 'input':
+        return [
+          ...inputStyles.base,
+          ...style.size ? inputStyles.sizes[style.size] : inputStyles.sizes.md,
+          ...style.width ? inputStyles.width[style.width] : inputStyles.width.auto,
+        ];
       default:
         return [];
     }
   });
 
-  get appTailwind(): string {
+  @HostBinding('class')
+  get fullClassList(): string {
     return this.all().join(' ');
   }
 
-  @HostBinding('class')
   @Input({ required: true })
-  set appTailwind(path: StylePaths) {
-    this.path.set(path.split('.'));
-  }
-
-  @Input()
-  set extra(styles: string[]) {
-    this.extraStyles.set(styles);
+  set appTailwind(styles: Styles) {
+    this.style.set(styles);
   }
 }

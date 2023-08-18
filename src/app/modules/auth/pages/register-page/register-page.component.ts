@@ -7,6 +7,7 @@ import { AuthService } from '@modules/auth/shared/auth.service';
 import { RegisterRequest } from '@modules/auth/shared/interfaces/register-request';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
 import { FormErrorsComponent } from '@modules/shared/components/form-errors/form-errors.component';
+import { LogoComponent } from '@modules/shared/components/logo/logo.component';
 import { SvgIconDirective } from '@modules/shared/directives/svg-icon.directive';
 import { TailwindDirective } from '@modules/shared/directives/tailwind.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
@@ -23,7 +24,8 @@ import { finalize, first } from 'rxjs';
     FormErrorsComponent,
     ErrorMessagesComponent,
     SvgIconDirective,
-    TailwindDirective
+    TailwindDirective,
+    LogoComponent
   ],
   templateUrl: './register-page.component.html'
 })
@@ -64,7 +66,10 @@ export class RegisterPageComponent {
   private errorService = inject(ErrorMessageService);
 
   register(): void {
-    if (!this.form.valid) return;
+    if (!this.form.valid) {
+      this.form.markAllAsTouched();
+      return;
+    }
     this.loading.set(true);
     const data = {
       first_name: this.form.value.first_name,

@@ -1,4 +1,4 @@
-<div *ngIf="error$|async as error" appTailwind="alert.error">
+<div *ngIf="error$|async as error" [appTailwind]="{kind: 'alert', color: 'error'}">
   <ul class="text-red-800">
     <li *ngFor="let message of error.messages">{{ message }}</li>
   </ul>

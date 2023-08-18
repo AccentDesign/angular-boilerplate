@@ -1,132 +1,85 @@
-export const baseStyles = {
-  elements: {
-    alert: [
-      'border-l-4',
-      'px-4',
-      'py-3',
-    ],
-    anchor: ['hover:underline'],
-    button: [
-      'border',
-      'inline-block',
-      'px-4',
-      'py-3',
-      'rounded',
-      'shadow-md',
-      'text-center',
-      'disabled:opacity-75',
-      'disabled:cursor-not-allowed',
-    ],
-    container: [
-      'container',
-      'mx-auto',
-      'px-6',
-    ],
-    h: ['font-light'],
-    input: [
-      'bg-white',
-      'border',
-      'px-4',
-      'py-3',
-      'rounded',
-    ],
-    textarea: [
-      'bg-white',
-      'border',
-      'px-4',
-      'py-3',
-      'rounded',
-    ],
-  },
-  space: {
-    sm: {
-      y: ['space-y-2'],
-    },
-  },
-  typography: {
-    size: {
-      '3xl': ['text-3xl'],
-      '2xl': ['text-2xl'],
-    },
-  },
-  width: {
-    full: ['w-full'],
+export type AlertStyles = {
+  kind: 'alert';
+  size?: keyof typeof alertStyles.sizes;
+  color?: keyof typeof alertStyles.colors;
+};
+
+export type AnchorStyles = {
+  kind: 'anchor';
+  color?: keyof typeof anchorStyles.colors;
+};
+
+export type ButtonStyles = {
+  kind: 'button';
+  size?: keyof typeof buttonStyles.sizes;
+  color?: keyof typeof buttonStyles.colors;
+};
+
+export type HeadingStyles = {
+  kind: 'heading';
+  size: keyof typeof headingStyles.sizes;
+};
+
+export type InputStyles = {
+  kind: 'input';
+  size?: keyof typeof inputStyles.sizes;
+  width?: keyof typeof inputStyles.width;
+};
+
+export type Styles = AlertStyles | AnchorStyles | ButtonStyles | HeadingStyles | InputStyles;
+
+export const anchorStyles = {
+  base: ['hover:underline'],
+  colors: {
+    active: [],
+    primary: ['text-blue-800'],
+    white: ['text-white'],
   },
 };
 
-export const styles = {
-  alert: {
-    default: [...baseStyles.elements.alert],
-    error: [
-      'bg-red-100',
-      'border-l-red-500',
-      'text-red-800',
-    ],
-    success: [
-      'bg-green-100',
-      'border-l-green-500',
-      'text-green-800',
-    ],
-    white: [
-      'bg-gray-50/50',
-      'border-l-gray-200',
-      'text-gray-600',
-    ],
+export const alertStyles = {
+  base: ['border-l-4', 'mb-6'],
+  sizes: {
+    md: ['px-4', 'py-3'],
   },
-  anchor: {
-    default: [...baseStyles.elements.anchor],
-    primary: ['text-blue-500'],
+  colors: {
+    error: ['bg-red-100', 'border-l-red-500', 'text-red-800'],
+    success: ['bg-green-100', 'border-l-green-500', 'text-green-800'],
+    white: ['bg-gray-50/50', 'border-l-gray-200', 'text-gray-600'],
   },
-  button: {
-    default: [...baseStyles.elements.button],
-    primary: [
-      'bg-blue-500',
-      'border-blue-500',
-      'hover:bg-blue-600',
-      'text-white',
-    ],
-    white: [
-      'bg-white',
-      'border-gray-300',
-      'text-gray-800',
-      'hover:bg-gray-50/50',
-    ],
+};
+
+export const buttonStyles = {
+  base: ['border', 'inline-block', 'rounded', 'shadow-sm', 'text-center', 'disabled:opacity-75', 'disabled:cursor-not-allowed'],
+  sizes: {
+    sm: ['px-2', 'py-1', 'text-sm'],
+    md: ['px-4', 'py-3'],
   },
-  container: {
-    default: [...baseStyles.elements.container],
-    topScaling: [
-      'mt-10',
-      'sm:mt-16',
-      'md:mt-24',
-      'lg:mt-32',
-      'xl:mt-40',
-    ],
+  colors: {
+    danger: ['bg-red-800', 'border-red-800', 'hover:bg-red-900', 'text-white'],
+    primary: ['bg-blue-800', 'border-blue-800', 'hover:bg-blue-900', 'text-white'],
+    white: ['bg-white', 'border-gray-300', 'text-gray-800', 'hover:bg-gray-50/50'],
   },
-  hgroup: {
-    default: [...baseStyles.space.sm.y],
+};
+
+export const headingStyles = {
+  base: ['font-light'],
+  sizes: {
+    '1': ['text-3xl'],
+    '2': ['text-2xl'],
+    '3': ['text-1xl'],
   },
-  h1: {
-    default: [
-      ...baseStyles.elements.h,
-      ...baseStyles.typography.size['3xl'],
-    ],
+};
+
+export const inputStyles = {
+  base: ['bg-white', 'border', 'rounded'],
+  sizes: {
+    sm: ['px-2', 'py-1', 'text-sm'],
+    md: ['px-4', 'py-3'],
   },
-  h2: {
-    default: [
-      ...baseStyles.elements.h,
-      ...baseStyles.typography.size['2xl'],
-    ],
+  width: {
+    auto: ['w-auto'],
+    full: ['w-full'],
+    '96': ['w-96'],
   },
-  input: {
-    default: [
-      ...baseStyles.elements.input,
-      ...baseStyles.width.full,
-    ],
-  },
-  textarea: {
-    default: [
-      ...baseStyles.elements.textarea,
-      ...baseStyles.width.full,
-    ],
-  }
 };

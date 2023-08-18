@@ -50,7 +50,10 @@ export class EmailVerificationFormComponent {
   }
 
   submit(): void {
-    if (!this.form.valid) return;
+    if (!this.form.valid) {
+      this.form.markAllAsTouched();
+      return;
+    }
     this.loading.set(true);
     this.success.set(false);
     this.authService.verify(this.form.value.token ?? '').pipe(

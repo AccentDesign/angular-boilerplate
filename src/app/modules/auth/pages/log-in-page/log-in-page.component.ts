@@ -10,6 +10,7 @@ import { LoginRequest } from '@modules/auth/shared/interfaces/login-request';
 import { DashboardPaths } from '@modules/dashboard/shared/dashboard-routes';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
 import { FormErrorsComponent } from '@modules/shared/components/form-errors/form-errors.component';
+import { LogoComponent } from '@modules/shared/components/logo/logo.component';
 import { SvgIconDirective } from '@modules/shared/directives/svg-icon.directive';
 import { TailwindDirective } from '@modules/shared/directives/tailwind.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
@@ -25,7 +26,8 @@ import { finalize, first } from 'rxjs';
     FormErrorsComponent,
     ErrorMessagesComponent,
     SvgIconDirective,
-    TailwindDirective
+    TailwindDirective,
+    LogoComponent
   ],
   templateUrl: './log-in-page.component.html'
 })
@@ -56,7 +58,10 @@ export class LogInPageComponent implements OnInit {
   }
 
   logIn(): void {
-    if (!this.form.valid) return;
+    if (!this.form.valid) {
+      this.form.markAllAsTouched();
+      return;
+    }
     this.loading.set(true);
     const data = {
       username: this.form.value.email,
