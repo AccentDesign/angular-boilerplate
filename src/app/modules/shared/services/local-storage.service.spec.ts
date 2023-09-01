@@ -24,12 +24,21 @@ describe('LocalStorageService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
+
+    Object.defineProperty(window, 'localStorage', {
+      value: localStorageMock,
+    });
+
     service = TestBed.inject(LocalStorageService);
 
-    spyOn(localStorage, 'getItem').and.callFake(localStorageMock.getItem);
-    spyOn(localStorage, 'setItem').and.callFake(localStorageMock.setItem);
-    spyOn(localStorage, 'removeItem').and.callFake(localStorageMock.removeItem);
-    spyOn(localStorage, 'clear').and.callFake(localStorageMock.clear);
+    jest.spyOn(localStorage, 'getItem');
+    jest.spyOn(localStorage, 'setItem');
+    jest.spyOn(localStorage, 'removeItem');
+    jest.spyOn(localStorage, 'clear');
+  });
+
+  afterEach(() => {
+    localStorageMock.clear();
   });
 
   it('should be created', () => {
