@@ -1,7 +1,7 @@
 <app-nav></app-nav>
 <main class="container mx-auto px-6">
   <header>
-    <h1 [appTailwind]="{kind: 'heading', size: '1'}">Settings</h1>
+    <h1 class="font-light text-3xl">Settings</h1>
   </header>
   <div class="sm:grid sm:grid-cols-4 gap-8">
     <aside class="pt-4">
@@ -9,9 +9,9 @@
         <ul class="space-y-2">
           <li *ngFor="let item of navItems">
             <a #rla="routerLinkActive"
-               [appTailwind]="{kind: 'anchor', color: (rla.isActive ? 'active' : 'primary')}"
+               [ngClass]="{'text-blue-800': !rla.isActive}"
                [routerLink]="item.route"
-               class="flex items-center"
+               class="hover:underline flex items-center"
                routerLinkActive>
               <div [appSvgIcon]="item.icon" class="w-4 h-4 mr-2"></div>
               {{ item.label }}

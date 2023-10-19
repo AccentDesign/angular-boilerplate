@@ -4,7 +4,7 @@
       <div app-logo class="mb-8 w-[300px]"></div>
     </a>
     <hgroup class="space-y-2">
-      <h1 [appTailwind]="{kind: 'heading', size: '1'}">Angular Boilerplate</h1>
+      <h1 class="font-light text-3xl">Angular Boilerplate</h1>
       <h2 class="flex items-center text-gray-600">
         <div appSvgIcon="majestic-home-line" class="w-4 h-4 mr-2"></div>
         Welcome to the angular boilerplate. Please login or register to get started.
@@ -13,11 +13,11 @@
   </header>
   <section>
     <div class="max-w-xl sm:grid sm:grid-cols-2 gap-4">
-      <a [appTailwind]="{kind: 'button', color: 'primary'}"
+      <a appButton
          class="w-full mb-4"
          href="{{ AuthPaths.logIn }}">Login
       </a>
-      <a [appTailwind]="{kind: 'button', color: 'white'}"
+      <a appButton="white"
          class="w-full mb-4"
          href="{{ AuthPaths.register }}">Register
       </a>
@@ -25,12 +25,12 @@
     <div class="mt-6 mb-2">Useful Links</div>
     <ul class="list-disc list-inside">
       <li>
-        <a [appTailwind]="{kind: 'anchor', color: 'primary'}"
+        <a class="text-blue-800 hover:underline"
            href="https://github.com/stuartaccent/angular-boilerplate">Github Repository
         </a>
       </li>
       <li>
-        <a [appTailwind]="{kind: 'anchor', color: 'primary'}"
+        <a class="text-blue-800 hover:underline"
            href="https://github.com/stuartaccent/fastapi-boilerplate">FastAPI Boilerplate
         </a>
       </li>

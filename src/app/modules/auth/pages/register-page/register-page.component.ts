@@ -8,8 +8,10 @@ import { RegisterRequest } from '@modules/auth/shared/interfaces/register-reques
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
 import { FormErrorsComponent } from '@modules/shared/components/form-errors/form-errors.component';
 import { LogoComponent } from '@modules/shared/components/logo/logo.component';
+import { AlertDirective } from '@modules/shared/directives/alert.directive';
+import { ButtonDirective } from '@modules/shared/directives/button.directive';
+import { InputDirective } from '@modules/shared/directives/input.directive';
 import { SvgIconDirective } from '@modules/shared/directives/svg-icon.directive';
-import { TailwindDirective } from '@modules/shared/directives/tailwind.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
 import { passwordsMatchValidator } from '@modules/shared/validators/passwords-match';
 import { finalize, first } from 'rxjs';
@@ -24,8 +26,10 @@ import { finalize, first } from 'rxjs';
     FormErrorsComponent,
     ErrorMessagesComponent,
     SvgIconDirective,
-    TailwindDirective,
-    LogoComponent
+    LogoComponent,
+    ButtonDirective,
+    InputDirective,
+    AlertDirective
   ],
   templateUrl: './register-page.component.html'
 })

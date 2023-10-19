@@ -4,7 +4,7 @@
       <div app-logo class="mb-8 w-[300px]"></div>
     </a>
     <hgroup class="space-y-2">
-      <h1 [appTailwind]="{kind: 'heading', size: '1'}">Forgot Password</h1>
+      <h1 class="font-light text-3xl">Forgot Password</h1>
       <h2 class="flex items-center text-gray-600">
         <div appSvgIcon="majestic-key-line" class="w-4 h-4 mr-2"></div>
         Request details to reset your password.
@@ -12,18 +12,18 @@
     </hgroup>
   </header>
   <section class="max-w-[500px]">
-    <div *ngIf="success()" [appTailwind]="{kind: 'alert', color: 'success'}">
+    <div *ngIf="success()" appAlert>
       Assuming the email exists in our system. We will send details of what to do next.
     </div>
     <app-error-messages *ngIf="!success()" location="forgotPw"></app-error-messages>
     <form (ngSubmit)="submit()" [formGroup]="form" class="space-y-6">
       <div>
         <label for="email">Email</label>
-        <input [appTailwind]="{kind: 'input', width: 'full'}" formControlName="email" id="email" type="email">
+        <input appInput formControlName="email" id="email" type="email">
         <app-form-errors [control]="form.controls.email"></app-form-errors>
       </div>
-      <button [appTailwind]="{kind: 'button', color: 'primary'}"
-              [disabled]="loading()"
+      <button [disabled]="loading()"
+              appButton
               class="w-full"
               type="submit"
       >Request Details

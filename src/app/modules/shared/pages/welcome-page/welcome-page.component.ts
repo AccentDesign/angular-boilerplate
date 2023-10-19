@@ -2,8 +2,8 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { AuthPaths } from '@modules/auth/shared/auth-routes';
 import { LogoComponent } from '@modules/shared/components/logo/logo.component';
+import { ButtonDirective } from '@modules/shared/directives/button.directive';
 import { SvgIconDirective } from '@modules/shared/directives/svg-icon.directive';
-import { TailwindDirective } from '@modules/shared/directives/tailwind.directive';
 
 @Component({
   selector: 'app-welcome-page',
@@ -12,8 +12,8 @@ import { TailwindDirective } from '@modules/shared/directives/tailwind.directive
     CommonModule,
     NgOptimizedImage,
     SvgIconDirective,
-    TailwindDirective,
-    LogoComponent
+    LogoComponent,
+    ButtonDirective
   ],
   templateUrl: './welcome-page.component.html'
 })

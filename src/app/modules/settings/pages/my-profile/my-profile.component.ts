@@ -10,7 +10,9 @@ import {
 } from '@modules/settings/components/email-verification-form/email-verification-form.component';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
 import { FormErrorsComponent } from '@modules/shared/components/form-errors/form-errors.component';
-import { TailwindDirective } from '@modules/shared/directives/tailwind.directive';
+import { AlertDirective } from '@modules/shared/directives/alert.directive';
+import { ButtonDirective } from '@modules/shared/directives/button.directive';
+import { InputDirective } from '@modules/shared/directives/input.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
 import { finalize, first } from 'rxjs';
 
@@ -23,7 +25,9 @@ import { finalize, first } from 'rxjs';
     FormErrorsComponent,
     EmailVerificationFormComponent,
     ErrorMessagesComponent,
-    TailwindDirective
+    ButtonDirective,
+    InputDirective,
+    AlertDirective
   ],
   templateUrl: './my-profile.component.html'
 })

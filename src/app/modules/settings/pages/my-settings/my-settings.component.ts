@@ -4,7 +4,6 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { SettingsRoutes } from '@modules/settings/shared/settings-routes';
 import { NavComponent } from '@modules/shared/components/nav/nav.component';
 import { SvgIconDirective } from '@modules/shared/directives/svg-icon.directive';
-import { TailwindDirective } from '@modules/shared/directives/tailwind.directive';
 
 @Component({
   selector: 'app-my-settings',
@@ -16,7 +15,6 @@ import { TailwindDirective } from '@modules/shared/directives/tailwind.directive
     RouterLink,
     RouterOutlet,
     SvgIconDirective,
-    TailwindDirective
   ],
   templateUrl: './my-settings.component.html'
 })

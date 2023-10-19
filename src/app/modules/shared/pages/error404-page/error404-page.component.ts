@@ -1,7 +1,7 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { LogoComponent } from '@modules/shared/components/logo/logo.component';
-import { TailwindDirective } from '@modules/shared/directives/tailwind.directive';
+import { ButtonDirective } from '@modules/shared/directives/button.directive';
 
 @Component({
   selector: 'app-error404-page',
@@ -9,8 +9,8 @@ import { TailwindDirective } from '@modules/shared/directives/tailwind.directive
   imports: [
     CommonModule,
     NgOptimizedImage,
-    TailwindDirective,
-    LogoComponent
+    LogoComponent,
+    ButtonDirective
   ],
   templateUrl: './error404-page.component.html'
 })
