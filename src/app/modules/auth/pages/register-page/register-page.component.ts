@@ -33,7 +33,7 @@ import { finalize, first } from 'rxjs';
   ],
   templateUrl: './register-page.component.html'
 })
-export class RegisterPageComponent {
+export default class RegisterPageComponent {
   form = new FormGroup({
     first_name: new FormControl('', {
       nonNullable: true, validators: [

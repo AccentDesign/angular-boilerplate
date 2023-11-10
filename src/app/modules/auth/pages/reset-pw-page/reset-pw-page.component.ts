@@ -33,7 +33,7 @@ import { finalize, first } from 'rxjs';
   ],
   templateUrl: './reset-pw-page.component.html'
 })
-export class ResetPwPageComponent {
+export default class ResetPwPageComponent {
   @Input({ required: true }) token!: string;
   @ViewChild('ngForm') ngForm!: NgForm;
   form = new FormGroup({

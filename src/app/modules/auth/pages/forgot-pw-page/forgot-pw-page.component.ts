@@ -30,7 +30,7 @@ import { finalize, first } from 'rxjs';
   ],
   templateUrl: './forgot-pw-page.component.html'
 })
-export class ForgotPwPageComponent {
+export default class ForgotPwPageComponent {
   form = new FormGroup({
     email: new FormControl('', {
       nonNullable: true, validators: [

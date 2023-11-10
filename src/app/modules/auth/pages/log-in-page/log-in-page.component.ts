@@ -33,7 +33,7 @@ import { finalize, first } from 'rxjs';
   ],
   templateUrl: './log-in-page.component.html'
 })
-export class LogInPageComponent implements OnInit {
+export default class LogInPageComponent implements OnInit {
   form = new FormGroup({
     email: new FormControl('', {
       nonNullable: true, validators: [

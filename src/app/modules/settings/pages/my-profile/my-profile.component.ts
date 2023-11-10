@@ -31,7 +31,7 @@ import { finalize, first } from 'rxjs';
   ],
   templateUrl: './my-profile.component.html'
 })
-export class MyProfileComponent {
+export default class MyProfileComponent {
   form = new FormGroup({
     first_name: new FormControl('', {
       nonNullable: true, validators: [

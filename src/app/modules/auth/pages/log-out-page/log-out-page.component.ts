@@ -19,7 +19,7 @@ import { firstValueFrom } from 'rxjs';
   ],
   templateUrl: './log-out-page.component.html'
 })
-export class LogOutPageComponent implements OnInit {
+export default class LogOutPageComponent implements OnInit {
   protected readonly AuthPaths = AuthPaths;
   private authService = inject(AuthService);
 

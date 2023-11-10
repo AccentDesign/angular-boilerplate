@@ -28,7 +28,7 @@ import { finalize, first } from 'rxjs';
   ],
   templateUrl: './my-password.component.html'
 })
-export class MyPasswordComponent {
+export default class MyPasswordComponent {
   @ViewChild('ngForm') ngForm!: NgForm;
   form = new FormGroup({
     password: new FormControl('', {

@@ -11,6 +11,6 @@ import { NavComponent } from '@modules/shared/components/nav/nav.component';
   ],
   templateUrl: './dashboard-page.component.html'
 })
-export class DashboardPageComponent {
+export default class DashboardPageComponent {
 
 }

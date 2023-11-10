@@ -12,15 +12,15 @@ export const routes: Routes = [
   },
   {
     path: AuthRoutes.base,
-    loadChildren: () => import('@modules/auth/auth.routes').then(m => m.AUTH_ROUTES),
+    loadChildren: () => import('@modules/auth/auth.routes'),
   },
   {
     path: DashboardRoutes.base,
-    loadChildren: () => import('@modules/dashboard/dashboard.routes').then(m => m.DASHBOARD_ROUTES),
+    loadChildren: () => import('@modules/dashboard/dashboard.routes'),
   },
   {
     path: SettingsRoutes.base,
-    loadChildren: () => import('@modules/settings/settings.routes').then(m => m.SETTINGS_ROUTES),
+    loadChildren: () => import('@modules/settings/settings.routes'),
   },
   {
     path: '**',
