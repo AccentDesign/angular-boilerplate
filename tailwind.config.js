@@ -4,13 +4,7 @@ const plugin = require("tailwindcss/plugin");
 
 module.exports = {
   content: ["./src/index.html", "./src/**/*.{html,scss,ts}"],
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ['Roboto', 'Helvetica Neue', 'sans-serif'],
-      },
-    },
-  },
+  theme: {},
   plugins: [
     plugin(({ addBase, theme }) => {
       addBase({
