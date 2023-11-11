@@ -1,8 +1,13 @@
-import { NgIf } from '@angular/common';
+import { NgIf, NgIfContext } from '@angular/common';
 import { computed, Directive, inject, Input, signal, TemplateRef } from '@angular/core';
 import { AuthRepository } from '@modules/auth/shared/auth.repository';
 import { includes } from 'lodash';
 
+/**
+ * <p *appHasScope="'admin'">admin</p>
+ * <p *appHasScope="'admin'; else denied">admin</p>
+ * <ng-template #denied>denied</ng-template>
+ */
 @Directive({
   selector: '[appHasScope]',
   standalone: true,
@@ -25,8 +30,7 @@ export class HasScopeDirective {
   }
 
   @Input()
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  set appHasScopeElse(template: TemplateRef<any>) {
+  set appHasScopeElse(template: TemplateRef<NgIfContext<unknown>> | null) {
     this.ngIfRef.ngIfElse = template;
   }
 }
