@@ -3,15 +3,18 @@
   <header>
     <h1 class="font-light text-3xl">Settings</h1>
   </header>
-  <div class="sm:grid sm:grid-cols-4 gap-8">
+  <div class="sm:grid sm:grid-cols-4 gap-10">
     <aside class="pt-4">
       <nav>
-        <ul class="space-y-2">
+        <ul class="space-y-2 mb-8">
           <li *ngFor="let item of navItems">
             <a #rla="routerLinkActive"
-               [ngClass]="{'text-blue-800': !rla.isActive}"
+               [ngClass]="{
+                'text-blue-800 hover:underline': !rla.isActive,
+                'text-gray-600 bg-gray-100': rla.isActive
+               }"
                [routerLink]="item.route"
-               class="hover:underline flex items-center"
+               class="flex items-center p-2 -m-2 rounded"
                routerLinkActive>
               <div [appSvgIcon]="item.icon" class="w-4 h-4 mr-2"></div>
               {{ item.label }}
