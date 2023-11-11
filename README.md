@@ -1,6 +1,6 @@
-# App
+# Angular Boilerplate
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.2.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
 
 ## Development server
 
@@ -16,11 +16,11 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test` to execute the unit tests via [Jest](https://jestjs.io).
 
-## Running end-to-end tests
+## Linting
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Run `ng lint` to lint the project via [angular-eslint](https://github.com/angular-eslint/angular-eslint).
 
 ## Further help
 
@@ -30,3 +30,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 * [https://angular.io](https://angular.io)
 * [https://icones.js.org](https://icones.js.org)
+* [https://github.com/stuartaccent/fastapi-boilerplate](https://github.com/stuartaccent/fastapi-boilerplate)
