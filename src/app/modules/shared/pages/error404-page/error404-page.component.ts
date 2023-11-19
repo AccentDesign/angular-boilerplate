@@ -14,6 +14,6 @@ import { ButtonDirective } from '@modules/shared/directives/button.directive';
   ],
   templateUrl: './error404-page.component.html'
 })
-export class Error404PageComponent {
+export default class Error404PageComponent {
 
 }

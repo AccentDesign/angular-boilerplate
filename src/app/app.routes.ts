@@ -2,13 +2,11 @@ import { Routes } from '@angular/router';
 import { AuthRoutes } from '@modules/auth/shared/auth-routes';
 import { DashboardRoutes } from '@modules/dashboard/shared/dashboard-routes';
 import { SettingsRoutes } from '@modules/settings/shared/settings-routes';
-import { Error404PageComponent } from '@modules/shared/pages/error404-page/error404-page.component';
-import { WelcomePageComponent } from '@modules/shared/pages/welcome-page/welcome-page.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: WelcomePageComponent,
+    loadComponent: () => import('@modules/shared/pages/welcome-page/welcome-page.component'),
   },
   {
     path: AuthRoutes.base,
@@ -24,6 +22,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    component: Error404PageComponent,
+    loadComponent: () => import('@modules/shared/pages/error404-page/error404-page.component'),
   }
 ];

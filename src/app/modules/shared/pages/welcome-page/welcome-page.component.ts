@@ -17,6 +17,6 @@ import { SvgIconDirective } from '@modules/shared/directives/svg-icon.directive'
   ],
   templateUrl: './welcome-page.component.html'
 })
-export class WelcomePageComponent {
+export default class WelcomePageComponent {
   protected readonly AuthPaths = AuthPaths;
 }
