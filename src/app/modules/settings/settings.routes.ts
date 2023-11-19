@@ -7,17 +7,17 @@ export default [
   {
     path: '',
     component: MySettingsComponent,
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'profile' },
       {
         path: SettingsRoutes.profile,
         loadComponent: () => import('./pages/my-profile/my-profile.component'),
-        canActivate: [AuthGuard]
       },
       {
         path: SettingsRoutes.password,
         loadComponent: () => import('./pages/my-password/my-password.component'),
-        canActivate: [AuthGuard]
       },
     ],
   }

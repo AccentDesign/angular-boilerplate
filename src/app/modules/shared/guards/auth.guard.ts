@@ -20,28 +20,29 @@ export class AuthGuard {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Promise<boolean> {
+    return this.checkAuthenticationAndRedirect(state.url);
+  }
+
+  async canActivateChild(
+    childRoute: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Promise<boolean> {
+    return this.canActivate(childRoute, state);
+  }
+
+  private async checkAuthenticationAndRedirect(url: string): Promise<boolean> {
     const user = this.authRepository.currentUser();
     const token = this.authRepository.accessToken();
 
     if (!user || !token) {
-      return this.navigateLogin();
+      await this.router.navigateByUrl(AuthPaths.logIn);
+      return false;
     }
 
-    const isAllowed = this.allowedPaths.includes(state.url);
-
-    if (user.is_verified || isAllowed) {
+    if (user.is_verified || this.allowedPaths.includes(url)) {
       return true;
     }
 
-    return this.navigateProfile();
-  }
-
-  async navigateLogin(): Promise<boolean> {
-    await this.router.navigateByUrl(AuthPaths.logIn);
-    return false;
-  }
-
-  async navigateProfile(): Promise<boolean> {
     await this.router.navigateByUrl(SettingsPaths.profile);
     return false;
   }
