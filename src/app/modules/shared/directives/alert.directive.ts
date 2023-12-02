@@ -2,6 +2,7 @@ import { computed, Directive, HostBinding, Input, signal } from '@angular/core';
 
 const base = [
   'border-l-4',
+  'border-solid',
   'mb-6',
 ];
 const colors = {

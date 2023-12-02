@@ -1,7 +1,10 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { AuthPaths } from '@modules/auth/shared/auth-routes';
 import { AuthRepository } from '@modules/auth/shared/auth.repository';
@@ -9,11 +12,8 @@ import { AuthService } from '@modules/auth/shared/auth.service';
 import { LoginRequest } from '@modules/auth/shared/interfaces/login-request';
 import { DashboardPaths } from '@modules/dashboard/shared/dashboard-routes';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
-import { FormErrorsComponent } from '@modules/shared/components/form-errors/form-errors.component';
 import { LogoComponent } from '@modules/shared/components/logo/logo.component';
-import { ButtonDirective } from '@modules/shared/directives/button.directive';
-import { InputDirective } from '@modules/shared/directives/input.directive';
-import { SvgIconDirective } from '@modules/shared/directives/svg-icon.directive';
+import { FormFieldErrorDirective } from '@modules/shared/directives/form-field-error.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
 import { finalize, first } from 'rxjs';
 
@@ -22,14 +22,13 @@ import { finalize, first } from 'rxjs';
   standalone: true,
   imports: [
     CommonModule,
-    NgOptimizedImage,
-    ReactiveFormsModule,
-    FormErrorsComponent,
     ErrorMessagesComponent,
-    SvgIconDirective,
     LogoComponent,
-    ButtonDirective,
-    InputDirective
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    FormFieldErrorDirective
   ],
   templateUrl: './log-in-page.component.html'
 })

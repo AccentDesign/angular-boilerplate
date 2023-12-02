@@ -1,10 +1,9 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { AuthPaths } from '@modules/auth/shared/auth-routes';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { LogoComponent } from '@modules/shared/components/logo/logo.component';
-import { ButtonDirective } from '@modules/shared/directives/button.directive';
-import { SvgIconDirective } from '@modules/shared/directives/svg-icon.directive';
 import { firstValueFrom } from 'rxjs';
 
 @Component({
@@ -12,10 +11,8 @@ import { firstValueFrom } from 'rxjs';
   standalone: true,
   imports: [
     CommonModule,
-    NgOptimizedImage,
-    SvgIconDirective,
     LogoComponent,
-    ButtonDirective
+    MatButtonModule
   ],
   templateUrl: './log-out-page.component.html'
 })

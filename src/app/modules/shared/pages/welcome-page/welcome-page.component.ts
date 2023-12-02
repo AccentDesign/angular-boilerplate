@@ -1,19 +1,20 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
 import { AuthPaths } from '@modules/auth/shared/auth-routes';
 import { LogoComponent } from '@modules/shared/components/logo/logo.component';
-import { ButtonDirective } from '@modules/shared/directives/button.directive';
-import { SvgIconDirective } from '@modules/shared/directives/svg-icon.directive';
 
 @Component({
   selector: 'app-welcome-page',
   standalone: true,
   imports: [
     CommonModule,
-    NgOptimizedImage,
-    SvgIconDirective,
     LogoComponent,
-    ButtonDirective
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule
   ],
   templateUrl: './welcome-page.component.html'
 })

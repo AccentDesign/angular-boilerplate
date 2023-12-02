@@ -1,0 +1,10 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer components {
+  // fix for tailwind reset on outline mat-form-field
+  .mdc-notched-outline__notch {
+    border-right: none;
+  }
+}

@@ -1,5 +1,6 @@
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { ApplicationConfig, ErrorHandler, importProvidersFrom } from '@angular/core';
+import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
+import { ApplicationConfig, ErrorHandler } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { environment } from '@environments/environment';
 import { GlobalHttpInterceptor } from '@modules/shared/interceptors/global-http.interceptor';
@@ -12,7 +13,8 @@ if (environment.sentryDsn) {
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    importProvidersFrom(HttpClientModule),
+    provideAnimations(),
+    provideHttpClient(),
     provideRouter(routes, withComponentInputBinding()),
     {
       provide: HTTP_INTERCEPTORS,

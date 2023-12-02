@@ -1,19 +1,13 @@
-<header class="px-6 py-4 mb-8 bg-gray-100 flex items-center justify-between shadow-md">
-  <a class="text-slate-600" href="{{ DashboardPaths.dashboard }}">
-    <div app-logo-mini class="w-[150px]"></div>
-  </a>
-  <div class="flex gap-4">
-    <a aria-label="Settings"
-       class="text-gray-400 hover:text-gray-500"
-       href="{{ SettingsPaths.profile }}"
-       title="Settings">
-      <div appSvgIcon="majestic-settings-cog-line" class="w-7 h-7"></div>
+<header class="mb-8">
+  <mat-toolbar class="mb-8" color="primary">
+    <img alt="Logo" height="30" ngSrc="assets/logo-white-mini.svg" width="30"/>
+    <a [href]="DashboardPaths.dashboard" mat-button>Angular Boilerplate</a>
+    <span class="flex-grow"></span>
+    <a [href]="SettingsPaths.profile" mat-icon-button>
+      <mat-icon>settings</mat-icon>
     </a>
-    <a aria-label="Logout"
-       class="text-gray-400 hover:text-gray-500"
-       href="{{ AuthPaths.logOut }}"
-       title="Logout">
-      <div appSvgIcon="majestic-door-exit-line" class="w-7 h-7"></div>
+    <a [href]="AuthPaths.logOut" mat-icon-button>
+      <mat-icon>lock</mat-icon>
     </a>
-  </div>
+  </mat-toolbar>
 </header>

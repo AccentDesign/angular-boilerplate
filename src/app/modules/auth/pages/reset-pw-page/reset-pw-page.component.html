@@ -1,41 +1,38 @@
-<main class="container mx-auto px-6 mt-10 sm:mt-16 md:mt-24 lg:mt-32 xl:mt-40">
-  <header class="mb-10">
-    <a class="mb-8 inline-block w-[300px] max-w-full" href="/">
+<main class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+  <div class="w-full max-w-[400px] space-y-6">
+    <a class="block w-[200px] max-w-full" href="/">
       <app-logo/>
     </a>
-    <hgroup class="space-y-2">
-      <h1 class="font-light text-3xl">Forgot Password</h1>
-      <h2 class="flex items-center text-gray-600">
-        <div appSvgIcon="majestic-key-line" class="w-4 h-4 mr-2"></div>
+    <hgroup class="space-y-1">
+      <h1 class="font-light text-2xl">Forgot Password</h1>
+      <h2 class="text-gray-400">
         Request details to reset your password.
       </h2>
     </hgroup>
-  </header>
-  <section class="max-w-[500px]">
     <div *ngIf="success()" appAlert>
       Your password has been reset. You can now
-      <a class="text-green-800 underline" href="{{ AuthPaths.logIn }}">Login</a>
+      <a [href]="AuthPaths.logIn" class="text-green-800 underline">Login</a>
       using your new password.
     </div>
     <app-error-messages *ngIf="!success()" location="resetPw"></app-error-messages>
-    <form (ngSubmit)="submit()" [formGroup]="form" class="space-y-6">
-      <div>
-        <label for="password">Password</label>
-        <input appInput formControlName="password" id="password" type="password">
-        <app-form-errors [control]="form.controls.password"></app-form-errors>
-      </div>
-      <div>
-        <label for="password_confirm">Confirm your Password</label>
-        <input appInput formControlName="password_confirm" id="password_confirm"
-               type="password">
-        <app-form-errors [control]="form.controls.password_confirm"></app-form-errors>
-      </div>
+    <form (ngSubmit)="submit()" [formGroup]="form" class="space-y-4">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Password</mat-label>
+        <input formControlName="password" matInput type="password">
+        <mat-error appFormFieldError="password" class="text-xs"/>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Confirm your Password</mat-label>
+        <input formControlName="password_confirm" matInput type="password">
+        <mat-error appFormFieldError="password_confirm" class="text-xs"/>
+      </mat-form-field>
       <button [disabled]="loading()"
-              appButton
               class="w-full"
+              color="primary"
+              mat-raised-button
               type="submit"
       >Change Password
       </button>
     </form>
-  </section>
+  </div>
 </main>

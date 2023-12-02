@@ -1,39 +1,40 @@
-<main class="container mx-auto px-6 mt-10 sm:mt-16 md:mt-24 lg:mt-32 xl:mt-40">
-  <header class="mb-10">
-    <a class="mb-8 inline-block w-[300px] max-w-full" href="/">
+<main class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+  <div class="w-full max-w-[400px] space-y-6">
+    <a class="block w-[200px] max-w-full" href="/">
       <app-logo/>
     </a>
-    <hgroup class="space-y-2">
-      <h1 class="font-light text-3xl">Angular Boilerplate</h1>
-      <h2 class="flex items-center text-gray-600">
-        <div appSvgIcon="majestic-home-line" class="w-4 h-4 mr-2"></div>
-        Welcome to the angular boilerplate. Please login or register to get started.
-      </h2>
+    <hgroup class="space-y-1">
+      <h1 class="font-light text-2xl">Angular Boilerplate</h1>
+      <h2 class="text-gray-400">Welcome to the angular boilerplate.</h2>
     </hgroup>
-  </header>
-  <section>
-    <div class="max-w-xl sm:grid sm:grid-cols-2 gap-4">
-      <a appButton
-         class="w-full mb-4"
-         href="{{ AuthPaths.logIn }}">Login
-      </a>
-      <a appButton="white"
-         class="w-full mb-4"
-         href="{{ AuthPaths.register }}">Register
-      </a>
+    <a class="w-full"
+       color="primary"
+       href="{{ AuthPaths.logIn }}"
+       mat-raised-button>Login
+    </a>
+    <div class="flex items-center">
+      <mat-divider class="flex-grow"></mat-divider>
+      <span class="px-4 text-gray-600">or</span>
+      <mat-divider class="flex-grow"></mat-divider>
     </div>
-    <div class="mt-6 mb-2">Useful Links</div>
-    <ul class="list-disc list-inside space-y-1">
-      <li>
-        <a class="text-blue-800 hover:underline p-1 -m-1 inline-block"
-           href="https://github.com/stuartaccent/angular-boilerplate">Github Repository
-        </a>
-      </li>
-      <li>
-        <a class="text-blue-800 hover:underline p-1 -m-1 inline-block"
-           href="https://github.com/stuartaccent/fastapi-boilerplate">FastAPI Boilerplate
-        </a>
-      </li>
-    </ul>
-  </section>
+    <a class="w-full"
+       href="{{ AuthPaths.register }}"
+       mat-raised-button>Register
+    </a>
+    <div>
+      <h3 class="mb-2">Useful Links</h3>
+      <ul class="list-disc list-inside space-y-1">
+        <li>
+          <a class="text-blue-800 hover:underline"
+             href="https://github.com/stuartaccent/angular-boilerplate">Github Repository
+          </a>
+        </li>
+        <li>
+          <a class="text-blue-800 hover:underline"
+             href="https://github.com/stuartaccent/fastapi-boilerplate">FastAPI Boilerplate
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </main>

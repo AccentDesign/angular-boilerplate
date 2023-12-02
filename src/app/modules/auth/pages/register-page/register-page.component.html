@@ -1,60 +1,54 @@
-<main class="container mx-auto px-6 mt-10 sm:mt-16 md:mt-24 lg:mt-32 xl:mt-40">
-  <header>
-    <a class="mb-8 inline-block w-[300px] max-w-full" href="/">
+<main class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+  <div class="w-full max-w-[400px] space-y-6">
+    <a class="block w-[200px] max-w-full" href="/">
       <app-logo/>
     </a>
-    <hgroup class="space-y-2 mb-10">
-      <h1 class="font-light text-3xl">Register</h1>
-      <h2 class="flex items-center text-gray-600">
-        <div appSvgIcon="majestic-user-add-line" class="w-4 h-4 mr-2"></div>
+    <hgroup class="space-y-1">
+      <h1 class="font-light text-2xl">Register</h1>
+      <h2 class="text-gray-400">
         Please complete the below to create and access your account.
       </h2>
     </hgroup>
-  </header>
-  <section class="max-w-[500px]">
     <div *ngIf="success(); else formBlock" appAlert>
       Thank you, your registration was successful. You can now
-      <a class="text-green-800 underline" href="{{ AuthPaths.logIn }}">login</a> to access the site.
+      <a [href]="AuthPaths.logIn" class="text-green-800 underline">login</a> to access the site.
     </div>
     <ng-template #formBlock>
       <app-error-messages location="register"></app-error-messages>
-      <form (ngSubmit)="register()" [formGroup]="form" class="space-y-6">
-        <div>
-          <label for="first_name">First Name</label>
-          <input appInput formControlName="first_name" id="first_name"
-                 type="text">
-          <app-form-errors [control]="form.controls.first_name"></app-form-errors>
-        </div>
-        <div>
-          <label for="last_name">Last Name</label>
-          <input appInput formControlName="last_name" id="last_name" type="text">
-          <app-form-errors [control]="form.controls.last_name"></app-form-errors>
-        </div>
-        <div>
-          <label for="email">Email</label>
-          <input appInput formControlName="email" id="email" type="email">
-          <app-form-errors [control]="form.controls.email"></app-form-errors>
-        </div>
-        <div>
-          <label for="password">Password</label>
-          <input appInput formControlName="password" id="password"
-                 type="password">
-          <app-form-errors [control]="form.controls.password"></app-form-errors>
-        </div>
-        <div>
-          <label for="password_confirm">Confirm your Password</label>
-          <input appInput formControlName="password_confirm" id="password_confirm"
-                 type="password">
-          <app-form-errors [control]="form.controls.password_confirm"></app-form-errors>
-        </div>
+      <form (ngSubmit)="register()" [formGroup]="form" class="space-y-4">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>First Name</mat-label>
+          <input formControlName="first_name" matInput type="text">
+          <mat-error appFormFieldError="first_name" class="text-xs"/>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Last Name</mat-label>
+          <input formControlName="last_name" matInput type="text">
+          <mat-error appFormFieldError="last_name" class="text-xs"/>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Email</mat-label>
+          <input formControlName="email" matInput type="email">
+          <mat-error appFormFieldError="email" class="text-xs"/>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Password</mat-label>
+          <input formControlName="password" matInput type="password">
+          <mat-error appFormFieldError="password" class="text-xs"/>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Confirm your Password</mat-label>
+          <input formControlName="password_confirm" matInput type="password">
+          <mat-error appFormFieldError="password_confirm" class="text-xs"/>
+        </mat-form-field>
         <button [disabled]="loading()"
-                appButton
-                class="w-full"
+                class="w-full" color="primary"
+                mat-raised-button
                 type="submit"
         >
           Register
         </button>
       </form>
     </ng-template>
-  </section>
+  </div>
 </main>

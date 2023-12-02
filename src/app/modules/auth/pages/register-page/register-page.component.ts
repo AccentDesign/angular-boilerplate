@@ -1,17 +1,17 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { AuthPaths } from '@modules/auth/shared/auth-routes';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { RegisterRequest } from '@modules/auth/shared/interfaces/register-request';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
-import { FormErrorsComponent } from '@modules/shared/components/form-errors/form-errors.component';
 import { LogoComponent } from '@modules/shared/components/logo/logo.component';
 import { AlertDirective } from '@modules/shared/directives/alert.directive';
-import { ButtonDirective } from '@modules/shared/directives/button.directive';
-import { InputDirective } from '@modules/shared/directives/input.directive';
-import { SvgIconDirective } from '@modules/shared/directives/svg-icon.directive';
+import { FormFieldErrorDirective } from '@modules/shared/directives/form-field-error.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
 import { passwordsMatchValidator } from '@modules/shared/validators/passwords-match';
 import { finalize, first } from 'rxjs';
@@ -20,16 +20,15 @@ import { finalize, first } from 'rxjs';
   selector: 'app-register-page',
   standalone: true,
   imports: [
+    AlertDirective,
     CommonModule,
-    NgOptimizedImage,
-    ReactiveFormsModule,
-    FormErrorsComponent,
     ErrorMessagesComponent,
-    SvgIconDirective,
     LogoComponent,
-    ButtonDirective,
-    InputDirective,
-    AlertDirective
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    FormFieldErrorDirective
   ],
   templateUrl: './register-page.component.html'
 })

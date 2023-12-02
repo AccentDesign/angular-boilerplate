@@ -4,18 +4,20 @@ const plugin = require("tailwindcss/plugin");
 
 module.exports = {
   content: ["./src/index.html", "./src/**/*.{html,scss,ts}"],
-  theme: {},
+  theme: {
+    fontFamily: {
+      sans: ['Roboto', 'Helvetica Neue', 'sans-serif']
+    }
+  },
   plugins: [
     plugin(({ addBase, theme }) => {
       addBase({
         html: {
           color: theme("colors.gray.800"),
+          height: '100%'
         },
-        label: {
-          fontWeight: theme("fontWeight.medium"),
-        },
-        th: {
-          fontWeight: theme("fontWeight.medium"),
+        body: {
+          height: '100%'
         }
       });
     }),
