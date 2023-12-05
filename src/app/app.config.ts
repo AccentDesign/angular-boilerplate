@@ -18,14 +18,17 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withComponentInputBinding()),
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: GlobalHttpInterceptor, multi: true,
+      useClass: GlobalHttpInterceptor,
+      multi: true,
     },
-    (environment.sentryDsn) ? {
-      provide: ErrorHandler,
-      useValue: Sentry.createErrorHandler({ showDialog: true }),
-    } : {
-      provide: ErrorHandler,
-      useClass: ErrorHandler,
-    }
-  ]
+    environment.sentryDsn
+      ? {
+          provide: ErrorHandler,
+          useValue: Sentry.createErrorHandler({ showDialog: true }),
+        }
+      : {
+          provide: ErrorHandler,
+          useClass: ErrorHandler,
+        },
+  ],
 };

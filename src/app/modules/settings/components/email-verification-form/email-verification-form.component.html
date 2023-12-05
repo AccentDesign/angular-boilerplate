@@ -1,18 +1,14 @@
 <section *ngIf="authRepository.currentUser() as user" class="mb-16">
   <h3 class="font-light text-1xl mb-1">Email Verification</h3>
-  <hr class="border-1 border-solid mb-6">
+  <hr class="border-1 border-solid mb-6" />
   <div *ngIf="success() || user.is_verified; else verifyBlock" appAlert="white">
     Your email address has been verified.
   </div>
   <ng-template #verifyBlock>
     <app-error-messages location="verifyEmail"></app-error-messages>
     <div class="mb-6">
-      <p class="mb-4">
-        Your email address needs to be verified before you can use this site.
-      </p>
-      <button (click)="request($event);" mat-raised-button>
-        Send me a verification email
-      </button>
+      <p class="mb-4">Your email address needs to be verified before you can use this site.</p>
+      <button (click)="request($event)" mat-raised-button>Send me a verification email</button>
     </div>
     <form (ngSubmit)="submit()" *ngIf="requested()" [formGroup]="form" class="space-y-4">
       <mat-form-field appearance="outline" class="w-full">
@@ -20,8 +16,9 @@
         <textarea
           formControlName="token"
           matInput
-          placeholder="Please enter the verification token provided in the email"></textarea>
-        <mat-error appFormFieldError="token" class="text-xs"/>
+          placeholder="Please enter the verification token provided in the email"
+        ></textarea>
+        <mat-error appFormFieldError="token" class="text-xs" />
       </mat-form-field>
       <button [disabled]="loading()" color="primary" mat-raised-button>Verify Account</button>
     </form>

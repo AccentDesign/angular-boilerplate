@@ -6,12 +6,13 @@
   <div class="sm:grid sm:grid-cols-4 gap-10">
     <aside>
       <mat-nav-list class="mb-8">
-        <a #rla="routerLinkActive"
-           *ngFor="let item of navItems"
-           [activated]="rla.isActive"
-           [routerLink]="item.route"
-           mat-list-item
-           routerLinkActive
+        <a
+          #rla="routerLinkActive"
+          *ngFor="let item of navItems"
+          [activated]="rla.isActive"
+          [routerLink]="item.route"
+          mat-list-item
+          routerLinkActive
         >
           <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
           <span matListItemTitle>{{ item.label }}</span>

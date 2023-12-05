@@ -3,31 +3,27 @@
 </section>
 <section class="mb-16">
   <h3 class="font-light text-1xl mb-1">Profile</h3>
-  <hr class="border-1 border-solid mb-6">
+  <hr class="border-1 border-solid mb-6" />
   <form (ngSubmit)="submit()" [formGroup]="form" class="sm:col-span-2 space-y-4">
-    <div *ngIf="success()" appAlert>
-      Your profile was updated successfully.
-    </div>
+    <div *ngIf="success()" appAlert>Your profile was updated successfully.</div>
     <app-error-messages *ngIf="!success()" location="myProfile"></app-error-messages>
     <p>
       <mat-form-field appearance="outline" class="w-full">
         <mat-label>First Name</mat-label>
-        <input formControlName="first_name" matInput type="text">
-        <mat-error appFormFieldError="first_name" class="text-xs"/>
+        <input formControlName="first_name" matInput type="text" />
+        <mat-error appFormFieldError="first_name" class="text-xs" />
       </mat-form-field>
     </p>
     <mat-form-field appearance="outline" class="w-full">
       <mat-label>Last Name</mat-label>
-      <input formControlName="last_name" matInput type="text">
-      <mat-error appFormFieldError="last_name" class="text-xs"/>
+      <input formControlName="last_name" matInput type="text" />
+      <mat-error appFormFieldError="last_name" class="text-xs" />
     </mat-form-field>
     <mat-form-field appearance="outline" class="w-full">
       <mat-label>Email</mat-label>
-      <input formControlName="email" matInput type="email">
-      <mat-error appFormFieldError="email" class="text-xs"/>
+      <input formControlName="email" matInput type="email" />
+      <mat-error appFormFieldError="email" class="text-xs" />
     </mat-form-field>
-    <button [disabled]="loading()" color="primary" mat-raised-button type="submit">
-      Update Profile
-    </button>
+    <button [disabled]="loading()" color="primary" mat-raised-button type="submit">Update Profile</button>
   </form>
 </section>

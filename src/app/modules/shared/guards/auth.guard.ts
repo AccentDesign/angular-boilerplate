@@ -11,22 +11,13 @@ export class AuthGuard {
   private authRepository = inject(AuthRepository);
   private router = inject(Router);
 
-  private readonly allowedPaths = [
-    SettingsPaths.profile,
-    SettingsPaths.password
-  ];
+  private readonly allowedPaths = [SettingsPaths.profile, SettingsPaths.password];
 
-  async canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Promise<boolean> {
+  async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     return this.checkAuthenticationAndRedirect(state.url);
   }
 
-  async canActivateChild(
-    childRoute: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Promise<boolean> {
+  async canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     return this.canActivate(childRoute, state);
   }
 

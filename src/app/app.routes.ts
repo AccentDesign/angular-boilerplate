@@ -23,5 +23,5 @@ export const routes: Routes = [
   {
     path: '**',
     loadComponent: () => import('@modules/shared/pages/error404-page/error404-page.component'),
-  }
+  },
 ];

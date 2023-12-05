@@ -6,6 +6,6 @@ export default [
   {
     path: DashboardRoutes.dashboard,
     loadComponent: () => import('./pages/dashboard-page/dashboard-page.component'),
-    canActivate: [AuthGuard]
-  }
+    canActivate: [AuthGuard],
+  },
 ] satisfies Route[];

@@ -1,6 +1,6 @@
 export const DashboardRoutes = {
   base: 'dashboard',
-  dashboard: ''
+  dashboard: '',
 };
 
 export const DashboardPaths = {

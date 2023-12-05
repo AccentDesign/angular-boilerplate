@@ -20,11 +20,10 @@ import { FormFieldErrorDirective } from '@modules/shared/directives/form-field-e
     FormFieldErrorDirective,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  templateUrl: './error404-page.component.html'
+  templateUrl: './error404-page.component.html',
 })
 export default class Error404PageComponent {
-
   protected readonly AuthPaths = AuthPaths;
 }

@@ -8,9 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { AuthRepository } from '@modules/auth/shared/auth.repository';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { UpdateUserRequest } from '@modules/auth/shared/interfaces/update-user-request';
-import {
-  EmailVerificationFormComponent
-} from '@modules/settings/components/email-verification-form/email-verification-form.component';
+import { EmailVerificationFormComponent } from '@modules/settings/components/email-verification-form/email-verification-form.component';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
 import { AlertDirective } from '@modules/shared/directives/alert.directive';
 import { FormFieldErrorDirective } from '@modules/shared/directives/form-field-error.directive';
@@ -29,27 +27,23 @@ import { finalize, first } from 'rxjs';
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    FormFieldErrorDirective
+    FormFieldErrorDirective,
   ],
-  templateUrl: './my-profile.component.html'
+  templateUrl: './my-profile.component.html',
 })
 export default class MyProfileComponent {
   form = new FormGroup({
     first_name: new FormControl('', {
-      nonNullable: true, validators: [
-        Validators.required
-      ]
+      nonNullable: true,
+      validators: [Validators.required],
     }),
     last_name: new FormControl('', {
-      nonNullable: true, validators: [
-        Validators.required
-      ]
+      nonNullable: true,
+      validators: [Validators.required],
     }),
     email: new FormControl('', {
-      nonNullable: true, validators: [
-        Validators.required,
-        Validators.email
-      ]
+      nonNullable: true,
+      validators: [Validators.required, Validators.email],
     }),
   });
   loading = signal<boolean>(false);
@@ -63,7 +57,7 @@ export default class MyProfileComponent {
       this.form.setValue({
         first_name: user.first_name,
         last_name: user.last_name,
-        email: user.email
+        email: user.email,
       });
     } else {
       this.form.reset();
@@ -82,13 +76,16 @@ export default class MyProfileComponent {
       last_name: this.form.value.last_name,
       email: this.form.value.email,
     } as UpdateUserRequest;
-    this.authService.updateUser(data).pipe(
-      first(),
-      finalize(() => this.handleSubmitFinish())
-    ).subscribe({
-      next: () => this.handleSubmitSuccess(),
-      error: (error) => this.handleSubmitError(error)
-    });
+    this.authService
+      .updateUser(data)
+      .pipe(
+        first(),
+        finalize(() => this.handleSubmitFinish()),
+      )
+      .subscribe({
+        next: () => this.handleSubmitSuccess(),
+        error: (error) => this.handleSubmitError(error),
+      });
   }
 
   handleSubmitSuccess(): void {

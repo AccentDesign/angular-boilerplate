@@ -5,7 +5,7 @@ import { HttpValidationError } from '@modules/shared/interfaces/http-validation-
 import { Observable, Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ErrorMessageService {
   private error = new Subject<ErrorMessage>();
@@ -38,7 +38,7 @@ export class ErrorMessageService {
 
     if (Array.isArray(detail) && error.status === 422) {
       const errors = detail as HttpValidationError[];
-      return errors.map(e => `${e.loc[e.loc.length - 1]}, ${e.msg}`);
+      return errors.map((e) => `${e.loc[e.loc.length - 1]}, ${e.msg}`);
     }
 
     return defaultError;

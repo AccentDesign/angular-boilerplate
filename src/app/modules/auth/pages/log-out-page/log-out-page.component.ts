@@ -9,12 +9,8 @@ import { firstValueFrom } from 'rxjs';
 @Component({
   selector: 'app-log-out-page',
   standalone: true,
-  imports: [
-    CommonModule,
-    LogoComponent,
-    MatButtonModule
-  ],
-  templateUrl: './log-out-page.component.html'
+  imports: [CommonModule, LogoComponent, MatButtonModule],
+  templateUrl: './log-out-page.component.html',
 })
 export default class LogOutPageComponent implements OnInit {
   protected readonly AuthPaths = AuthPaths;

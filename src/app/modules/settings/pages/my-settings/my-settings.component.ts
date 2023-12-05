@@ -20,7 +20,7 @@ import { NavComponent } from '@modules/shared/components/nav/nav.component';
     MatListModule,
     MatIconModule,
   ],
-  templateUrl: './my-settings.component.html'
+  templateUrl: './my-settings.component.html',
 })
 export class MySettingsComponent {
   navItems = [

@@ -5,11 +5,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'app-logo,[app-logo]',
   standalone: true,
   imports: [CommonModule, NgOptimizedImage],
-  template: `
-    <img alt="logo" height="348" width="1280" ngSrc="assets/logo.png"/>
-  `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  template: ` <img alt="logo" height="348" width="1280" ngSrc="assets/logo.png" /> `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LogoComponent {
-
-}
+export class LogoComponent {}

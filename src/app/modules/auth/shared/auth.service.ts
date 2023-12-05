@@ -11,7 +11,7 @@ import { User } from '@modules/auth/shared/interfaces/user';
 import { catchError, finalize, first, map, Observable, of, switchMap, tap, throwError } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private authRepository = inject(AuthRepository);
@@ -21,9 +21,11 @@ export class AuthService {
 
   constructor() {
     if (this.authRepository.accessToken() && !this.authRepository.currentUser()) {
-      this.getUser().pipe(first()).subscribe({
-        error: (err) => console.error(err),
-      });
+      this.getUser()
+        .pipe(first())
+        .subscribe({
+          error: (err) => console.error(err),
+        });
     }
   }
 
@@ -34,9 +36,7 @@ export class AuthService {
 
   getUser(): Observable<User> {
     const url = `${this.baseURL}/users/me`;
-    return this.http.get<User>(url).pipe(
-      tap(user => this.authRepository.setUser(user))
-    );
+    return this.http.get<User>(url).pipe(tap((user) => this.authRepository.setUser(user)));
   }
 
   logIn({ username, password }: LoginRequest): Observable<LoginResponse> {
@@ -45,12 +45,10 @@ export class AuthService {
     data.append('username', username);
     data.append('password', password);
     return this.http.post<LoginResponse>(url, data).pipe(
-      tap(data => this.authRepository.setAccessToken(data.access_token)),
+      tap((data) => this.authRepository.setAccessToken(data.access_token)),
       switchMap((original) => {
-        return this.getUser().pipe(
-          switchMap(() => of(original))
-        );
-      })
+        return this.getUser().pipe(switchMap(() => of(original)));
+      }),
     );
   }
 
@@ -59,7 +57,7 @@ export class AuthService {
     return this.http.post<null>(url, {}).pipe(
       finalize(() => this.authRepository.clear()),
       map(() => null),
-      catchError(() => of(null))
+      catchError(() => of(null)),
     );
   }
 
@@ -75,9 +73,7 @@ export class AuthService {
 
   updateUser(request: UpdateUserRequest): Observable<User> {
     const url = `${this.baseURL}/users/me`;
-    return this.http.patch<User>(url, request).pipe(
-      tap(user => this.authRepository.setUser(user))
-    );
+    return this.http.patch<User>(url, request).pipe(tap((user) => this.authRepository.setUser(user)));
   }
 
   verifyRequest(): Observable<null> {
@@ -92,8 +88,6 @@ export class AuthService {
 
   verify(token: string): Observable<User> {
     const url = `${this.baseURL}/auth/verify`;
-    return this.http.post<User>(url, { token }).pipe(
-      tap(user => this.authRepository.setUser(user))
-    );
+    return this.http.post<User>(url, { token }).pipe(tap((user) => this.authRepository.setUser(user)));
   }
 }

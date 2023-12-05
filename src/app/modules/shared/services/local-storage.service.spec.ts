@@ -18,7 +18,7 @@ describe('LocalStorageService', () => {
       },
       clear: function () {
         store = {};
-      }
+      },
     };
   })();
 

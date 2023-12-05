@@ -1,5 +1,5 @@
 export interface HttpValidationError {
-  loc: Array<string | number>
-  msg: string
-  type: string
+  loc: Array<string | number>;
+  msg: string;
+  type: string;
 }

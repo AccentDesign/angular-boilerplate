@@ -8,12 +8,9 @@ import { BehaviorSubject, filter, Observable, switchMap } from 'rxjs';
 @Component({
   selector: 'app-error-messages',
   standalone: true,
-  imports: [
-    CommonModule,
-    AlertDirective
-  ],
+  imports: [CommonModule, AlertDirective],
   templateUrl: './error-messages.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ErrorMessagesComponent implements OnChanges {
   @Input() location!: string;
@@ -21,11 +18,7 @@ export class ErrorMessagesComponent implements OnChanges {
   private locationSubject = new BehaviorSubject<string>(this.location);
 
   error$: Observable<ErrorMessage> = this.locationSubject.pipe(
-    switchMap(location =>
-      this.errorService.getError().pipe(
-        filter(msg => msg.location === location)
-      )
-    )
+    switchMap((location) => this.errorService.getError().pipe(filter((msg) => msg.location === location))),
   );
 
   ngOnChanges(changes: SimpleChanges): void {

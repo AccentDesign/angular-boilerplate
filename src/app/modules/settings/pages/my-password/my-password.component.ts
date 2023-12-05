@@ -26,25 +26,25 @@ import { finalize, first } from 'rxjs';
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    FormFieldErrorDirective
+    FormFieldErrorDirective,
   ],
-  templateUrl: './my-password.component.html'
+  templateUrl: './my-password.component.html',
 })
 export default class MyPasswordComponent {
   @ViewChild('ngForm') ngForm!: NgForm;
-  form = new FormGroup({
-    password: new FormControl('', {
-      nonNullable: true, validators: [
-        Validators.required,
-        Validators.minLength(6)
-      ]
-    }),
-    password_confirm: new FormControl('', {
-      nonNullable: true, validators: [
-        Validators.required
-      ]
-    }),
-  }, { validators: passwordsMatchValidator });
+  form = new FormGroup(
+    {
+      password: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(6)],
+      }),
+      password_confirm: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required],
+      }),
+    },
+    { validators: passwordsMatchValidator },
+  );
   loading = signal<boolean>(false);
   success = signal<boolean>(false);
   private authService = inject(AuthService);
@@ -65,13 +65,16 @@ export default class MyPasswordComponent {
     const data = {
       password: this.form.value.password,
     } as UpdateUserRequest;
-    this.authService.updateUser(data).pipe(
-      first(),
-      finalize(() => this.handleSubmitFinish())
-    ).subscribe({
-      next: () => this.handleSubmitSuccess(),
-      error: (error) => this.handleSubmitError(error)
-    });
+    this.authService
+      .updateUser(data)
+      .pipe(
+        first(),
+        finalize(() => this.handleSubmitFinish()),
+      )
+      .subscribe({
+        next: () => this.handleSubmitSuccess(),
+        error: (error) => this.handleSubmitError(error),
+      });
   }
 
   handleSubmitSuccess(): void {

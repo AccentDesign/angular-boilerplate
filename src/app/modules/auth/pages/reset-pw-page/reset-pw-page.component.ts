@@ -28,25 +28,25 @@ import { finalize, first } from 'rxjs';
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    FormFieldErrorDirective
+    FormFieldErrorDirective,
   ],
-  templateUrl: './reset-pw-page.component.html'
+  templateUrl: './reset-pw-page.component.html',
 })
 export default class ResetPwPageComponent {
   @Input({ required: true }) token!: string;
-  form = new FormGroup({
-    password: new FormControl('', {
-      nonNullable: true, validators: [
-        Validators.required,
-        Validators.minLength(6)
-      ]
-    }),
-    password_confirm: new FormControl('', {
-      nonNullable: true, validators: [
-        Validators.required
-      ]
-    }),
-  }, { validators: passwordsMatchValidator });
+  form = new FormGroup(
+    {
+      password: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(6)],
+      }),
+      password_confirm: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required],
+      }),
+    },
+    { validators: passwordsMatchValidator },
+  );
   loading = signal<boolean>(false);
   success = signal<boolean>(false);
   protected readonly AuthPaths = AuthPaths;
@@ -65,15 +65,18 @@ export default class ResetPwPageComponent {
     this.success.set(false);
     const data = {
       password: this.form.value.password,
-      token: this.token
+      token: this.token,
     } as ResetPasswordRequest;
-    this.authService.resetPassword(data).pipe(
-      first(),
-      finalize(() => this.handleSubmitFinish())
-    ).subscribe({
-      next: () => this.handleSubmitSuccess(),
-      error: (error) => this.handleSubmitError(error)
-    });
+    this.authService
+      .resetPassword(data)
+      .pipe(
+        first(),
+        finalize(() => this.handleSubmitFinish()),
+      )
+      .subscribe({
+        next: () => this.handleSubmitSuccess(),
+        error: (error) => this.handleSubmitError(error),
+      });
   }
 
   handleSubmitSuccess(): void {

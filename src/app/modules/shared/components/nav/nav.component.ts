@@ -10,15 +10,9 @@ import { SettingsPaths } from '@modules/settings/shared/settings-routes';
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    NgOptimizedImage
-  ],
+  imports: [CommonModule, MatToolbarModule, MatIconModule, MatButtonModule, NgOptimizedImage],
   templateUrl: './nav.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavComponent {
   protected readonly AuthPaths = AuthPaths;

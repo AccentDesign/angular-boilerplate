@@ -4,7 +4,7 @@ import { AbstractControl, FormGroupDirective, ValidationErrors } from '@angular/
 
 @Directive({
   selector: '[appFormFieldError]',
-  standalone: true
+  standalone: true,
 })
 export class FormFieldErrorDirective implements OnInit {
   @Input('appFormFieldError') controlName!: string;
@@ -16,17 +16,15 @@ export class FormFieldErrorDirective implements OnInit {
   ngOnInit() {
     this.control = this.fgDirective.form.get(this.controlName);
     if (this.control && this.control.statusChanges) {
-      this.control.statusChanges
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe({
-          next: (status: string) => {
-            if (status == 'INVALID') {
-              this.showError();
-            } else {
-              this.removeError();
-            }
+      this.control.statusChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
+        next: (status: string) => {
+          if (status == 'INVALID') {
+            this.showError();
+          } else {
+            this.removeError();
           }
-        });
+        },
+      });
     }
   }
 

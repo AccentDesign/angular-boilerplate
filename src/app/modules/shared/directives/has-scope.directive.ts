@@ -11,7 +11,7 @@ import { includes } from 'lodash';
 @Directive({
   selector: '[appHasScope]',
   standalone: true,
-  hostDirectives: [NgIf]
+  hostDirectives: [NgIf],
 })
 export class HasScopeDirective {
   private ngIfRef = inject(NgIf);

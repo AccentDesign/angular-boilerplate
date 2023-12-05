@@ -28,24 +28,20 @@ import { finalize, first } from 'rxjs';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    FormFieldErrorDirective
+    FormFieldErrorDirective,
   ],
-  templateUrl: './log-in-page.component.html'
+  templateUrl: './log-in-page.component.html',
 })
 export default class LogInPageComponent implements OnInit {
   form = new FormGroup({
     email: new FormControl('', {
-      nonNullable: true, validators: [
-        Validators.required,
-        Validators.email
-      ]
+      nonNullable: true,
+      validators: [Validators.required, Validators.email],
     }),
     password: new FormControl('', {
-      nonNullable: true, validators: [
-        Validators.required,
-        Validators.minLength(6)
-      ]
-    })
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(6)],
+    }),
   });
   loading = signal<boolean>(false);
   protected readonly AuthPaths = AuthPaths;
@@ -66,15 +62,18 @@ export default class LogInPageComponent implements OnInit {
     this.loading.set(true);
     const data = {
       username: this.form.value.email,
-      password: this.form.value.password
+      password: this.form.value.password,
     } as LoginRequest;
-    this.authService.logIn(data).pipe(
-      first(),
-      finalize(() => this.handleLogInFinish())
-    ).subscribe({
-      next: () => this.handleLogInSuccess(),
-      error: (error) => this.handleLogInError(error),
-    });
+    this.authService
+      .logIn(data)
+      .pipe(
+        first(),
+        finalize(() => this.handleLogInFinish()),
+      )
+      .subscribe({
+        next: () => this.handleLogInSuccess(),
+        error: (error) => this.handleLogInError(error),
+      });
   }
 
   handleLogInFinish(): void {

@@ -1,7 +1,7 @@
 export const SettingsRoutes = {
   base: 'settings',
   profile: 'profile',
-  password: 'password'
+  password: 'password',
 };
 
 export const SettingsPaths = {

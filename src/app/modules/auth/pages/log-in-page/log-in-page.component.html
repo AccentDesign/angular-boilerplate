@@ -1,7 +1,7 @@
 <main class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
   <div class="w-full max-w-[400px] space-y-6">
     <a class="block w-[200px] max-w-full" href="/">
-      <app-logo/>
+      <app-logo />
     </a>
     <hgroup class="space-y-1">
       <h1 class="font-light text-2xl">Login</h1>
@@ -11,13 +11,13 @@
     <form (ngSubmit)="logIn()" [formGroup]="form" class="space-y-4">
       <mat-form-field appearance="outline" class="w-full">
         <mat-label>Email</mat-label>
-        <input formControlName="email" matInput type="email">
-        <mat-error appFormFieldError="email" class="text-xs"/>
+        <input formControlName="email" matInput type="email" />
+        <mat-error appFormFieldError="email" class="text-xs" />
       </mat-form-field>
       <mat-form-field appearance="outline" class="w-full">
         <mat-label>Password</mat-label>
-        <input formControlName="password" matInput type="password">
-        <mat-error appFormFieldError="password" class="text-xs"/>
+        <input formControlName="password" matInput type="password" />
+        <mat-error appFormFieldError="password" class="text-xs" />
       </mat-form-field>
       <div class="flex justify-end mb-4">
         <a [href]="AuthPaths.forgotPassword" class="text-blue-800 hover:underline">Forgot password</a>

@@ -1,18 +1,12 @@
 <main class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
   <div class="w-full max-w-[400px] space-y-6">
     <a class="block w-[200px] max-w-full" href="/">
-      <app-logo/>
+      <app-logo />
     </a>
     <hgroup class="space-y-1">
       <h1 class="font-light text-2xl">See you soon</h1>
-      <h2 class="text-gray-400">
-        You have been logged out. If you need to you can log back in.
-      </h2>
+      <h2 class="text-gray-400">You have been logged out. If you need to you can log back in.</h2>
     </hgroup>
-    <a [href]="AuthPaths.logIn" class="w-full"
-       color="primary"
-       mat-raised-button
-    >Back to Login
-    </a>
+    <a [href]="AuthPaths.logIn" class="w-full" color="primary" mat-raised-button>Back to Login</a>
   </div>
 </main>

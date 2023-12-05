@@ -24,18 +24,17 @@ import { finalize, first } from 'rxjs';
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    FormFieldErrorDirective
+    FormFieldErrorDirective,
   ],
   templateUrl: './email-verification-form.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmailVerificationFormComponent {
   authRepository = inject(AuthRepository);
   form = new FormGroup({
     token: new FormControl('', {
-      nonNullable: true, validators: [
-        Validators.required
-      ]
+      nonNullable: true,
+      validators: [Validators.required],
     }),
   });
   loading = signal<boolean>(false);
@@ -47,12 +46,13 @@ export class EmailVerificationFormComponent {
   request(event: Event | MouseEvent): void {
     event.stopPropagation();
     this.requested.set(false);
-    this.authService.verifyRequest().pipe(
-      first()
-    ).subscribe({
-      next: () => this.handleRequestSuccess(),
-      error: (error) => this.handleBothError(error)
-    });
+    this.authService
+      .verifyRequest()
+      .pipe(first())
+      .subscribe({
+        next: () => this.handleRequestSuccess(),
+        error: (error) => this.handleBothError(error),
+      });
   }
 
   submit(): void {
@@ -62,13 +62,16 @@ export class EmailVerificationFormComponent {
     }
     this.loading.set(true);
     this.success.set(false);
-    this.authService.verify(this.form.value.token ?? '').pipe(
-      first(),
-      finalize(() => this.handleSubmitFinish())
-    ).subscribe({
-      next: () => this.handleSubmitSuccess(),
-      error: (error) => this.handleBothError(error)
-    });
+    this.authService
+      .verify(this.form.value.token ?? '')
+      .pipe(
+        first(),
+        finalize(() => this.handleSubmitFinish()),
+      )
+      .subscribe({
+        next: () => this.handleSubmitSuccess(),
+        error: (error) => this.handleBothError(error),
+      });
   }
 
   handleRequestSuccess(): void {

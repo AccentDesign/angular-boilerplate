@@ -6,7 +6,7 @@ export enum LocalStorageKeys {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LocalStorageService {
   set(key: LocalStorageKeys, value: string | object) {

@@ -3,7 +3,7 @@ import { User } from '@modules/auth/shared/interfaces/user';
 import { LocalStorageKeys, LocalStorageService } from '@modules/shared/services/local-storage.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthRepository {
   readonly currentUser = signal<User | null>(null);

@@ -9,14 +9,8 @@ import { LogoComponent } from '@modules/shared/components/logo/logo.component';
 @Component({
   selector: 'app-welcome-page',
   standalone: true,
-  imports: [
-    CommonModule,
-    LogoComponent,
-    MatButtonModule,
-    MatIconModule,
-    MatDividerModule
-  ],
-  templateUrl: './welcome-page.component.html'
+  imports: [CommonModule, LogoComponent, MatButtonModule, MatIconModule, MatDividerModule],
+  templateUrl: './welcome-page.component.html',
 })
 export default class WelcomePageComponent {
   protected readonly AuthPaths = AuthPaths;

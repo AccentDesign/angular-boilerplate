@@ -42,7 +42,7 @@ export class GlobalHttpInterceptor implements HttpInterceptor {
         } else {
           return throwError(() => error);
         }
-      })
+      }),
     );
   }
 }

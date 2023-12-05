@@ -28,40 +28,36 @@ import { finalize, first } from 'rxjs';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    FormFieldErrorDirective
+    FormFieldErrorDirective,
   ],
-  templateUrl: './register-page.component.html'
+  templateUrl: './register-page.component.html',
 })
 export default class RegisterPageComponent {
-  form = new FormGroup({
-    first_name: new FormControl('', {
-      nonNullable: true, validators: [
-        Validators.required
-      ]
-    }),
-    last_name: new FormControl('', {
-      nonNullable: true, validators: [
-        Validators.required
-      ]
-    }),
-    email: new FormControl('', {
-      nonNullable: true, validators: [
-        Validators.required,
-        Validators.email
-      ]
-    }),
-    password: new FormControl('', {
-      nonNullable: true, validators: [
-        Validators.required,
-        Validators.minLength(6)
-      ]
-    }),
-    password_confirm: new FormControl('', {
-      nonNullable: true, validators: [
-        Validators.required
-      ]
-    })
-  }, { validators: passwordsMatchValidator });
+  form = new FormGroup(
+    {
+      first_name: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required],
+      }),
+      last_name: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required],
+      }),
+      email: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.email],
+      }),
+      password: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(6)],
+      }),
+      password_confirm: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required],
+      }),
+    },
+    { validators: passwordsMatchValidator },
+  );
   loading = signal<boolean>(false);
   success = signal<boolean>(false);
   protected readonly AuthPaths = AuthPaths;
@@ -78,15 +74,18 @@ export default class RegisterPageComponent {
       first_name: this.form.value.first_name,
       last_name: this.form.value.last_name,
       email: this.form.value.email,
-      password: this.form.value.password
+      password: this.form.value.password,
     } as RegisterRequest;
-    this.authService.register(data).pipe(
-      first(),
-      finalize(() => this.handleSubmitFinish())
-    ).subscribe({
-      next: () => this.handleSubmitSuccess(),
-      error: (error) => this.handleSubmitError(error)
-    });
+    this.authService
+      .register(data)
+      .pipe(
+        first(),
+        finalize(() => this.handleSubmitFinish()),
+      )
+      .subscribe({
+        next: () => this.handleSubmitSuccess(),
+        error: (error) => this.handleSubmitError(error),
+      });
   }
 
   handleSubmitSuccess(): void {

@@ -25,17 +25,15 @@ import { finalize, first } from 'rxjs';
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    FormFieldErrorDirective
+    FormFieldErrorDirective,
   ],
-  templateUrl: './forgot-pw-page.component.html'
+  templateUrl: './forgot-pw-page.component.html',
 })
 export default class ForgotPwPageComponent {
   form = new FormGroup({
     email: new FormControl('', {
-      nonNullable: true, validators: [
-        Validators.required,
-        Validators.email
-      ]
+      nonNullable: true,
+      validators: [Validators.required, Validators.email],
     }),
   });
   loading = signal<boolean>(false);
@@ -51,13 +49,16 @@ export default class ForgotPwPageComponent {
     this.loading.set(true);
     this.success.set(false);
     const email = this.form.value.email ?? '';
-    this.authService.forgotPassword(email).pipe(
-      first(),
-      finalize(() => this.handleSubmitFinish())
-    ).subscribe({
-      next: () => this.handleSubmitSuccess(),
-      error: (error) => this.handleSubmitError(error),
-    });
+    this.authService
+      .forgotPassword(email)
+      .pipe(
+        first(),
+        finalize(() => this.handleSubmitFinish()),
+      )
+      .subscribe({
+        next: () => this.handleSubmitSuccess(),
+        error: (error) => this.handleSubmitError(error),
+      });
   }
 
   handleSubmitFinish(): void {

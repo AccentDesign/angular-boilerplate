@@ -20,5 +20,5 @@ export default [
         loadComponent: () => import('./pages/my-password/my-password.component'),
       },
     ],
-  }
+  },
 ] satisfies Route[];

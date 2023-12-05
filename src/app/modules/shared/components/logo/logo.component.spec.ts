@@ -8,7 +8,7 @@ describe('LogoComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [LogoComponent]
+      imports: [LogoComponent],
     });
     fixture = TestBed.createComponent(LogoComponent);
     component = fixture.componentInstance;
