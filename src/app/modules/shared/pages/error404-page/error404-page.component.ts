@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,7 +12,6 @@ import { FormFieldErrorDirective } from '@modules/shared/directives/form-field-e
   selector: 'app-error404-page',
   standalone: true,
   imports: [
-    CommonModule,
     LogoComponent,
     MatButtonModule,
     ErrorMessagesComponent,

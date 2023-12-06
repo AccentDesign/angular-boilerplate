@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,16 +9,7 @@ import { NavComponent } from '@modules/shared/components/nav/nav.component';
 @Component({
   selector: 'app-my-settings',
   standalone: true,
-  imports: [
-    CommonModule,
-    NavComponent,
-    RouterLinkActive,
-    RouterLink,
-    RouterOutlet,
-    MatButtonModule,
-    MatListModule,
-    MatIconModule,
-  ],
+  imports: [NavComponent, RouterLinkActive, RouterLink, RouterOutlet, MatButtonModule, MatListModule, MatIconModule],
   templateUrl: './my-settings.component.html',
 })
 export class MySettingsComponent {

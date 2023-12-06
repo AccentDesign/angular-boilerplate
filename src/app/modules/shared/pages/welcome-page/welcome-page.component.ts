@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
@@ -9,7 +8,7 @@ import { LogoComponent } from '@modules/shared/components/logo/logo.component';
 @Component({
   selector: 'app-welcome-page',
   standalone: true,
-  imports: [CommonModule, LogoComponent, MatButtonModule, MatIconModule, MatDividerModule],
+  imports: [LogoComponent, MatButtonModule, MatIconModule, MatDividerModule],
   templateUrl: './welcome-page.component.html',
 })
 export default class WelcomePageComponent {

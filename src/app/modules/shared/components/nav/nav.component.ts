@@ -1,4 +1,4 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,7 +10,7 @@ import { SettingsPaths } from '@modules/settings/shared/settings-routes';
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [CommonModule, MatToolbarModule, MatIconModule, MatButtonModule, NgOptimizedImage],
+  imports: [MatToolbarModule, MatIconModule, MatButtonModule, NgOptimizedImage],
   templateUrl: './nav.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

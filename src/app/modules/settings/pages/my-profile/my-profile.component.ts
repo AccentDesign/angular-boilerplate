@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, effect, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -19,7 +18,6 @@ import { finalize, first } from 'rxjs';
   selector: 'app-my-profile',
   standalone: true,
   imports: [
-    CommonModule,
     EmailVerificationFormComponent,
     ErrorMessagesComponent,
     MatFormFieldModule,

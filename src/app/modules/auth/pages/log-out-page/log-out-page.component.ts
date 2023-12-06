@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthPaths } from '@modules/auth/shared/auth-routes';
@@ -9,7 +8,7 @@ import { firstValueFrom } from 'rxjs';
 @Component({
   selector: 'app-log-out-page',
   standalone: true,
-  imports: [CommonModule, LogoComponent, MatButtonModule],
+  imports: [LogoComponent, MatButtonModule],
   templateUrl: './log-out-page.component.html',
 })
 export default class LogOutPageComponent implements OnInit {

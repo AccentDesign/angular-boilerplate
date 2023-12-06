@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject, signal, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -18,7 +17,6 @@ import { finalize, first } from 'rxjs';
   selector: 'app-my-password',
   standalone: true,
   imports: [
-    CommonModule,
     ErrorMessagesComponent,
     FormsModule,
     MatFormFieldModule,

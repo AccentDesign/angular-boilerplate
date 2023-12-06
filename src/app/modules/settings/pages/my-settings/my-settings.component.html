@@ -6,17 +6,18 @@
   <div class="sm:grid sm:grid-cols-4 gap-10">
     <aside>
       <mat-nav-list class="mb-8">
-        <a
-          #rla="routerLinkActive"
-          *ngFor="let item of navItems"
-          [activated]="rla.isActive"
-          [routerLink]="item.route"
-          mat-list-item
-          routerLinkActive
-        >
-          <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
-          <span matListItemTitle>{{ item.label }}</span>
-        </a>
+        @for (item of navItems; track item) {
+          <a
+            #rla="routerLinkActive"
+            [activated]="rla.isActive"
+            [routerLink]="item.route"
+            mat-list-item
+            routerLinkActive
+          >
+            <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+            <span matListItemTitle>{{ item.label }}</span>
+          </a>
+        }
       </mat-nav-list>
     </aside>
     <section class="sm:col-span-3">

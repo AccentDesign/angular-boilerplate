@@ -4,16 +4,17 @@
 <section class="mb-16">
   <h3 class="font-light text-1xl mb-1">Profile</h3>
   <hr class="border-1 border-solid mb-6" />
+  @if (success()) {
+    <app-message>Your profile was updated successfully.</app-message>
+  } @else {
+    <app-error-messages location="myProfile"></app-error-messages>
+  }
   <form (ngSubmit)="submit()" [formGroup]="form" class="sm:col-span-2 space-y-4">
-    <app-message *ngIf="success()">Your profile was updated successfully.</app-message>
-    <app-error-messages *ngIf="!success()" location="myProfile"></app-error-messages>
-    <p>
-      <mat-form-field appearance="outline" class="w-full">
-        <mat-label>First Name</mat-label>
-        <input formControlName="first_name" matInput type="text" />
-        <mat-error appFormFieldError="first_name" class="text-xs" />
-      </mat-form-field>
-    </p>
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>First Name</mat-label>
+      <input formControlName="first_name" matInput type="text" />
+      <mat-error appFormFieldError="first_name" class="text-xs" />
+    </mat-form-field>
     <mat-form-field appearance="outline" class="w-full">
       <mat-label>Last Name</mat-label>
       <input formControlName="last_name" matInput type="text" />
