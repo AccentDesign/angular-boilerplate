@@ -9,8 +9,8 @@ import { AuthRepository } from '@modules/auth/shared/auth.repository';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { UpdateUserRequest } from '@modules/auth/shared/interfaces/update-user-request';
 import { EmailVerificationFormComponent } from '@modules/settings/components/email-verification-form/email-verification-form.component';
+import { MessageComponent } from '@modules/shared/components/message/message.component';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
-import { AlertDirective } from '@modules/shared/directives/alert.directive';
 import { FormFieldErrorDirective } from '@modules/shared/directives/form-field-error.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
 import { finalize, first } from 'rxjs';
@@ -19,7 +19,6 @@ import { finalize, first } from 'rxjs';
   selector: 'app-my-profile',
   standalone: true,
   imports: [
-    AlertDirective,
     CommonModule,
     EmailVerificationFormComponent,
     ErrorMessagesComponent,
@@ -28,6 +27,7 @@ import { finalize, first } from 'rxjs';
     MatButtonModule,
     ReactiveFormsModule,
     FormFieldErrorDirective,
+    MessageComponent,
   ],
   templateUrl: './my-profile.component.html',
 })

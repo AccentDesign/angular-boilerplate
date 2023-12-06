@@ -7,10 +7,10 @@
       <h1 class="font-light text-2xl">Register</h1>
       <h2 class="text-gray-400">Please complete the below to create and access your account.</h2>
     </hgroup>
-    <div *ngIf="success(); else formBlock" appAlert>
+    <app-message *ngIf="success(); else formBlock">
       Thank you, your registration was successful. You can now
       <a [href]="AuthPaths.logIn" class="text-green-800 underline">login</a> to access the site.
-    </div>
+    </app-message>
     <ng-template #formBlock>
       <app-error-messages location="register"></app-error-messages>
       <form (ngSubmit)="register()" [formGroup]="form" class="space-y-4">

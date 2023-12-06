@@ -7,8 +7,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { UpdateUserRequest } from '@modules/auth/shared/interfaces/update-user-request';
+import { MessageComponent } from '@modules/shared/components/message/message.component';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
-import { AlertDirective } from '@modules/shared/directives/alert.directive';
 import { FormFieldErrorDirective } from '@modules/shared/directives/form-field-error.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
 import { passwordsMatchValidator } from '@modules/shared/validators/passwords-match';
@@ -18,7 +18,6 @@ import { finalize, first } from 'rxjs';
   selector: 'app-my-password',
   standalone: true,
   imports: [
-    AlertDirective,
     CommonModule,
     ErrorMessagesComponent,
     FormsModule,
@@ -27,6 +26,7 @@ import { finalize, first } from 'rxjs';
     MatButtonModule,
     ReactiveFormsModule,
     FormFieldErrorDirective,
+    MessageComponent,
   ],
   templateUrl: './my-password.component.html',
 })

@@ -5,7 +5,7 @@
   <h3 class="font-light text-1xl mb-1">Profile</h3>
   <hr class="border-1 border-solid mb-6" />
   <form (ngSubmit)="submit()" [formGroup]="form" class="sm:col-span-2 space-y-4">
-    <div *ngIf="success()" appAlert>Your profile was updated successfully.</div>
+    <app-message *ngIf="success()">Your profile was updated successfully.</app-message>
     <app-error-messages *ngIf="!success()" location="myProfile"></app-error-messages>
     <p>
       <mat-form-field appearance="outline" class="w-full">

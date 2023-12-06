@@ -7,8 +7,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AuthRepository } from '@modules/auth/shared/auth.repository';
 import { AuthService } from '@modules/auth/shared/auth.service';
+import { MessageComponent } from '@modules/shared/components/message/message.component';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
-import { AlertDirective } from '@modules/shared/directives/alert.directive';
 import { FormFieldErrorDirective } from '@modules/shared/directives/form-field-error.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
 import { finalize, first } from 'rxjs';
@@ -17,7 +17,6 @@ import { finalize, first } from 'rxjs';
   selector: 'app-email-verification-form',
   standalone: true,
   imports: [
-    AlertDirective,
     CommonModule,
     ErrorMessagesComponent,
     MatFormFieldModule,
@@ -25,6 +24,7 @@ import { finalize, first } from 'rxjs';
     MatButtonModule,
     ReactiveFormsModule,
     FormFieldErrorDirective,
+    MessageComponent,
   ],
   templateUrl: './email-verification-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

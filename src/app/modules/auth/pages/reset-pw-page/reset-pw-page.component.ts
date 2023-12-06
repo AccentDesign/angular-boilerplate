@@ -8,9 +8,9 @@ import { MatInputModule } from '@angular/material/input';
 import { AuthPaths } from '@modules/auth/shared/auth-routes';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { ResetPasswordRequest } from '@modules/auth/shared/interfaces/reset-password-request';
+import { MessageComponent } from '@modules/shared/components/message/message.component';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
 import { LogoComponent } from '@modules/shared/components/logo/logo.component';
-import { AlertDirective } from '@modules/shared/directives/alert.directive';
 import { FormFieldErrorDirective } from '@modules/shared/directives/form-field-error.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
 import { passwordsMatchValidator } from '@modules/shared/validators/passwords-match';
@@ -20,7 +20,6 @@ import { finalize, first } from 'rxjs';
   selector: 'app-reset-pw-page',
   standalone: true,
   imports: [
-    AlertDirective,
     CommonModule,
     ErrorMessagesComponent,
     LogoComponent,
@@ -29,6 +28,7 @@ import { finalize, first } from 'rxjs';
     MatButtonModule,
     ReactiveFormsModule,
     FormFieldErrorDirective,
+    MessageComponent,
   ],
   templateUrl: './reset-pw-page.component.html',
 })

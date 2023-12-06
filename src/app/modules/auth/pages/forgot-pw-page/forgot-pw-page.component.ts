@@ -6,9 +6,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AuthService } from '@modules/auth/shared/auth.service';
+import { MessageComponent } from '@modules/shared/components/message/message.component';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
 import { LogoComponent } from '@modules/shared/components/logo/logo.component';
-import { AlertDirective } from '@modules/shared/directives/alert.directive';
 import { FormFieldErrorDirective } from '@modules/shared/directives/form-field-error.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
 import { finalize, first } from 'rxjs';
@@ -17,7 +17,6 @@ import { finalize, first } from 'rxjs';
   selector: 'app-forgot-pw-page',
   standalone: true,
   imports: [
-    AlertDirective,
     CommonModule,
     ErrorMessagesComponent,
     LogoComponent,
@@ -26,6 +25,7 @@ import { finalize, first } from 'rxjs';
     MatButtonModule,
     ReactiveFormsModule,
     FormFieldErrorDirective,
+    MessageComponent,
   ],
   templateUrl: './forgot-pw-page.component.html',
 })

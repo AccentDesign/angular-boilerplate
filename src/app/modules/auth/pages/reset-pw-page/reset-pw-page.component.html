@@ -7,11 +7,11 @@
       <h1 class="font-light text-2xl">Forgot Password</h1>
       <h2 class="text-gray-400">Request details to reset your password.</h2>
     </hgroup>
-    <div *ngIf="success()" appAlert>
+    <app-message *ngIf="success()">
       Your password has been reset. You can now
       <a [href]="AuthPaths.logIn" class="text-green-800 underline">Login</a>
       using your new password.
-    </div>
+    </app-message>
     <app-error-messages *ngIf="!success()" location="resetPw"></app-error-messages>
     <form (ngSubmit)="submit()" [formGroup]="form" class="space-y-4">
       <mat-form-field appearance="outline" class="w-full">

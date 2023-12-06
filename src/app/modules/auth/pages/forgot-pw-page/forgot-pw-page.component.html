@@ -7,9 +7,9 @@
       <h1 class="font-light text-2xl">Forgot Password</h1>
       <h2 class="text-gray-400">Request details to reset your password.</h2>
     </hgroup>
-    <div *ngIf="success()" appAlert>
+    <app-message *ngIf="success()">
       Assuming the email exists in our system. We will send details of what to do next.
-    </div>
+    </app-message>
     <app-error-messages *ngIf="!success()" location="forgotPw"></app-error-messages>
     <form (ngSubmit)="submit()" [formGroup]="form" class="space-y-4">
       <mat-form-field appearance="outline" class="w-full">
