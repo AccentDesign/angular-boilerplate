@@ -1,7 +1,7 @@
 <section *ngIf="authRepository.currentUser() as user" class="mb-16">
   <h3 class="font-light text-1xl mb-1">Email Verification</h3>
   <hr class="border-1 border-solid mb-6" />
-  <app-message color="white" *ngIf="success() || user.is_verified; else verifyBlock">
+  <app-message *ngIf="success() || user.is_verified; else verifyBlock" color="white">
     Your email address has been verified.
   </app-message>
   <ng-template #verifyBlock>

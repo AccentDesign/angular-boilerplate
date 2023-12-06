@@ -1,4 +1,4 @@
-<app-message color="error" *ngIf="error$ | async as error">
+<app-message *ngIf="error$ | async as error" color="error">
   <ul>
     <li *ngFor="let message of error.messages">{{ message }}</li>
   </ul>
