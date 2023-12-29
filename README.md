@@ -29,5 +29,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Links
 
 * [https://angular.io](https://angular.io)
-* [https://icones.js.org](https://icones.js.org)
+* [https://material.angular.io](https://material.angular.io)
+* [https://fonts.google.com/icons](https://fonts.google.com/icons)
 * [https://github.com/stuartaccent/fastapi-boilerplate](https://github.com/stuartaccent/fastapi-boilerplate)
