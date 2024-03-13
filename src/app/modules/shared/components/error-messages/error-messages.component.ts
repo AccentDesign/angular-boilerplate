@@ -11,7 +11,11 @@ import { BehaviorSubject, filter, Observable, switchMap } from 'rxjs';
   imports: [MessageComponent, AsyncPipe],
   templateUrl: './error-messages.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styles: ` :host { @apply block } `,
+  styles: `
+    :host {
+      @apply block;
+    }
+  `,
 })
 export class ErrorMessagesComponent implements OnChanges {
   @Input() location!: string;
