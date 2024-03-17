@@ -1,5 +1,7 @@
 import { NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+
+type Color = 'success' | 'error' | 'white';
 
 @Component({
   selector: 'app-message',
@@ -14,5 +16,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   `,
 })
 export class MessageComponent {
-  @Input() color: 'success' | 'error' | 'white' = 'success';
+  color = input<Color>('success');
 }

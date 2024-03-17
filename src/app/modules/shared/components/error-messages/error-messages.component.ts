@@ -19,7 +19,7 @@ import { filter, Observable, switchMap } from 'rxjs';
   `,
 })
 export class ErrorMessagesComponent {
-  location = input('location');
+  location = input.required<string>();
   private errorService = inject(ErrorMessageService);
   private locationSubject = toObservable(this.location);
 

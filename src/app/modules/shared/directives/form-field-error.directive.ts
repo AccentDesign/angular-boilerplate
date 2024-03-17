@@ -1,4 +1,4 @@
-import { DestroyRef, Directive, ElementRef, inject, Input, OnInit } from '@angular/core';
+import { DestroyRef, Directive, ElementRef, inject, input, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AbstractControl, FormGroupDirective, ValidationErrors } from '@angular/forms';
 
@@ -7,14 +7,14 @@ import { AbstractControl, FormGroupDirective, ValidationErrors } from '@angular/
   standalone: true,
 })
 export class FormFieldErrorDirective implements OnInit {
-  @Input('appFormFieldError') controlName!: string;
+  controlName = input.required<string>({ alias: 'appFormFieldError' });
   fgDirective = inject(FormGroupDirective);
   elementRef = inject(ElementRef);
   destroyRef = inject(DestroyRef);
   private control!: AbstractControl | null;
 
   ngOnInit() {
-    this.control = this.fgDirective.form.get(this.controlName);
+    this.control = this.fgDirective.form.get(this.controlName());
     if (this.control && this.control.statusChanges) {
       this.control.statusChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
         next: (status: string) => {
