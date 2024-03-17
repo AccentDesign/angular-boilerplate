@@ -1,9 +1,10 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
 import { MessageComponent } from '@modules/shared/components/message/message.component';
 import { ErrorMessage } from '@modules/shared/interfaces/error-message';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
-import { BehaviorSubject, filter, Observable, switchMap } from 'rxjs';
+import { filter, Observable, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-error-messages',
@@ -17,19 +18,12 @@ import { BehaviorSubject, filter, Observable, switchMap } from 'rxjs';
     }
   `,
 })
-export class ErrorMessagesComponent implements OnChanges {
-  @Input() location!: string;
+export class ErrorMessagesComponent {
+  location = input('location');
   private errorService = inject(ErrorMessageService);
-  private locationSubject = new BehaviorSubject<string>(this.location);
+  private locationSubject = toObservable(this.location);
 
   error$: Observable<ErrorMessage> = this.locationSubject.pipe(
     switchMap((location) => this.errorService.getError().pipe(filter((msg) => msg.location === location))),
   );
-
-  ngOnChanges(changes: SimpleChanges): void {
-    const location = changes['location'];
-    if (location && location.currentValue !== location.previousValue) {
-      this.locationSubject.next(location.currentValue);
-    }
-  }
 }
