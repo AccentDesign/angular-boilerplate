@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, inject, Input, signal } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -31,7 +31,7 @@ import { finalize, first } from 'rxjs';
   templateUrl: './reset-pw-page.component.html',
 })
 export default class ResetPwPageComponent {
-  @Input({ required: true }) token!: string;
+  token = input.required<string>();
   form = new FormGroup(
     {
       password: new FormControl('', {
@@ -63,7 +63,7 @@ export default class ResetPwPageComponent {
     this.success.set(false);
     const data = {
       password: this.form.value.password,
-      token: this.token,
+      token: this.token(),
     } as ResetPasswordRequest;
     this.authService
       .resetPassword(data)
