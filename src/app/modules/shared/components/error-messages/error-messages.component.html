@@ -1,5 +1,5 @@
 @if (error$ | async; as error) {
-  <app-message color="error">
+  <app-message variant="destructive" title="Oops, something went wrong">
     <ul>
       @for (message of error.messages; track message) {
         <li>{{ message }}</li>

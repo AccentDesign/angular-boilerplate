@@ -4,23 +4,23 @@
       <app-logo />
     </a>
     <hgroup class="space-y-1">
-      <h1 class="font-light text-2xl">Forgot Password</h1>
-      <h2 class="text-gray-400">Request details to reset your password.</h2>
+      <h2 hlmH2>Forgot Password</h2>
+      <p hlmP class="text-gray-500">Request details to reset your password.</p>
     </hgroup>
     @if (success()) {
-      <app-message>Assuming the email exists in our system. We will send details of what to do next.</app-message>
+      <app-message title="Thanks">
+        Assuming the email exists in our system. We will send details of what to do next.
+      </app-message>
     } @else {
       <app-error-messages location="forgotPw"></app-error-messages>
     }
     <form (ngSubmit)="submit()" [formGroup]="form" class="space-y-4">
-      <mat-form-field appearance="outline" class="w-full">
-        <mat-label>Email</mat-label>
-        <input formControlName="email" matInput type="email" />
-        <mat-error appFormFieldError="email" class="text-xs" />
-      </mat-form-field>
-      <button [disabled]="loading()" class="w-full" color="primary" mat-raised-button type="submit">
-        Request Details
-      </button>
+      <div>
+        <label hlmLabel>Email</label>
+        <input hlmInput class="w-full" formControlName="email" type="email" />
+        <span hlmInputError appFormFieldError="email" class="text-xs"></span>
+      </div>
+      <button hlmBtn [disabled]="loading()" class="w-full" type="submit">Request Details</button>
     </form>
   </div>
 </main>

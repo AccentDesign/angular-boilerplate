@@ -1,24 +1,26 @@
 <app-nav></app-nav>
 <main class="container mx-auto px-6">
   <header>
-    <h1 class="font-light text-3xl">Settings</h1>
+    <h3 hlmH3>Settings</h3>
   </header>
   <div class="sm:grid sm:grid-cols-4 gap-10">
     <aside>
-      <mat-nav-list class="mb-8">
+      <ul class="my-8">
         @for (item of navItems; track item) {
-          <a
-            #rla="routerLinkActive"
-            [activated]="rla.isActive"
-            [routerLink]="item.route"
-            mat-list-item
-            routerLinkActive
-          >
-            <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
-            <span matListItemTitle>{{ item.label }}</span>
-          </a>
+          <li class="mb-1">
+            <a
+              hlmBtn
+              class="w-full justify-start gap-2"
+              #rla="routerLinkActive"
+              [routerLink]="item.route"
+              routerLinkActive
+              [variant]="rla.isActive ? 'secondary' : 'ghost'"
+            >
+              {{ item.label }}
+            </a>
+          </li>
         }
-      </mat-nav-list>
+      </ul>
     </aside>
     <section class="sm:col-span-3">
       <router-outlet></router-outlet>

@@ -2,29 +2,29 @@
   <app-email-verification-form></app-email-verification-form>
 </section>
 <section class="mb-16">
-  <h3 class="font-light text-1xl mb-1">Profile</h3>
+  <h4 hlmH4>Profile</h4>
   <hr class="border-1 border-solid mb-6" />
   @if (success()) {
-    <app-message>Your profile was updated successfully.</app-message>
+    <app-message title="Thanks">Your profile was updated successfully.</app-message>
   } @else {
     <app-error-messages location="myProfile"></app-error-messages>
   }
-  <form (ngSubmit)="submit()" [formGroup]="form" class="sm:col-span-2 space-y-4">
-    <mat-form-field appearance="outline" class="w-full">
-      <mat-label>First Name</mat-label>
-      <input formControlName="first_name" matInput type="text" />
-      <mat-error appFormFieldError="first_name" class="text-xs" />
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="w-full">
-      <mat-label>Last Name</mat-label>
-      <input formControlName="last_name" matInput type="text" />
-      <mat-error appFormFieldError="last_name" class="text-xs" />
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="w-full">
-      <mat-label>Email</mat-label>
-      <input formControlName="email" matInput type="email" />
-      <mat-error appFormFieldError="email" class="text-xs" />
-    </mat-form-field>
-    <button [disabled]="loading()" color="primary" mat-raised-button type="submit">Update Profile</button>
+  <form (ngSubmit)="submit()" [formGroup]="form" class="sm:col-span-2 space-y-6">
+    <div>
+      <label hlmLabel>First Name</label>
+      <input hlmInput class="w-full" formControlName="first_name" type="text" />
+      <span hlmInputError appFormFieldError="first_name"></span>
+    </div>
+    <div>
+      <label hlmLabel>Last Name</label>
+      <input hlmInput class="w-full" formControlName="last_name" type="text" />
+      <span hlmInputError appFormFieldError="last_name"></span>
+    </div>
+    <div>
+      <label hlmLabel>Email</label>
+      <input hlmInput class="w-full" formControlName="email" type="email" />
+      <span hlmInputError appFormFieldError="email"></span>
+    </div>
+    <button hlmBtn [disabled]="loading()" type="submit">Update Profile</button>
   </form>
 </section>

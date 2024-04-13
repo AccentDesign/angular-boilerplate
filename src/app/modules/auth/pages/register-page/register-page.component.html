@@ -4,43 +4,43 @@
       <app-logo />
     </a>
     <hgroup class="space-y-1">
-      <h1 class="font-light text-2xl">Register</h1>
-      <h2 class="text-gray-400">Please complete the below to create and access your account.</h2>
+      <h2 hlmH2>Register</h2>
+      <p hlmP class="text-gray-500">Please complete the below to create and access your account.</p>
     </hgroup>
     @if (success()) {
-      <app-message>
-        Thank you, your registration was successful. You can now
-        <a [href]="AuthPaths.logIn" class="text-green-800 underline">login</a> to access the site.
+      <app-message title="Your registration was successful">
+        You can now
+        <a [href]="AuthPaths.logIn" class="hover:underline">login</a> to access the site.
       </app-message>
     } @else {
       <app-error-messages location="register"></app-error-messages>
       <form (ngSubmit)="register()" [formGroup]="form" class="space-y-4">
-        <mat-form-field appearance="outline" class="w-full">
-          <mat-label>First Name</mat-label>
-          <input formControlName="first_name" matInput type="text" />
-          <mat-error appFormFieldError="first_name" class="text-xs" />
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="w-full">
-          <mat-label>Last Name</mat-label>
-          <input formControlName="last_name" matInput type="text" />
-          <mat-error appFormFieldError="last_name" class="text-xs" />
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="w-full">
-          <mat-label>Email</mat-label>
-          <input formControlName="email" matInput type="email" />
-          <mat-error appFormFieldError="email" class="text-xs" />
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="w-full">
-          <mat-label>Password</mat-label>
-          <input formControlName="password" matInput type="password" />
-          <mat-error appFormFieldError="password" class="text-xs" />
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="w-full">
-          <mat-label>Confirm your Password</mat-label>
-          <input formControlName="password_confirm" matInput type="password" />
-          <mat-error appFormFieldError="password_confirm" class="text-xs" />
-        </mat-form-field>
-        <button [disabled]="loading()" class="w-full" color="primary" mat-raised-button type="submit">Register</button>
+        <div>
+          <label hlmLabel>First Name</label>
+          <input hlmInput class="w-full" formControlName="first_name" type="text" />
+          <span hlmInputError appFormFieldError="first_name"></span>
+        </div>
+        <div>
+          <label hlmLabel>Last Name</label>
+          <input hlmInput class="w-full" formControlName="last_name" type="text" />
+          <span hlmInputError appFormFieldError="last_name"></span>
+        </div>
+        <div>
+          <label hlmLabel>Email</label>
+          <input hlmInput class="w-full" formControlName="email" type="email" />
+          <span hlmInputError appFormFieldError="email"></span>
+        </div>
+        <div>
+          <label hlmLabel>Password</label>
+          <input hlmInput class="w-full" formControlName="password" type="password" />
+          <span hlmInputError appFormFieldError="password"></span>
+        </div>
+        <div>
+          <label hlmLabel>Confirm your Password</label>
+          <input hlmInput class="w-full" formControlName="password_confirm" type="password" />
+          <span hlmInputError appFormFieldError="password_confirm"></span>
+        </div>
+        <button hlmBtn [disabled]="loading()" class="w-full" type="submit">Register</button>
       </form>
     }
   </div>

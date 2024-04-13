@@ -4,25 +4,25 @@
       <app-logo />
     </a>
     <hgroup class="space-y-1">
-      <h1 class="font-light text-2xl">Login</h1>
-      <h2 class="text-gray-400">Access your account.</h2>
+      <h2 hlmH2>Login</h2>
+      <p hlmP class="text-gray-500">Access your account.</p>
     </hgroup>
     <app-error-messages location="logIn"></app-error-messages>
     <form (ngSubmit)="logIn()" [formGroup]="form" class="space-y-4">
-      <mat-form-field appearance="outline" class="w-full">
-        <mat-label>Email</mat-label>
-        <input formControlName="email" matInput type="email" />
-        <mat-error appFormFieldError="email" class="text-xs" />
-      </mat-form-field>
-      <mat-form-field appearance="outline" class="w-full">
-        <mat-label>Password</mat-label>
-        <input formControlName="password" matInput type="password" />
-        <mat-error appFormFieldError="password" class="text-xs" />
-      </mat-form-field>
-      <div class="flex justify-end mb-4">
-        <a [href]="AuthPaths.forgotPassword" class="text-blue-800 hover:underline">Forgot password</a>
+      <div>
+        <label hlmLabel>Email</label>
+        <input hlmInput class="w-full" formControlName="email" type="email" />
+        <span hlmInputError appFormFieldError="email"></span>
       </div>
-      <button [disabled]="loading()" class="w-full" color="primary" mat-raised-button type="submit">Login</button>
+      <div>
+        <label hlmLabel>Password</label>
+        <input hlmInput class="w-full" formControlName="password" type="password" />
+        <span hlmInputError appFormFieldError="password"></span>
+      </div>
+      <div class="flex justify-end mb-4">
+        <a [href]="AuthPaths.forgotPassword" class="text-primary hover:underline">Forgot password</a>
+      </div>
+      <button hlmBtn [disabled]="loading()" class="w-full" type="submit">Login</button>
     </form>
   </div>
 </main>

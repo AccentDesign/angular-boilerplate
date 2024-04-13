@@ -1,13 +1,8 @@
-<header class="mb-8">
-  <mat-toolbar class="mb-8" color="primary">
-    <img alt="Logo" height="30" ngSrc="assets/logo-white-mini.svg" width="30" />
-    <a [href]="DashboardPaths.dashboard" mat-button>Angular Boilerplate</a>
+<header class="mb-8 bg-secondary">
+  <div class="container px-3 flex items-center py-6">
+    <a hlmBtn variant="ghost" [href]="DashboardPaths.dashboard">Angular Boilerplate</a>
     <span class="flex-grow"></span>
-    <a [href]="SettingsPaths.profile" mat-icon-button>
-      <mat-icon>settings</mat-icon>
-    </a>
-    <a [href]="AuthPaths.logOut" mat-icon-button>
-      <mat-icon>lock</mat-icon>
-    </a>
-  </mat-toolbar>
+    <a hlmBtn variant="ghost" [href]="SettingsPaths.profile">settings</a>
+    <a hlmBtn variant="ghost" [href]="AuthPaths.logOut">logout</a>
+  </div>
 </header>

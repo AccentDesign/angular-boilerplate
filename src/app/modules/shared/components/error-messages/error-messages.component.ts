@@ -12,11 +12,6 @@ import { filter, Observable, switchMap } from 'rxjs';
   imports: [MessageComponent, AsyncPipe],
   templateUrl: './error-messages.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styles: `
-    :host {
-      @apply block;
-    }
-  `,
 })
 export class ErrorMessagesComponent {
   location = input.required<string>();

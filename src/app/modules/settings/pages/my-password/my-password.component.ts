@@ -1,9 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, inject, signal, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { Component, inject, signal } from '@angular/core';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { UpdateUserRequest } from '@modules/auth/shared/interfaces/update-user-request';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
@@ -11,6 +8,10 @@ import { MessageComponent } from '@modules/shared/components/message/message.com
 import { FormFieldErrorDirective } from '@modules/shared/directives/form-field-error.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
 import { passwordsMatchValidator } from '@modules/shared/validators/passwords-match';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmInputDirective, HlmInputErrorDirective } from '@spartan-ng/ui-input-helm';
+import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { HlmH4Directive } from '@spartan-ng/ui-typography-helm';
 import { finalize, first } from 'rxjs';
 
 @Component({
@@ -19,17 +20,18 @@ import { finalize, first } from 'rxjs';
   imports: [
     ErrorMessagesComponent,
     FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
     ReactiveFormsModule,
     FormFieldErrorDirective,
     MessageComponent,
+    HlmLabelDirective,
+    HlmInputDirective,
+    HlmInputErrorDirective,
+    HlmButtonDirective,
+    HlmH4Directive,
   ],
   templateUrl: './my-password.component.html',
 })
 export default class MyPasswordComponent {
-  @ViewChild('ngForm') ngForm!: NgForm;
   form = new FormGroup(
     {
       password: new FormControl('', {
@@ -50,7 +52,6 @@ export default class MyPasswordComponent {
 
   resetForm() {
     this.form.reset();
-    this.ngForm.resetForm();
   }
 
   submit(): void {

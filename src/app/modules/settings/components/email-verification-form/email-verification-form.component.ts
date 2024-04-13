@@ -1,15 +1,16 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { AuthRepository } from '@modules/auth/shared/auth.repository';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
 import { MessageComponent } from '@modules/shared/components/message/message.component';
 import { FormFieldErrorDirective } from '@modules/shared/directives/form-field-error.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { HlmH4Directive } from '@spartan-ng/ui-typography-helm';
 import { finalize, first } from 'rxjs';
 
 @Component({
@@ -17,12 +18,13 @@ import { finalize, first } from 'rxjs';
   standalone: true,
   imports: [
     ErrorMessagesComponent,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
     ReactiveFormsModule,
     FormFieldErrorDirective,
     MessageComponent,
+    HlmButtonDirective,
+    HlmLabelDirective,
+    HlmInputDirective,
+    HlmH4Directive,
   ],
   templateUrl: './email-verification-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

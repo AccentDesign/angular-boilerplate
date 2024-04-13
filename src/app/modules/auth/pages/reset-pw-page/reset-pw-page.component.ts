@@ -1,9 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject, input, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { AuthPaths } from '@modules/auth/shared/auth-routes';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { ResetPasswordRequest } from '@modules/auth/shared/interfaces/reset-password-request';
@@ -13,6 +10,10 @@ import { MessageComponent } from '@modules/shared/components/message/message.com
 import { FormFieldErrorDirective } from '@modules/shared/directives/form-field-error.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
 import { passwordsMatchValidator } from '@modules/shared/validators/passwords-match';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmInputDirective, HlmInputErrorDirective } from '@spartan-ng/ui-input-helm';
+import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { HlmH2Directive, HlmPDirective } from '@spartan-ng/ui-typography-helm';
 import { finalize, first } from 'rxjs';
 
 @Component({
@@ -21,12 +22,15 @@ import { finalize, first } from 'rxjs';
   imports: [
     ErrorMessagesComponent,
     LogoComponent,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
     ReactiveFormsModule,
     FormFieldErrorDirective,
     MessageComponent,
+    HlmLabelDirective,
+    HlmInputDirective,
+    HlmInputErrorDirective,
+    HlmButtonDirective,
+    HlmH2Directive,
+    HlmPDirective,
   ],
   templateUrl: './reset-pw-page.component.html',
 })

@@ -4,32 +4,30 @@
       <app-logo />
     </a>
     <hgroup class="space-y-1">
-      <h1 class="font-light text-2xl">Forgot Password</h1>
-      <h2 class="text-gray-400">Request details to reset your password.</h2>
+      <h2 hlmH2>Forgot Password</h2>
+      <p hlmP class="text-gray-500">Request details to reset your password.</p>
     </hgroup>
     @if (success()) {
-      <app-message>
-        Your password has been reset. You can now
-        <a [href]="AuthPaths.logIn" class="text-green-800 underline">Login</a>
+      <app-message title="Your password has been reset">
+        You can now
+        <a [href]="AuthPaths.logIn" class="hover:underline">Login</a>
         using your new password.
       </app-message>
     } @else {
       <app-error-messages location="resetPw"></app-error-messages>
     }
-    <form (ngSubmit)="submit()" [formGroup]="form" class="space-y-3">
-      <mat-form-field appearance="outline" class="w-full">
-        <mat-label>Password</mat-label>
-        <input formControlName="password" matInput type="password" />
-        <mat-error appFormFieldError="password" class="text-xs" />
-      </mat-form-field>
-      <mat-form-field appearance="outline" class="w-full">
-        <mat-label>Confirm your Password</mat-label>
-        <input formControlName="password_confirm" matInput type="password" />
-        <mat-error appFormFieldError="password_confirm" class="text-xs" />
-      </mat-form-field>
-      <button [disabled]="loading()" class="w-full" color="primary" mat-raised-button type="submit">
-        Change Password
-      </button>
+    <form (ngSubmit)="submit()" [formGroup]="form" class="space-y-4">
+      <div>
+        <label hlmLabel>Password</label>
+        <input hlmInput class="w-full" formControlName="password" type="password" />
+        <span hlmInputError appFormFieldError="password"></span>
+      </div>
+      <div>
+        <label hlmLabel>Confirm your Password</label>
+        <input hlmInput class="w-full" formControlName="password_confirm" type="password" />
+        <span hlmInputError appFormFieldError="password_confirm"></span>
+      </div>
+      <button hlmBtn [disabled]="loading()" class="w-full" type="submit">Change Password</button>
     </form>
   </div>
 </main>

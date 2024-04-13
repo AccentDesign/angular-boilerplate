@@ -1,9 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, effect, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { AuthRepository } from '@modules/auth/shared/auth.repository';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { UpdateUserRequest } from '@modules/auth/shared/interfaces/update-user-request';
@@ -12,6 +9,11 @@ import { ErrorMessagesComponent } from '@modules/shared/components/error-message
 import { MessageComponent } from '@modules/shared/components/message/message.component';
 import { FormFieldErrorDirective } from '@modules/shared/directives/form-field-error.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmInputDirective, HlmInputErrorDirective } from '@spartan-ng/ui-input-helm';
+import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { HlmSeparatorDirective } from '@spartan-ng/ui-separator-helm';
+import { HlmH4Directive } from '@spartan-ng/ui-typography-helm';
 import { finalize, first } from 'rxjs';
 
 @Component({
@@ -20,12 +22,15 @@ import { finalize, first } from 'rxjs';
   imports: [
     EmailVerificationFormComponent,
     ErrorMessagesComponent,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
     ReactiveFormsModule,
     FormFieldErrorDirective,
     MessageComponent,
+    HlmLabelDirective,
+    HlmInputDirective,
+    HlmInputErrorDirective,
+    HlmButtonDirective,
+    HlmSeparatorDirective,
+    HlmH4Directive,
   ],
   templateUrl: './my-profile.component.html',
 })

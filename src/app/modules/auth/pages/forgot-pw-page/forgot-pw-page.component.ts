@@ -1,15 +1,16 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
 import { LogoComponent } from '@modules/shared/components/logo/logo.component';
 import { MessageComponent } from '@modules/shared/components/message/message.component';
 import { FormFieldErrorDirective } from '@modules/shared/directives/form-field-error.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmInputDirective, HlmInputErrorDirective } from '@spartan-ng/ui-input-helm';
+import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { HlmH2Directive, HlmPDirective } from '@spartan-ng/ui-typography-helm';
 import { finalize, first } from 'rxjs';
 
 @Component({
@@ -18,12 +19,15 @@ import { finalize, first } from 'rxjs';
   imports: [
     ErrorMessagesComponent,
     LogoComponent,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
     ReactiveFormsModule,
     FormFieldErrorDirective,
     MessageComponent,
+    HlmInputErrorDirective,
+    HlmInputDirective,
+    HlmLabelDirective,
+    HlmButtonDirective,
+    HlmH2Directive,
+    HlmPDirective,
   ],
   templateUrl: './forgot-pw-page.component.html',
 })

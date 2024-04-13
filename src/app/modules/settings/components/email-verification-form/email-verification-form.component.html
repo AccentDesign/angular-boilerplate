@@ -1,27 +1,28 @@
 @if (authRepository.currentUser(); as user) {
   <section class="mb-16">
-    <h3 class="font-light text-1xl mb-1">Email Verification</h3>
+    <h4 hlmH4>Email Verification</h4>
     <hr class="border-1 border-solid mb-6" />
     @if (success() || user.is_verified) {
-      <app-message color="white">Your email address has been verified.</app-message>
+      <app-message title="Thanks">Your email address has been verified.</app-message>
     } @else {
       <app-error-messages location="verifyEmail"></app-error-messages>
-      <div class="mb-6">
-        <p class="mb-4">Your email address needs to be verified before you can use this site.</p>
-        <button (click)="request($event)" mat-raised-button>Send me a verification email</button>
-      </div>
+      <app-message title="Email Verification Required">
+        Your email address needs to be verified before you can use this site.
+      </app-message>
+      <button hlmBtn variant="secondary" (click)="request($event)">Send me a verification email</button>
       @if (requested()) {
-        <form (ngSubmit)="submit()" [formGroup]="form" class="space-y-4">
-          <mat-form-field appearance="outline" class="w-full">
-            <mat-label>Verification Token</mat-label>
+        <form (ngSubmit)="submit()" [formGroup]="form" class="space-y-6 mt-6">
+          <div>
+            <label hlmLabel>Verification Token</label>
             <textarea
+              hlmInput
               formControlName="token"
-              matInput
+              class="w-full min-h-[80px]"
               placeholder="Please enter the verification token provided in the email"
             ></textarea>
-            <mat-error appFormFieldError="token" class="text-xs" />
-          </mat-form-field>
-          <button [disabled]="loading()" color="primary" mat-raised-button>Verify Account</button>
+            <span appFormFieldError="token" class="text-xs"></span>
+          </div>
+          <button hlmBtn [disabled]="loading()">Verify Account</button>
         </form>
       }
     }
