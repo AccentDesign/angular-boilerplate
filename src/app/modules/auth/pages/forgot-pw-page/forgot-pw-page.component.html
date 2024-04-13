@@ -5,7 +5,7 @@
     </a>
     <hgroup class="space-y-1">
       <h2 hlmH2>Forgot Password</h2>
-      <p hlmP class="text-gray-500">Request details to reset your password.</p>
+      <p hlmP class="text-muted-foreground">Request details to reset your password.</p>
     </hgroup>
     @if (success()) {
       <app-message title="Thanks">
@@ -14,11 +14,11 @@
     } @else {
       <app-error-messages location="forgotPw"></app-error-messages>
     }
-    <form (ngSubmit)="submit()" [formGroup]="form" class="space-y-4">
+    <form (ngSubmit)="submit()" [formGroup]="form" class="space-y-6">
       <div>
         <label hlmLabel>Email</label>
         <input hlmInput class="w-full" formControlName="email" type="email" />
-        <span hlmInputError appFieldError="email" class="text-xs"></span>
+        <span hlmInputError appFieldError="email"></span>
       </div>
       <button hlmBtn [disabled]="loading()" class="w-full" type="submit">Request Details</button>
     </form>

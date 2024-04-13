@@ -5,10 +5,10 @@
     </a>
     <hgroup class="space-y-1">
       <h2 hlmH2>Login</h2>
-      <p hlmP class="text-gray-500">Access your account.</p>
+      <p hlmP class="text-muted-foreground">Access your account.</p>
     </hgroup>
     <app-error-messages location="logIn"></app-error-messages>
-    <form (ngSubmit)="logIn()" [formGroup]="form" class="space-y-4">
+    <form (ngSubmit)="logIn()" [formGroup]="form" class="space-y-6">
       <div>
         <label hlmLabel>Email</label>
         <input hlmInput class="w-full" formControlName="email" type="email" />
@@ -20,7 +20,7 @@
         <span hlmInputError appFieldError="password"></span>
       </div>
       <div class="flex justify-end mb-4">
-        <a [href]="AuthPaths.forgotPassword" class="text-primary hover:underline">Forgot password</a>
+        <a [href]="AuthPaths.forgotPassword" class="text-foreground hover:underline">Forgot password</a>
       </div>
       <button hlmBtn [disabled]="loading()" class="w-full" type="submit">Login</button>
     </form>
