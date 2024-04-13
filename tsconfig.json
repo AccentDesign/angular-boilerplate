@@ -53,6 +53,9 @@
       ],
       "@spartan-ng/ui-typography-helm": [
         "./src/ui/ui-typography-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-menu-helm": [
+        "./src/ui/ui-menu-helm/src/index.ts"
       ]
     }
   },

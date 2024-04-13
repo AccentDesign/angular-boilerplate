@@ -2,7 +2,30 @@
   <div class="container px-3 flex items-center py-6">
     <a hlmBtn variant="ghost" [href]="DashboardPaths.dashboard">Angular Boilerplate</a>
     <span class="flex-grow"></span>
-    <a hlmBtn variant="ghost" [href]="SettingsPaths.profile">settings</a>
-    <a hlmBtn variant="ghost" [href]="AuthPaths.logOut">logout</a>
+    <button hlmBtn variant="ghost" [brnMenuTriggerFor]="menu">My Account</button>
   </div>
 </header>
+
+<ng-template #menu>
+  <hlm-menu>
+    <hlm-menu-group>
+      <hlm-menu-label>My Account</hlm-menu-label>
+      <hlm-menu-separator />
+      <hlm-menu-group>
+        <a hlmMenuItem [href]="SettingsPaths.profile">
+          <hlm-icon name="lucideUser" hlmMenuIcon />
+          Profile
+        </a>
+        <a hlmMenuItem [href]="SettingsPaths.password">
+          <hlm-icon name="lucideKey" hlmMenuIcon />
+          Password
+        </a>
+        <hlm-menu-separator />
+        <a hlmMenuItem [href]="AuthPaths.logOut">
+          <hlm-icon name="lucideLogOut" hlmMenuIcon />
+          Logout
+        </a>
+      </hlm-menu-group>
+    </hlm-menu-group>
+  </hlm-menu>
+</ng-template>
