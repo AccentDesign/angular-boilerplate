@@ -7,7 +7,7 @@ import { UpdateUserRequest } from '@modules/auth/shared/interfaces/update-user-r
 import { EmailVerificationFormComponent } from '@modules/settings/components/email-verification-form/email-verification-form.component';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
 import { MessageComponent } from '@modules/shared/components/message/message.component';
-import { FormFieldErrorDirective } from '@modules/shared/directives/form-field-error.directive';
+import { FieldErrorDirective } from '@modules/shared/directives/field-error.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmInputDirective, HlmInputErrorDirective } from '@spartan-ng/ui-input-helm';
@@ -23,7 +23,7 @@ import { finalize, first } from 'rxjs';
     EmailVerificationFormComponent,
     ErrorMessagesComponent,
     ReactiveFormsModule,
-    FormFieldErrorDirective,
+    FieldErrorDirective,
     MessageComponent,
     HlmLabelDirective,
     HlmInputDirective,

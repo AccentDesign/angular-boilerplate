@@ -13,17 +13,17 @@
     <div>
       <label hlmLabel>First Name</label>
       <input hlmInput class="w-full" formControlName="first_name" type="text" />
-      <span hlmInputError appFormFieldError="first_name"></span>
+      <span hlmInputError appFieldError="first_name"></span>
     </div>
     <div>
       <label hlmLabel>Last Name</label>
       <input hlmInput class="w-full" formControlName="last_name" type="text" />
-      <span hlmInputError appFormFieldError="last_name"></span>
+      <span hlmInputError appFieldError="last_name"></span>
     </div>
     <div>
       <label hlmLabel>Email</label>
       <input hlmInput class="w-full" formControlName="email" type="email" />
-      <span hlmInputError appFormFieldError="email"></span>
+      <span hlmInputError appFieldError="email"></span>
     </div>
     <button hlmBtn [disabled]="loading()" type="submit">Update Profile</button>
   </form>

@@ -5,7 +5,7 @@ import { AuthService } from '@modules/auth/shared/auth.service';
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
 import { LogoComponent } from '@modules/shared/components/logo/logo.component';
 import { MessageComponent } from '@modules/shared/components/message/message.component';
-import { FormFieldErrorDirective } from '@modules/shared/directives/form-field-error.directive';
+import { FieldErrorDirective } from '@modules/shared/directives/field-error.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmInputDirective, HlmInputErrorDirective } from '@spartan-ng/ui-input-helm';
@@ -20,7 +20,7 @@ import { finalize, first } from 'rxjs';
     ErrorMessagesComponent,
     LogoComponent,
     ReactiveFormsModule,
-    FormFieldErrorDirective,
+    FieldErrorDirective,
     MessageComponent,
     HlmInputErrorDirective,
     HlmInputDirective,

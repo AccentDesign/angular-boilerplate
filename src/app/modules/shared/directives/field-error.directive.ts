@@ -1,30 +1,35 @@
 import { DestroyRef, Directive, ElementRef, inject, input, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AbstractControl, FormGroupDirective, ValidationErrors } from '@angular/forms';
+import { merge } from 'rxjs';
 
 @Directive({
-  selector: '[appFormFieldError]',
+  selector: '[appFieldError]',
   standalone: true,
 })
-export class FormFieldErrorDirective implements OnInit {
-  controlName = input.required<string>({ alias: 'appFormFieldError' });
+export class FieldErrorDirective implements OnInit {
+  name = input.required<string>({ alias: 'appFieldError' });
   fgDirective = inject(FormGroupDirective);
   elementRef = inject(ElementRef);
   destroyRef = inject(DestroyRef);
   private control!: AbstractControl | null;
 
   ngOnInit() {
-    this.control = this.fgDirective.form.get(this.controlName());
-    if (this.control && this.control.statusChanges) {
-      this.control.statusChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
-        next: (status: string) => {
-          if (status == 'INVALID') {
-            this.showError();
-          } else {
-            this.removeError();
-          }
-        },
-      });
+    this.control = this.fgDirective.form.get(this.name());
+    if (this.control) {
+      merge(this.control.statusChanges, this.control.valueChanges)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe({
+          next: () => {
+            if (this.control?.pristine) {
+              this.removeError();
+            } else if (this.control?.status === 'INVALID') {
+              this.showError();
+            } else {
+              this.removeError();
+            }
+          },
+        });
     }
   }
 

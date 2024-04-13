@@ -7,7 +7,7 @@ import { RegisterRequest } from '@modules/auth/shared/interfaces/register-reques
 import { ErrorMessagesComponent } from '@modules/shared/components/error-messages/error-messages.component';
 import { LogoComponent } from '@modules/shared/components/logo/logo.component';
 import { MessageComponent } from '@modules/shared/components/message/message.component';
-import { FormFieldErrorDirective } from '@modules/shared/directives/form-field-error.directive';
+import { FieldErrorDirective } from '@modules/shared/directives/field-error.directive';
 import { ErrorMessageService } from '@modules/shared/services/error-message.service';
 import { passwordsMatchValidator } from '@modules/shared/validators/passwords-match';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -23,7 +23,7 @@ import { finalize, first } from 'rxjs';
     ErrorMessagesComponent,
     LogoComponent,
     ReactiveFormsModule,
-    FormFieldErrorDirective,
+    FieldErrorDirective,
     MessageComponent,
     HlmLabelDirective,
     HlmInputDirective,
