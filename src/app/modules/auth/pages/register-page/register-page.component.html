@@ -1,11 +1,11 @@
 <main class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-  <div class="w-full max-w-[400px] space-y-6">
+  <div class="w-full max-w-[400px] grid gap-6">
     <a class="block w-[200px] max-w-full" href="/">
       <app-logo />
     </a>
-    <hgroup class="space-y-1">
+    <hgroup>
       <h2 hlmH2>Register</h2>
-      <p hlmP class="text-muted-foreground">Please complete the below to create and access your account.</p>
+      <p class="text-muted-foreground">Please complete the below to create and access your account.</p>
     </hgroup>
     @if (success()) {
       <app-message title="Your registration was successful">
@@ -14,7 +14,7 @@
       </app-message>
     } @else {
       <app-error-messages location="register"></app-error-messages>
-      <form (ngSubmit)="register()" [formGroup]="form" class="space-y-6">
+      <form (ngSubmit)="register()" [formGroup]="form" class="grid gap-6">
         <div>
           <label hlmLabel>First Name</label>
           <input hlmInput class="w-full" formControlName="first_name" type="text" />

@@ -1,11 +1,11 @@
 <main class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-  <div class="w-full max-w-[400px] space-y-6">
+  <div class="w-full max-w-[400px] grid gap-6">
     <a class="block w-[200px] max-w-full" href="/">
       <app-logo />
     </a>
-    <hgroup class="space-y-1">
+    <hgroup class="mb-12">
       <h2 hlmH2>See you soon</h2>
-      <p hlmP class="text-muted-foreground">You have been logged out. If you need to you can log back in.</p>
+      <p class="text-muted-foreground">You have been logged out. If you need to you can log back in.</p>
     </hgroup>
     <a hlmBtn [href]="AuthPaths.logIn" class="w-full">Back to Login</a>
   </div>

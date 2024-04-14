@@ -1,11 +1,11 @@
 <main class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-  <div class="w-full max-w-[400px] space-y-6">
+  <div class="w-full max-w-[400px] grid gap-6">
     <a class="block w-[200px] max-w-full" href="/">
       <app-logo />
     </a>
-    <hgroup class="space-y-1">
+    <hgroup>
       <h2 hlmH2>Forgot Password</h2>
-      <p hlmP class="text-muted-foreground">Request details to reset your password.</p>
+      <p class="text-muted-foreground">Request details to reset your password.</p>
     </hgroup>
     @if (success()) {
       <app-message title="Your password has been reset">
@@ -16,7 +16,7 @@
     } @else {
       <app-error-messages location="resetPw"></app-error-messages>
     }
-    <form (ngSubmit)="submit()" [formGroup]="form" class="space-y-6">
+    <form (ngSubmit)="submit()" [formGroup]="form" class="grid gap-6">
       <div>
         <label hlmLabel>Password</label>
         <input hlmInput class="w-full" formControlName="password" type="password" />

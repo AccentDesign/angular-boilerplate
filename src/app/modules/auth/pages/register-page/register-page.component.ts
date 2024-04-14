@@ -13,7 +13,7 @@ import { passwordsMatchValidator } from '@modules/shared/validators/passwords-ma
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmInputDirective, HlmInputErrorDirective } from '@spartan-ng/ui-input-helm';
 import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmH2Directive, HlmPDirective } from '@spartan-ng/ui-typography-helm';
+import { HlmH2Directive } from '@spartan-ng/ui-typography-helm';
 import { finalize, first } from 'rxjs';
 
 @Component({
@@ -30,7 +30,6 @@ import { finalize, first } from 'rxjs';
     HlmInputErrorDirective,
     HlmButtonDirective,
     HlmH2Directive,
-    HlmPDirective,
   ],
   templateUrl: './register-page.component.html',
 })

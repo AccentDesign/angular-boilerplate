@@ -9,7 +9,7 @@
   } @else {
     <app-error-messages location="myProfile"></app-error-messages>
   }
-  <form (ngSubmit)="submit()" [formGroup]="form" class="sm:col-span-2 space-y-6">
+  <form (ngSubmit)="submit()" [formGroup]="form" class="sm:col-span-2 grid gap-6">
     <div>
       <label hlmLabel>First Name</label>
       <input hlmInput class="w-full" formControlName="first_name" type="text" />
@@ -25,6 +25,8 @@
       <input hlmInput class="w-full" formControlName="email" type="email" />
       <span hlmInputError appFieldError="email"></span>
     </div>
-    <button hlmBtn [disabled]="loading()" type="submit">Update Profile</button>
+    <div>
+      <button hlmBtn [disabled]="loading()" type="submit">Update Profile</button>
+    </div>
   </form>
 </section>

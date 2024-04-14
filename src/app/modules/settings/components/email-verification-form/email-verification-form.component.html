@@ -11,7 +11,7 @@
       </app-message>
       <button hlmBtn variant="secondary" (click)="request($event)">Send me a verification email</button>
       @if (requested()) {
-        <form (ngSubmit)="submit()" [formGroup]="form" class="space-y-6 mt-6">
+        <form (ngSubmit)="submit()" [formGroup]="form" class="mt-6 grid gap-6">
           <div>
             <label hlmLabel>Verification Token</label>
             <textarea
@@ -22,7 +22,9 @@
             ></textarea>
             <span appFieldError="token"></span>
           </div>
-          <button hlmBtn [disabled]="loading()">Verify Account</button>
+          <div>
+            <button hlmBtn [disabled]="loading()">Verify Account</button>
+          </div>
         </form>
       }
     }
