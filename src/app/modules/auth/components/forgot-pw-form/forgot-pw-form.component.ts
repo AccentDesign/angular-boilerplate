@@ -1,89 +1,67 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthRepository } from '@modules/auth/shared/auth.repository';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { MessageComponent } from '@modules/shared/components/message/message.component';
 import { FieldErrorDirective } from '@modules/shared/directives/field-error.directive';
 import { FormatHttpError } from '@modules/shared/utils/error';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+import { HlmInputDirective, HlmInputErrorDirective } from '@spartan-ng/ui-input-helm';
 import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 import { finalize, first } from 'rxjs';
 
 @Component({
-  selector: 'app-email-verification-form',
+  selector: 'app-forgot-pw-form',
   standalone: true,
   imports: [
-    ReactiveFormsModule,
-    FieldErrorDirective,
     MessageComponent,
+    FieldErrorDirective,
     HlmButtonDirective,
-    HlmLabelDirective,
     HlmInputDirective,
+    HlmInputErrorDirective,
+    HlmLabelDirective,
+    ReactiveFormsModule,
   ],
-  templateUrl: './email-verification-form.component.html',
+  templateUrl: './forgot-pw-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EmailVerificationFormComponent {
+export class ForgotPwFormComponent {
   errors = signal<string[]>([]);
-  requested = signal<boolean>(false);
   submitting = signal<boolean>(false);
-  verified = signal<boolean>(false);
+  success = signal<boolean>(false);
 
-  authRepository = inject(AuthRepository);
   form = new FormGroup({
-    token: new FormControl('', {
+    email: new FormControl('', {
       nonNullable: true,
-      validators: [Validators.required],
+      validators: [Validators.required, Validators.email],
     }),
   });
 
   private authService = inject(AuthService);
 
-  async request(event: Event | MouseEvent): Promise<void> {
-    event.stopPropagation();
-    this.errors.set([]);
-    this.submitting.set(true);
-    this.requested.set(false);
-    this.authService
-      .verifyRequest()
-      .pipe(
-        first(),
-        finalize(() => this.handleFinish()),
-      )
-      .subscribe({
-        next: () => this.handleRequestSuccess(),
-        error: (error) => this.handleError(error),
-      });
-  }
-
-  async verify(): Promise<void> {
+  async submit(): Promise<void> {
     if (!this.form.valid) {
       this.form.markAllAsTouched();
       return;
     }
     this.errors.set([]);
     this.submitting.set(true);
-    this.verified.set(false);
+    this.success.set(false);
+    const email = this.form.value.email ?? '';
     this.authService
-      .verify(this.form.value.token ?? '')
+      .forgotPassword(email)
       .pipe(
         first(),
         finalize(() => this.handleFinish()),
       )
       .subscribe({
-        next: () => this.handleVerifySuccess(),
+        next: () => this.handleSuccess(),
         error: (error) => this.handleError(error),
       });
   }
 
-  private async handleRequestSuccess(): Promise<void> {
-    this.requested.set(true);
-  }
-
-  private async handleVerifySuccess(): Promise<void> {
-    this.verified.set(true);
+  private async handleSuccess(): Promise<void> {
+    this.success.set(true);
   }
 
   private async handleFinish(): Promise<void> {

@@ -1,0 +1,29 @@
+@if (errors().length > 0) {
+  <app-message title="Oops!" variant="destructive">
+    @for (err of errors(); track err) {
+      {{ err }}<br />
+    }
+  </app-message>
+}
+
+@if (success()) {
+  <app-message title="Your password has been reset">
+    You can now
+    <a [href]="AuthPaths.logIn" class="hover:underline">Login</a>
+    using your new password.
+  </app-message>
+} @else {
+  <form (ngSubmit)="submit()" [formGroup]="form" class="grid gap-6">
+    <div>
+      <label hlmLabel>Password</label>
+      <input hlmInput class="w-full" formControlName="password" type="password" />
+      <span hlmInputError appFieldError="password"></span>
+    </div>
+    <div>
+      <label hlmLabel>Confirm your Password</label>
+      <input hlmInput class="w-full" formControlName="password_confirm" type="password" />
+      <span hlmInputError appFieldError="password_confirm"></span>
+    </div>
+    <button hlmBtn [disabled]="submitting()" class="w-full" type="submit">Change Password</button>
+  </form>
+}

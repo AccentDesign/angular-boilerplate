@@ -4,30 +4,9 @@
       <app-logo />
     </a>
     <hgroup>
-      <h2 hlmH2>Forgot Password</h2>
-      <p class="text-muted-foreground">Request details to reset your password.</p>
+      <h2 hlmH2>Reset Password</h2>
+      <p class="text-muted-foreground">Please use the below form to set your new password.</p>
     </hgroup>
-    @if (success()) {
-      <app-message title="Your password has been reset">
-        You can now
-        <a [href]="AuthPaths.logIn" class="hover:underline">Login</a>
-        using your new password.
-      </app-message>
-    } @else {
-      <app-error-messages location="resetPw"></app-error-messages>
-    }
-    <form (ngSubmit)="submit()" [formGroup]="form" class="grid gap-6">
-      <div>
-        <label hlmLabel>Password</label>
-        <input hlmInput class="w-full" formControlName="password" type="password" />
-        <span hlmInputError appFieldError="password"></span>
-      </div>
-      <div>
-        <label hlmLabel>Confirm your Password</label>
-        <input hlmInput class="w-full" formControlName="password_confirm" type="password" />
-        <span hlmInputError appFieldError="password_confirm"></span>
-      </div>
-      <button hlmBtn [disabled]="loading()" class="w-full" type="submit">Change Password</button>
-    </form>
+    <app-reset-pw-form [token]="token()" />
   </div>
 </main>

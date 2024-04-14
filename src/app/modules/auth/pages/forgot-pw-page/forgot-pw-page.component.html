@@ -7,20 +7,6 @@
       <h2 hlmH2>Forgot Password</h2>
       <p class="text-muted-foreground">Request details to reset your password.</p>
     </hgroup>
-    @if (success()) {
-      <app-message title="Thanks">
-        Assuming the email exists in our system. We will send details of what to do next.
-      </app-message>
-    } @else {
-      <app-error-messages location="forgotPw"></app-error-messages>
-    }
-    <form (ngSubmit)="submit()" [formGroup]="form" class="grid gap-6">
-      <div>
-        <label hlmLabel>Email</label>
-        <input hlmInput class="w-full" formControlName="email" type="email" />
-        <span hlmInputError appFieldError="email"></span>
-      </div>
-      <button hlmBtn [disabled]="loading()" class="w-full" type="submit">Request Details</button>
-    </form>
+    <app-forgot-pw-form />
   </div>
 </main>

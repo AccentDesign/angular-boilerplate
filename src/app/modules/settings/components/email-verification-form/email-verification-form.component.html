@@ -1,32 +1,39 @@
 @if (authRepository.currentUser(); as user) {
-  <section class="mb-16">
-    <h4 hlmH4>Email Verification</h4>
-    <hr class="border-1 border-solid mb-6" />
-    @if (success() || user.is_verified) {
-      <app-message title="Thanks">Your email address has been verified.</app-message>
+  @if (verified() || user.is_verified) {
+    <app-message title="Thanks">Your email address has been verified.</app-message>
+  } @else {
+    @if (errors().length > 0) {
+      <app-message title="Email Verification Required" variant="destructive">
+        @for (err of errors(); track err) {
+          {{ err }}<br />
+        }
+      </app-message>
     } @else {
-      <app-error-messages location="verifyEmail"></app-error-messages>
       <app-message title="Email Verification Required">
         Your email address needs to be verified before you can use this site.
       </app-message>
-      <button hlmBtn variant="secondary" (click)="request($event)">Send me a verification email</button>
-      @if (requested()) {
-        <form (ngSubmit)="submit()" [formGroup]="form" class="mt-6 grid gap-6">
-          <div>
-            <label hlmLabel>Verification Token</label>
-            <textarea
-              hlmInput
-              formControlName="token"
-              class="w-full min-h-[80px]"
-              placeholder="Please enter the verification token provided in the email"
-            ></textarea>
-            <span appFieldError="token"></span>
-          </div>
-          <div>
-            <button hlmBtn [disabled]="loading()">Verify Account</button>
-          </div>
-        </form>
-      }
     }
-  </section>
+
+    <button hlmBtn variant="secondary" (click)="request($event)" [disabled]="submitting()">
+      Send me a verification email
+    </button>
+
+    @if (requested()) {
+      <form (ngSubmit)="verify()" [formGroup]="form" class="mt-6 grid gap-6">
+        <div>
+          <label hlmLabel>Verification Token</label>
+          <textarea
+            hlmInput
+            formControlName="token"
+            class="w-full min-h-[80px]"
+            placeholder="Please enter the verification token provided in the email"
+          ></textarea>
+          <span appFieldError="token"></span>
+        </div>
+        <div>
+          <button hlmBtn [disabled]="submitting()">Verify Account</button>
+        </div>
+      </form>
+    }
+  }
 }

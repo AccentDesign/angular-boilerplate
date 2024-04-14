@@ -1,0 +1,24 @@
+@if (errors().length > 0) {
+  <app-message title="Oops!" variant="destructive">
+    @for (err of errors(); track err) {
+      {{ err }}<br />
+    }
+  </app-message>
+}
+
+<form (ngSubmit)="submit()" [formGroup]="form" class="grid gap-6">
+  <div>
+    <label hlmLabel>Email</label>
+    <input hlmInput class="w-full" formControlName="email" type="email" />
+    <span hlmInputError appFieldError="email"></span>
+  </div>
+  <div>
+    <label hlmLabel>Password</label>
+    <input hlmInput class="w-full" formControlName="password" type="password" />
+    <span hlmInputError appFieldError="password"></span>
+  </div>
+  <div class="flex justify-end">
+    <a [href]="AuthPaths.forgotPassword" class="text-primary hover:underline">Forgot password</a>
+  </div>
+  <button hlmBtn [disabled]="submitting()" class="w-full" type="submit">Login</button>
+</form>

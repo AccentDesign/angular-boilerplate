@@ -1,89 +1,79 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthRepository } from '@modules/auth/shared/auth.repository';
 import { AuthService } from '@modules/auth/shared/auth.service';
+import { UpdateUserRequest } from '@modules/auth/shared/interfaces/update-user-request';
 import { MessageComponent } from '@modules/shared/components/message/message.component';
 import { FieldErrorDirective } from '@modules/shared/directives/field-error.directive';
 import { FormatHttpError } from '@modules/shared/utils/error';
+import { passwordsMatchValidator } from '@modules/shared/validators/passwords-match';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+import { HlmInputDirective, HlmInputErrorDirective } from '@spartan-ng/ui-input-helm';
 import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 import { finalize, first } from 'rxjs';
 
 @Component({
-  selector: 'app-email-verification-form',
+  selector: 'app-password-form',
   standalone: true,
   imports: [
-    ReactiveFormsModule,
     FieldErrorDirective,
-    MessageComponent,
     HlmButtonDirective,
-    HlmLabelDirective,
     HlmInputDirective,
+    HlmInputErrorDirective,
+    HlmLabelDirective,
+    MessageComponent,
+    ReactiveFormsModule,
   ],
-  templateUrl: './email-verification-form.component.html',
+  templateUrl: './password-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EmailVerificationFormComponent {
+export class PasswordFormComponent {
   errors = signal<string[]>([]);
-  requested = signal<boolean>(false);
   submitting = signal<boolean>(false);
-  verified = signal<boolean>(false);
+  success = signal<boolean>(false);
 
-  authRepository = inject(AuthRepository);
-  form = new FormGroup({
-    token: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-  });
+  form = new FormGroup(
+    {
+      password: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(6)],
+      }),
+      password_confirm: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required],
+      }),
+    },
+    { validators: passwordsMatchValidator },
+  );
 
   private authService = inject(AuthService);
 
-  async request(event: Event | MouseEvent): Promise<void> {
-    event.stopPropagation();
-    this.errors.set([]);
-    this.submitting.set(true);
-    this.requested.set(false);
-    this.authService
-      .verifyRequest()
-      .pipe(
-        first(),
-        finalize(() => this.handleFinish()),
-      )
-      .subscribe({
-        next: () => this.handleRequestSuccess(),
-        error: (error) => this.handleError(error),
-      });
-  }
-
-  async verify(): Promise<void> {
+  async submit(): Promise<void> {
     if (!this.form.valid) {
       this.form.markAllAsTouched();
       return;
     }
     this.errors.set([]);
     this.submitting.set(true);
-    this.verified.set(false);
+    this.success.set(false);
+    const data = {
+      password: this.form.value.password,
+    } as UpdateUserRequest;
     this.authService
-      .verify(this.form.value.token ?? '')
+      .updateUser(data)
       .pipe(
         first(),
         finalize(() => this.handleFinish()),
       )
       .subscribe({
-        next: () => this.handleVerifySuccess(),
+        next: () => this.handleSuccess(),
         error: (error) => this.handleError(error),
       });
   }
 
-  private async handleRequestSuccess(): Promise<void> {
-    this.requested.set(true);
-  }
-
-  private async handleVerifySuccess(): Promise<void> {
-    this.verified.set(true);
+  private async handleSuccess(): Promise<void> {
+    this.success.set(true);
+    this.form.reset();
   }
 
   private async handleFinish(): Promise<void> {

@@ -1,0 +1,32 @@
+@if (errors().length > 0) {
+  <app-message title="Oops!" variant="destructive">
+    @for (err of errors(); track err) {
+      {{ err }}<br />
+    }
+  </app-message>
+}
+
+@if (success()) {
+  <app-message title="Thanks">Your profile was updated successfully.</app-message>
+}
+
+<form (ngSubmit)="submit()" [formGroup]="form" class="grid gap-6">
+  <div>
+    <label hlmLabel>First Name</label>
+    <input hlmInput class="w-full" formControlName="first_name" type="text" />
+    <span hlmInputError appFieldError="first_name"></span>
+  </div>
+  <div>
+    <label hlmLabel>Last Name</label>
+    <input hlmInput class="w-full" formControlName="last_name" type="text" />
+    <span hlmInputError appFieldError="last_name"></span>
+  </div>
+  <div>
+    <label hlmLabel>Email</label>
+    <input hlmInput class="w-full" formControlName="email" type="email" />
+    <span hlmInputError appFieldError="email"></span>
+  </div>
+  <div>
+    <button hlmBtn [disabled]="submitting()" type="submit">Update Profile</button>
+  </div>
+</form>

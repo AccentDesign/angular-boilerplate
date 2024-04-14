@@ -1,32 +1,10 @@
 <section class="mb-16">
-  <app-email-verification-form></app-email-verification-form>
+  <h4 hlmH4>Email Verification</h4>
+  <hr class="border-1 border-solid mb-6" />
+  <app-email-verification-form />
 </section>
 <section class="mb-16">
   <h4 hlmH4>Profile</h4>
   <hr class="border-1 border-solid mb-6" />
-  @if (success()) {
-    <app-message title="Thanks">Your profile was updated successfully.</app-message>
-  } @else {
-    <app-error-messages location="myProfile"></app-error-messages>
-  }
-  <form (ngSubmit)="submit()" [formGroup]="form" class="sm:col-span-2 grid gap-6">
-    <div>
-      <label hlmLabel>First Name</label>
-      <input hlmInput class="w-full" formControlName="first_name" type="text" />
-      <span hlmInputError appFieldError="first_name"></span>
-    </div>
-    <div>
-      <label hlmLabel>Last Name</label>
-      <input hlmInput class="w-full" formControlName="last_name" type="text" />
-      <span hlmInputError appFieldError="last_name"></span>
-    </div>
-    <div>
-      <label hlmLabel>Email</label>
-      <input hlmInput class="w-full" formControlName="email" type="email" />
-      <span hlmInputError appFieldError="email"></span>
-    </div>
-    <div>
-      <button hlmBtn [disabled]="loading()" type="submit">Update Profile</button>
-    </div>
-  </form>
+  <app-profile-form />
 </section>

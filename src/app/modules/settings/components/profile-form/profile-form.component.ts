@@ -1,89 +1,94 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthRepository } from '@modules/auth/shared/auth.repository';
 import { AuthService } from '@modules/auth/shared/auth.service';
+import { UpdateUserRequest } from '@modules/auth/shared/interfaces/update-user-request';
 import { MessageComponent } from '@modules/shared/components/message/message.component';
 import { FieldErrorDirective } from '@modules/shared/directives/field-error.directive';
 import { FormatHttpError } from '@modules/shared/utils/error';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+import { HlmInputDirective, HlmInputErrorDirective } from '@spartan-ng/ui-input-helm';
 import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 import { finalize, first } from 'rxjs';
 
 @Component({
-  selector: 'app-email-verification-form',
+  selector: 'app-profile-form',
   standalone: true,
   imports: [
-    ReactiveFormsModule,
     FieldErrorDirective,
-    MessageComponent,
     HlmButtonDirective,
-    HlmLabelDirective,
     HlmInputDirective,
+    HlmInputErrorDirective,
+    HlmLabelDirective,
+    ReactiveFormsModule,
+    MessageComponent,
   ],
-  templateUrl: './email-verification-form.component.html',
+  templateUrl: './profile-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EmailVerificationFormComponent {
+export class ProfileFormComponent {
   errors = signal<string[]>([]);
-  requested = signal<boolean>(false);
   submitting = signal<boolean>(false);
-  verified = signal<boolean>(false);
+  success = signal<boolean>(false);
 
-  authRepository = inject(AuthRepository);
   form = new FormGroup({
-    token: new FormControl('', {
+    first_name: new FormControl('', {
       nonNullable: true,
       validators: [Validators.required],
     }),
+    last_name: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    email: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.email],
+    }),
   });
 
+  private authRepository = inject(AuthRepository);
   private authService = inject(AuthService);
-
-  async request(event: Event | MouseEvent): Promise<void> {
-    event.stopPropagation();
-    this.errors.set([]);
-    this.submitting.set(true);
-    this.requested.set(false);
-    this.authService
-      .verifyRequest()
-      .pipe(
-        first(),
-        finalize(() => this.handleFinish()),
-      )
-      .subscribe({
-        next: () => this.handleRequestSuccess(),
-        error: (error) => this.handleError(error),
+  private _ = effect(() => {
+    const user = this.authRepository.currentUser();
+    if (user) {
+      this.form.setValue({
+        first_name: user.first_name,
+        last_name: user.last_name,
+        email: user.email,
       });
-  }
+    } else {
+      this.form.reset();
+    }
+  });
 
-  async verify(): Promise<void> {
+  async submit(): Promise<void> {
     if (!this.form.valid) {
       this.form.markAllAsTouched();
       return;
     }
     this.errors.set([]);
     this.submitting.set(true);
-    this.verified.set(false);
+    this.success.set(false);
+    const data = {
+      first_name: this.form.value.first_name,
+      last_name: this.form.value.last_name,
+      email: this.form.value.email,
+    } as UpdateUserRequest;
     this.authService
-      .verify(this.form.value.token ?? '')
+      .updateUser(data)
       .pipe(
         first(),
         finalize(() => this.handleFinish()),
       )
       .subscribe({
-        next: () => this.handleVerifySuccess(),
+        next: () => this.handleSuccess(),
         error: (error) => this.handleError(error),
       });
   }
 
-  private async handleRequestSuccess(): Promise<void> {
-    this.requested.set(true);
-  }
-
-  private async handleVerifySuccess(): Promise<void> {
-    this.verified.set(true);
+  private async handleSuccess(): Promise<void> {
+    this.success.set(true);
   }
 
   private async handleFinish(): Promise<void> {
