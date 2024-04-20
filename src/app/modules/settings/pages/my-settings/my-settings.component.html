@@ -1,29 +1,31 @@
-<app-nav></app-nav>
-<main class="container mx-auto px-6">
-  <header>
-    <h3 hlmH3>Settings</h3>
-  </header>
-  <div class="sm:grid sm:grid-cols-4 gap-10">
-    <aside>
-      <ul class="my-8">
-        @for (item of navItems; track item) {
-          <li class="mb-1">
-            <a
-              hlmBtn
-              class="w-full justify-start gap-2"
-              #rla="routerLinkActive"
-              [routerLink]="item.route"
-              routerLinkActive
-              [variant]="rla.isActive ? 'secondary' : 'ghost'"
-            >
-              {{ item.label }}
-            </a>
-          </li>
-        }
-      </ul>
-    </aside>
-    <section class="sm:col-span-3">
-      <router-outlet></router-outlet>
-    </section>
+<div class="w-screen min-h-screen">
+  <app-nav></app-nav>
+  <div class="container mx-auto px-6">
+    <header>
+      <h1 class="text-3xl font-bold">Settings</h1>
+    </header>
+    <div class="sm:grid sm:grid-cols-4 gap-10">
+      <div>
+        <ul class="my-8">
+          @for (item of navItems; track item) {
+            <li class="mb-1">
+              <a
+                hlmBtn
+                class="w-full justify-start gap-2"
+                #rla="routerLinkActive"
+                [routerLink]="item.route"
+                routerLinkActive
+                [variant]="rla.isActive ? 'secondary' : 'ghost'"
+              >
+                {{ item.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+      <div class="sm:col-span-3">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
   </div>
-</main>
+</div>

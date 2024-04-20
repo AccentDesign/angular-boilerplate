@@ -13,12 +13,14 @@
     <span hlmInputError appFieldError="email"></span>
   </div>
   <div>
-    <label hlmLabel>Password</label>
+    <div class="flex items-center justify-between">
+      <label hlmLabel>Password</label>
+      <a [href]="AuthPaths.forgotPassword" class="text-sm text-primary font-semibold hover:underline">
+        Forgot your password?
+      </a>
+    </div>
     <input hlmInput class="w-full" formControlName="password" type="password" />
     <span hlmInputError appFieldError="password"></span>
-  </div>
-  <div class="flex justify-end">
-    <a [href]="AuthPaths.forgotPassword" class="text-primary hover:underline">Forgot password</a>
   </div>
   <button hlmBtn [disabled]="submitting()" class="w-full" type="submit">Login</button>
 </form>
