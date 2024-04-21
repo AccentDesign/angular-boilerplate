@@ -4,12 +4,12 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthPaths } from '@modules/auth/shared/auth-routes';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { RegisterRequest } from '@modules/auth/shared/interfaces/register-request';
+import { FormErrorComponent } from '@modules/shared/components/form-error/form-error.component';
 import { MessageComponent } from '@modules/shared/components/message/message.component';
-import { FieldErrorDirective } from '@modules/shared/directives/field-error.directive';
 import { FormatHttpError } from '@modules/shared/utils/error';
 import { passwordsMatchValidator } from '@modules/shared/validators/passwords-match';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmInputDirective, HlmInputErrorDirective } from '@spartan-ng/ui-input-helm';
+import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 import { finalize, first } from 'rxjs';
 
@@ -17,13 +17,12 @@ import { finalize, first } from 'rxjs';
   selector: 'app-register-form',
   standalone: true,
   imports: [
-    FieldErrorDirective,
     HlmButtonDirective,
     HlmInputDirective,
-    HlmInputErrorDirective,
     HlmLabelDirective,
     ReactiveFormsModule,
     MessageComponent,
+    FormErrorComponent,
   ],
   templateUrl: './register-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

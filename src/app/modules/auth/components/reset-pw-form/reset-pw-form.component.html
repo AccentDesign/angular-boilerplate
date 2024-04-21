@@ -17,12 +17,18 @@
     <div>
       <label hlmLabel>Password</label>
       <input hlmInput class="w-full" formControlName="password" type="password" />
-      <span hlmInputError appFieldError="password"></span>
+      <app-form-error
+        [errors]="form.controls.password.errors"
+        [show]="form.controls.password.touched && form.controls.password.invalid"
+      ></app-form-error>
     </div>
     <div>
       <label hlmLabel>Confirm your Password</label>
       <input hlmInput class="w-full" formControlName="password_confirm" type="password" />
-      <span hlmInputError appFieldError="password_confirm"></span>
+      <app-form-error
+        [errors]="form.controls.password_confirm.errors"
+        [show]="form.controls.password_confirm.touched && form.controls.password_confirm.invalid"
+      ></app-form-error>
     </div>
     <button hlmBtn [disabled]="submitting()" class="w-full" type="submit">Change Password</button>
   </form>

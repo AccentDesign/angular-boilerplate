@@ -28,7 +28,10 @@
             class="w-full min-h-[80px]"
             placeholder="Please enter the verification token provided in the email"
           ></textarea>
-          <span appFieldError="token"></span>
+          <app-form-error
+            [errors]="form.controls.token.errors"
+            [show]="form.controls.token.touched && form.controls.token.invalid"
+          ></app-form-error>
         </div>
         <div>
           <button hlmBtn [disabled]="submitting()">Verify Account</button>

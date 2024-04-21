@@ -3,12 +3,12 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { UpdateUserRequest } from '@modules/auth/shared/interfaces/update-user-request';
+import { FormErrorComponent } from '@modules/shared/components/form-error/form-error.component';
 import { MessageComponent } from '@modules/shared/components/message/message.component';
-import { FieldErrorDirective } from '@modules/shared/directives/field-error.directive';
 import { FormatHttpError } from '@modules/shared/utils/error';
 import { passwordsMatchValidator } from '@modules/shared/validators/passwords-match';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmInputDirective, HlmInputErrorDirective } from '@spartan-ng/ui-input-helm';
+import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 import { finalize, first } from 'rxjs';
 
@@ -16,13 +16,12 @@ import { finalize, first } from 'rxjs';
   selector: 'app-password-form',
   standalone: true,
   imports: [
-    FieldErrorDirective,
     HlmButtonDirective,
     HlmInputDirective,
-    HlmInputErrorDirective,
     HlmLabelDirective,
     MessageComponent,
     ReactiveFormsModule,
+    FormErrorComponent,
   ],
   templateUrl: './password-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

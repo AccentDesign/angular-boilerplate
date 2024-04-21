@@ -14,17 +14,26 @@
   <div>
     <label hlmLabel>First Name</label>
     <input hlmInput class="w-full" formControlName="first_name" type="text" />
-    <span hlmInputError appFieldError="first_name"></span>
+    <app-form-error
+      [errors]="form.controls.first_name.errors"
+      [show]="form.controls.first_name.touched && form.controls.first_name.invalid"
+    ></app-form-error>
   </div>
   <div>
     <label hlmLabel>Last Name</label>
     <input hlmInput class="w-full" formControlName="last_name" type="text" />
-    <span hlmInputError appFieldError="last_name"></span>
+    <app-form-error
+      [errors]="form.controls.last_name.errors"
+      [show]="form.controls.last_name.touched && form.controls.last_name.invalid"
+    ></app-form-error>
   </div>
   <div>
     <label hlmLabel>Email</label>
     <input hlmInput class="w-full" formControlName="email" type="email" />
-    <span hlmInputError appFieldError="email"></span>
+    <app-form-error
+      [errors]="form.controls.email.errors"
+      [show]="form.controls.email.touched && form.controls.email.invalid"
+    ></app-form-error>
   </div>
   <div>
     <button hlmBtn [disabled]="submitting()" type="submit">Update Profile</button>

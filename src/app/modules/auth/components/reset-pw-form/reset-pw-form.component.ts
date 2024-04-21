@@ -4,12 +4,12 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthPaths } from '@modules/auth/shared/auth-routes';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { ResetPasswordRequest } from '@modules/auth/shared/interfaces/reset-password-request';
+import { FormErrorComponent } from '@modules/shared/components/form-error/form-error.component';
 import { MessageComponent } from '@modules/shared/components/message/message.component';
-import { FieldErrorDirective } from '@modules/shared/directives/field-error.directive';
 import { FormatHttpError } from '@modules/shared/utils/error';
 import { passwordsMatchValidator } from '@modules/shared/validators/passwords-match';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmInputDirective, HlmInputErrorDirective } from '@spartan-ng/ui-input-helm';
+import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 import { finalize, first } from 'rxjs';
 
@@ -18,12 +18,11 @@ import { finalize, first } from 'rxjs';
   standalone: true,
   imports: [
     MessageComponent,
-    FieldErrorDirective,
     HlmButtonDirective,
     HlmInputDirective,
-    HlmInputErrorDirective,
     HlmLabelDirective,
     ReactiveFormsModule,
+    FormErrorComponent,
   ],
   templateUrl: './reset-pw-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

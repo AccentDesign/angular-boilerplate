@@ -3,8 +3,8 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthRepository } from '@modules/auth/shared/auth.repository';
 import { AuthService } from '@modules/auth/shared/auth.service';
+import { FormErrorComponent } from '@modules/shared/components/form-error/form-error.component';
 import { MessageComponent } from '@modules/shared/components/message/message.component';
-import { FieldErrorDirective } from '@modules/shared/directives/field-error.directive';
 import { FormatHttpError } from '@modules/shared/utils/error';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
@@ -16,11 +16,11 @@ import { finalize, first } from 'rxjs';
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    FieldErrorDirective,
     MessageComponent,
     HlmButtonDirective,
     HlmLabelDirective,
     HlmInputDirective,
+    FormErrorComponent,
   ],
   templateUrl: './email-verification-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -6,12 +6,12 @@ import { AuthPaths } from '@modules/auth/shared/auth-routes';
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { LoginRequest } from '@modules/auth/shared/interfaces/login-request';
 import { DashboardPaths } from '@modules/dashboard/shared/dashboard-routes';
+import { FormErrorComponent } from '@modules/shared/components/form-error/form-error.component';
 import { MessageComponent } from '@modules/shared/components/message/message.component';
-import { FieldErrorDirective } from '@modules/shared/directives/field-error.directive';
 import { FormatHttpError } from '@modules/shared/utils/error';
 import { HlmAlertDirective } from '@spartan-ng/ui-alert-helm';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmInputDirective, HlmInputErrorDirective } from '@spartan-ng/ui-input-helm';
+import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 import { finalize, first } from 'rxjs';
 
@@ -19,14 +19,13 @@ import { finalize, first } from 'rxjs';
   selector: 'app-login-form',
   standalone: true,
   imports: [
-    FieldErrorDirective,
     HlmButtonDirective,
     HlmInputDirective,
-    HlmInputErrorDirective,
     HlmLabelDirective,
     ReactiveFormsModule,
     HlmAlertDirective,
     MessageComponent,
+    FormErrorComponent,
   ],
   templateUrl: './login-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

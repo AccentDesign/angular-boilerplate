@@ -15,7 +15,10 @@
     <div>
       <label hlmLabel>Email</label>
       <input hlmInput class="w-full" formControlName="email" type="email" />
-      <span hlmInputError appFieldError="email"></span>
+      <app-form-error
+        [errors]="form.controls.email.errors"
+        [show]="form.controls.email.touched && form.controls.email.invalid"
+      ></app-form-error>
     </div>
     <button hlmBtn [disabled]="submitting()" class="w-full" type="submit">Request Details</button>
   </form>
