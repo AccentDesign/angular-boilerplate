@@ -45,11 +45,11 @@
       "@spartan-ng/ui-label-helm": [
         "./src/ui/ui-label-helm/src/index.ts"
       ],
-      "@spartan-ng/ui-separator-helm": [
-        "./src/ui/ui-separator-helm/src/index.ts"
-      ],
       "@spartan-ng/ui-menu-helm": [
         "./src/ui/ui-menu-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-separator-helm": [
+        "./src/ui/ui-separator-helm/src/index.ts"
       ]
     }
   },

@@ -4,7 +4,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { environment } from '@environments/environment';
 import { httpInterceptor } from '@modules/shared/interceptors/http.interceptor';
-import * as Sentry from '@sentry/angular-ivy';
+import * as Sentry from '@sentry/angular';
 import { routes } from './app.routes';
 
 if (environment.sentryDsn) {
