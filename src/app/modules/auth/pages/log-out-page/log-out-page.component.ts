@@ -18,7 +18,7 @@ export default class LogOutPageComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     try {
       await firstValueFrom(this.authService.logOut());
-    } catch (error) {
+    } catch {
       // do nothing
     }
   }

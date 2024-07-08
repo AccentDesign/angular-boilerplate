@@ -5,7 +5,7 @@ describe('LocalStorageService', () => {
   let service: LocalStorageService;
 
   const localStorageMock = (function () {
-    let store: { [key: string]: string } = {};
+    let store: Record<string, string> = {};
     return {
       getItem: function (key: string) {
         return store[key] || null;

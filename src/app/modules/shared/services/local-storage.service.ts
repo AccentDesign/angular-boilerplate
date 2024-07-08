@@ -22,7 +22,7 @@ export class LocalStorageService {
     if (item === null) return null;
     try {
       return JSON.parse(item);
-    } catch (e) {
+    } catch {
       return item;
     }
   }

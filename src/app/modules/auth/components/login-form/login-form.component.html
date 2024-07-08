@@ -8,8 +8,8 @@
 
 <form (ngSubmit)="submit()" [formGroup]="form" class="grid gap-6">
   <div>
-    <label hlmLabel>Email</label>
-    <input hlmInput class="w-full" formControlName="email" type="email" />
+    <label hlmLabel for="email">Email</label>
+    <input hlmInput class="w-full" formControlName="email" type="email" id="email" />
     <app-form-error
       [errors]="form.controls.email.errors"
       [show]="form.controls.email.touched && form.controls.email.invalid"
@@ -17,12 +17,12 @@
   </div>
   <div>
     <div class="flex items-center justify-between">
-      <label hlmLabel>Password</label>
+      <label hlmLabel for="password">Password</label>
       <a [href]="AuthPaths.forgotPassword" class="text-sm text-primary font-semibold hover:underline">
         Forgot your password?
       </a>
     </div>
-    <input hlmInput class="w-full" formControlName="password" type="password" />
+    <input hlmInput class="w-full" formControlName="password" type="password" id="password" />
     <app-form-error
       [errors]="form.controls.password.errors"
       [show]="form.controls.password.touched && form.controls.password.invalid"

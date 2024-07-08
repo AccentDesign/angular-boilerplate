@@ -14,40 +14,40 @@
 } @else {
   <form (ngSubmit)="submit()" [formGroup]="form" class="grid gap-6">
     <div>
-      <label hlmLabel>First Name</label>
-      <input hlmInput class="w-full" formControlName="first_name" type="text" />
+      <label hlmLabel for="first_name">First Name</label>
+      <input hlmInput class="w-full" formControlName="first_name" type="text" id="first_name" />
       <app-form-error
         [errors]="form.controls.first_name.errors"
         [show]="form.controls.first_name.touched && form.controls.first_name.invalid"
       ></app-form-error>
     </div>
     <div>
-      <label hlmLabel>Last Name</label>
-      <input hlmInput class="w-full" formControlName="last_name" type="text" />
+      <label hlmLabel for="last_name">Last Name</label>
+      <input hlmInput class="w-full" formControlName="last_name" type="text" id="last_name" />
       <app-form-error
         [errors]="form.controls.last_name.errors"
         [show]="form.controls.last_name.touched && form.controls.last_name.invalid"
       ></app-form-error>
     </div>
     <div>
-      <label hlmLabel>Email</label>
-      <input hlmInput class="w-full" formControlName="email" type="email" />
+      <label hlmLabel for="email">Email</label>
+      <input hlmInput class="w-full" formControlName="email" type="email" id="email" />
       <app-form-error
         [errors]="form.controls.email.errors"
         [show]="form.controls.email.touched && form.controls.email.invalid"
       ></app-form-error>
     </div>
     <div>
-      <label hlmLabel>Password</label>
-      <input hlmInput class="w-full" formControlName="password" type="password" />
+      <label hlmLabel for="password">Password</label>
+      <input hlmInput class="w-full" formControlName="password" type="password" id="password" />
       <app-form-error
         [errors]="form.controls.password.errors"
         [show]="form.controls.password.touched && form.controls.password.invalid"
       ></app-form-error>
     </div>
     <div>
-      <label hlmLabel>Confirm your Password</label>
-      <input hlmInput class="w-full" formControlName="password_confirm" type="password" />
+      <label hlmLabel for="password_confirm">Confirm your Password</label>
+      <input hlmInput class="w-full" formControlName="password_confirm" type="password" id="password_confirm" />
       <app-form-error
         [errors]="form.controls.password_confirm.errors"
         [show]="form.controls.password_confirm.touched && form.controls.password_confirm.invalid"

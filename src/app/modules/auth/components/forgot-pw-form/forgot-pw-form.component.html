@@ -13,8 +13,8 @@
 } @else {
   <form (ngSubmit)="submit()" [formGroup]="form" class="grid gap-6">
     <div>
-      <label hlmLabel>Email</label>
-      <input hlmInput class="w-full" formControlName="email" type="email" />
+      <label hlmLabel for="email">Email</label>
+      <input hlmInput class="w-full" formControlName="email" type="email" id="email" />
       <app-form-error
         [errors]="form.controls.email.errors"
         [show]="form.controls.email.touched && form.controls.email.invalid"

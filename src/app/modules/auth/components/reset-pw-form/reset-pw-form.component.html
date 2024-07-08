@@ -15,16 +15,16 @@
 } @else {
   <form (ngSubmit)="submit()" [formGroup]="form" class="grid gap-6">
     <div>
-      <label hlmLabel>Password</label>
-      <input hlmInput class="w-full" formControlName="password" type="password" />
+      <label hlmLabel for="password">Password</label>
+      <input hlmInput class="w-full" formControlName="password" type="password" id="password" />
       <app-form-error
         [errors]="form.controls.password.errors"
         [show]="form.controls.password.touched && form.controls.password.invalid"
       ></app-form-error>
     </div>
     <div>
-      <label hlmLabel>Confirm your Password</label>
-      <input hlmInput class="w-full" formControlName="password_confirm" type="password" />
+      <label hlmLabel for="password_confirm">Confirm your Password</label>
+      <input hlmInput class="w-full" formControlName="password_confirm" type="password" id="password_confirm" />
       <app-form-error
         [errors]="form.controls.password_confirm.errors"
         [show]="form.controls.password_confirm.touched && form.controls.password_confirm.invalid"

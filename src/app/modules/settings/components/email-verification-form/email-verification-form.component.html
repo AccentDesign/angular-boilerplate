@@ -21,12 +21,13 @@
     @if (requested()) {
       <form (ngSubmit)="verify()" [formGroup]="form" class="mt-6 grid gap-6">
         <div>
-          <label hlmLabel>Verification Token</label>
+          <label hlmLabel for="token">Verification Token</label>
           <textarea
             hlmInput
             formControlName="token"
             class="w-full min-h-[80px]"
             placeholder="Please enter the verification token provided in the email"
+            id="token"
           ></textarea>
           <app-form-error
             [errors]="form.controls.token.errors"
