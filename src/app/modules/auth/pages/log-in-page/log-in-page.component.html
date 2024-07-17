@@ -2,9 +2,24 @@
   <a class="block w-[200px]" href="/">
     <app-logo />
   </a>
-  <div>
-    <h1 class="text-3xl font-bold">Login</h1>
-    <p class="text-muted-foreground">Access your account.</p>
-  </div>
-  <app-login-form />
+  <hlm-tabs tab='login' class='grid gap-6'>
+    <hlm-tabs-list class='w-full grid grid-cols-2' aria-label='welcome'>
+      <button hlmTabsTrigger='login'>Login</button>
+      <button hlmTabsTrigger='register'>Register</button>
+    </hlm-tabs-list>
+    <div hlmTabsContent='login'>
+      <div class="grid gap-2 mb-6">
+        <h1 class="text-2xl font-bold">Login</h1>
+        <p class="text-muted-foreground">Access your account.</p>
+      </div>
+      <app-login-form />
+    </div>
+    <div hlmTabsContent='register'>
+      <div class="grid gap-2 mb-6">
+        <h1 class="text-2xl font-bold">Register</h1>
+        <p class="text-muted-foreground">Please complete the below to create and access your account.</p>
+      </div>
+      <app-register-form />
+    </div>
+  </hlm-tabs>
 </div>

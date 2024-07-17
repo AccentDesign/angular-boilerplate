@@ -6,7 +6,8 @@ import { SettingsRoutes } from '@modules/settings/shared/settings-routes';
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('@modules/shared/pages/welcome-page/welcome-page.component'),
+    pathMatch: 'full',
+    redirectTo: 'auth/login',
   },
   {
     path: AuthRoutes.base,

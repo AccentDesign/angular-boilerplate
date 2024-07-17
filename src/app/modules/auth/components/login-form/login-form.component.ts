@@ -1,8 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthPaths } from '@modules/auth/shared/auth-routes';
+import { AuthRepository } from "@modules/auth/shared/auth.repository";
 import { AuthService } from '@modules/auth/shared/auth.service';
 import { LoginRequest } from '@modules/auth/shared/interfaces/login-request';
 import { DashboardPaths } from '@modules/dashboard/shared/dashboard-routes';
@@ -30,7 +31,7 @@ import { finalize, first } from 'rxjs';
   templateUrl: './login-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnInit {
   protected readonly AuthPaths = AuthPaths;
 
   errors = signal<string[]>([]);
@@ -47,8 +48,13 @@ export class LoginFormComponent {
     }),
   });
 
+  private authRepository = inject(AuthRepository);
   private authService = inject(AuthService);
   private router = inject(Router);
+
+  ngOnInit(): void {
+    this.authRepository.clear();
+  }
 
   async submit(): Promise<void> {
     if (!this.form.valid) {

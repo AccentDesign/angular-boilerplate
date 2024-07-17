@@ -11,10 +11,6 @@ export default [
     loadComponent: () => import('./pages/log-out-page/log-out-page.component'),
   },
   {
-    path: AuthRoutes.register,
-    loadComponent: () => import('./pages/register-page/register-page.component'),
-  },
-  {
     path: AuthRoutes.forgotPassword,
     loadComponent: () => import('./pages/forgot-pw-page/forgot-pw-page.component'),
   },

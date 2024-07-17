@@ -50,6 +50,9 @@
       ],
       "@spartan-ng/ui-separator-helm": [
         "./src/ui/ui-separator-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-tabs-helm": [
+        "./src/ui/ui-tabs-helm/src/index.ts"
       ]
     }
   },
