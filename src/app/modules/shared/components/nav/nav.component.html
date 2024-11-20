@@ -2,15 +2,11 @@
   <div class="container mx-auto p-5 flex items-center">
     <a [href]="DashboardPaths.dashboard" class="owl-h3 mr-auto">Angular Boilerplate</a>
     <div class="owl-dropdown-menu">
-      <button class="owl-button owl-button-outline" (click)="toggle()">
+      <button class="owl-button owl-button-ghost" (click)="toggle()">
         <span>Account Menu</span>
-        <svg class="size-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="m6 9l6 6l6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2"></path>
-        </svg>
+        <ng-icon name="lucideChevronDown" />
       </button>
-      <div class="owl-dropdown-menu-content owl-open right-0" role="menu" [class.owl-open]="open()"
-           (mouseleave)="close()">
+      <div class="owl-dropdown-menu-content owl-open right-0" role="menu" [class.owl-open]="open()" (mouseleave)="close()">
         <div class="owl-dropdown-menu-label">My Account</div>
         <div class="owl-dropdown-menu-separator" role="separator"></div>
         <a class="owl-dropdown-menu-item" [href]="SettingsPaths.profile" role="menuitem">Profile</a>

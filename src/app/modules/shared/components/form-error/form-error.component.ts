@@ -3,7 +3,6 @@ import { ValidationErrors } from "@angular/forms";
 
 @Component({
   selector: "app-form-error",
-  standalone: true,
   template: `
     @if (errors(); as err) {
       <ul class="owl-form-field-error">

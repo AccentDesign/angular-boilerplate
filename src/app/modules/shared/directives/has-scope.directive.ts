@@ -9,7 +9,6 @@ import { AuthRepository } from "@modules/auth/shared/auth.repository";
  */
 @Directive({
   selector: "[appHasScope]",
-  standalone: true,
   hostDirectives: [NgIf]
 })
 export class HasScopeDirective {
