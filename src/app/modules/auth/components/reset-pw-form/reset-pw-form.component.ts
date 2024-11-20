@@ -24,8 +24,9 @@ export class ResetPwFormComponent {
   protected readonly AuthPaths = AuthPaths;
 
   errors = signal<string[]>([]);
-  submitting = signal<boolean>(false);
-  success = signal<boolean>(false);
+  submitting = signal(false);
+  submitted = signal(false);
+  success = signal(false);
   token = input.required<string>();
 
   form = new FormGroup(
@@ -46,7 +47,7 @@ export class ResetPwFormComponent {
 
   async submit(): Promise<void> {
     if (!this.form.valid) {
-      this.form.markAllAsTouched();
+      this.submitted.set(true);
       return;
     }
     this.errors.set([]);

@@ -19,8 +19,9 @@ import { finalize, first } from "rxjs";
 })
 export class ForgotPwFormComponent {
   errors = signal<string[]>([]);
-  submitting = signal<boolean>(false);
-  success = signal<boolean>(false);
+  submitting = signal(false);
+  submitted = signal(false);
+  success = signal(false);
 
   form = new FormGroup({
     email: new FormControl("", {
@@ -33,7 +34,7 @@ export class ForgotPwFormComponent {
 
   async submit(): Promise<void> {
     if (!this.form.valid) {
-      this.form.markAllAsTouched();
+      this.submitted.set(true);
       return;
     }
     this.errors.set([]);

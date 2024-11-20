@@ -16,35 +16,35 @@
     <div class="owl-form-field">
       <label class="owl-label" for="r-first_name">First Name</label>
       <input class="owl-input" formControlName="first_name" type="text" id="r-first_name" />
-      @if (form.controls.first_name.touched && form.controls.first_name.invalid) {
+      @if (submitted() && form.controls.first_name.invalid) {
         <app-form-error class="block" [errors]="form.controls.first_name.errors"></app-form-error>
       }
     </div>
     <div class="owl-form-field">
       <label class="owl-label" for="r-last_name">Last Name</label>
       <input class="owl-input" formControlName="last_name" type="text" id="r-last_name" />
-      @if (form.controls.last_name.touched && form.controls.last_name.invalid) {
+      @if (submitted() && form.controls.last_name.invalid) {
         <app-form-error class="block" [errors]="form.controls.last_name.errors"></app-form-error>
       }
     </div>
     <div class="owl-form-field">
       <label class="owl-label" for="r-email">Email</label>
       <input class="owl-input" formControlName="email" type="email" id="r-email" />
-      @if (form.controls.email.touched && form.controls.email.invalid) {
+      @if (submitted() && form.controls.email.invalid) {
         <app-form-error class="block" [errors]="form.controls.email.errors"></app-form-error>
       }
     </div>
     <div class="owl-form-field">
       <label class="owl-label" for="r-password">Password</label>
       <input class="owl-input" formControlName="password" type="password" id="r-password" />
-      @if (form.controls.password.touched && form.controls.password.invalid) {
+      @if (submitted() && form.controls.password.invalid) {
         <app-form-error class="block" [errors]="form.controls.password.errors"></app-form-error>
       }
     </div>
     <div class="owl-form-field">
       <label class="owl-label" for="r-password_confirm">Confirm your Password</label>
       <input class="owl-input" formControlName="password_confirm" type="password" id="r-password_confirm" />
-      @if (form.controls.password_confirm.touched && form.controls.password_confirm.invalid) {
+      @if (submitted() && form.controls.password_confirm.invalid) {
         <app-form-error class="block" [errors]="form.controls.password_confirm.errors"></app-form-error>
       }
     </div>

@@ -26,7 +26,8 @@ export class LoginFormComponent implements OnInit {
   protected readonly AuthPaths = AuthPaths;
 
   errors = signal<string[]>([]);
-  submitting = signal<boolean>(false);
+  submitted = signal(false);
+  submitting = signal(false);
 
   form = new FormGroup({
     email: new FormControl("", {
@@ -49,7 +50,7 @@ export class LoginFormComponent implements OnInit {
 
   async submit(): Promise<void> {
     if (!this.form.valid) {
-      this.form.markAllAsTouched();
+      this.submitted.set(true);
       return;
     }
     this.errors.set([]);

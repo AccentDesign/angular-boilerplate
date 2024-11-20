@@ -21,8 +21,9 @@ import { finalize, first } from "rxjs";
 })
 export class PasswordFormComponent {
   errors = signal<string[]>([]);
-  submitting = signal<boolean>(false);
-  success = signal<boolean>(false);
+  submitting = signal(false);
+  submitted = signal(false)
+  success = signal(false);
 
   form = new FormGroup(
     {
@@ -42,7 +43,7 @@ export class PasswordFormComponent {
 
   async submit(): Promise<void> {
     if (!this.form.valid) {
-      this.form.markAllAsTouched();
+      this.submitted.set(true);
       return;
     }
     this.errors.set([]);
@@ -65,6 +66,7 @@ export class PasswordFormComponent {
 
   private async handleSuccess(): Promise<void> {
     this.success.set(true);
+    this.submitted.set(false);
     this.form.reset();
   }
 

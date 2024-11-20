@@ -20,9 +20,10 @@ import { finalize, first } from "rxjs";
 })
 export class EmailVerificationFormComponent {
   errors = signal<string[]>([]);
-  requested = signal<boolean>(false);
-  submitting = signal<boolean>(false);
-  verified = signal<boolean>(false);
+  requested = signal(false);
+  submitting = signal(false);
+  submitted = signal(false)
+  verified = signal(false);
 
   authRepository = inject(AuthRepository);
   form = new FormGroup({
@@ -53,7 +54,7 @@ export class EmailVerificationFormComponent {
 
   async verify(): Promise<void> {
     if (!this.form.valid) {
-      this.form.markAllAsTouched();
+      this.submitted.set(true);
       return;
     }
     this.errors.set([]);

@@ -10,7 +10,7 @@
   <div class="owl-form-field">
     <label class="owl-label" for="l-email">Email</label>
     <input class="owl-input" formControlName="email" type="email" id="l-email" />
-    @if (form.controls.email.touched && form.controls.email.invalid) {
+    @if (submitted() && form.controls.email.invalid) {
       <app-form-error class="block" [errors]="form.controls.email.errors"></app-form-error>
     }
   </div>
@@ -22,7 +22,7 @@
       </a>
     </div>
     <input class="owl-input" formControlName="password" type="password" id="l-password" />
-    @if (form.controls.password.touched && form.controls.password.invalid) {
+    @if (submitted() && form.controls.password.invalid) {
       <app-form-error class="block" [errors]="form.controls.password.errors"></app-form-error>
     }
   </div>

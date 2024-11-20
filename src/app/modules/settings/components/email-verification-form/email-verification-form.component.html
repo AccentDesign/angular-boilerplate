@@ -28,7 +28,7 @@
             placeholder="Please enter the verification token provided in the email"
             id="token"
           ></textarea>
-          @if (form.controls.token.touched && form.controls.token.invalid) {
+          @if (submitted() && form.controls.token.invalid) {
             <app-form-error class="block" [errors]="form.controls.token.errors"></app-form-error>
           }
         </div>

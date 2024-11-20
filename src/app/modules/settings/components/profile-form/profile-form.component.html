@@ -14,21 +14,21 @@
   <div class="owl-form-field">
     <label class="owl-label" for="first_name">First Name</label>
     <input class="owl-input" formControlName="first_name" type="text" id="first_name" />
-    @if (form.controls.first_name.touched && form.controls.first_name.invalid) {
+    @if (submitted() && form.controls.first_name.invalid) {
       <app-form-error class="block" [errors]="form.controls.first_name.errors"></app-form-error>
     }
   </div>
   <div class="owl-form-field">
     <label class="owl-label" for="last_name">Last Name</label>
     <input class="owl-input" formControlName="last_name" type="text" id="last_name" />
-    @if (form.controls.last_name.touched && form.controls.last_name.invalid) {
+    @if (submitted() && form.controls.last_name.invalid) {
       <app-form-error class="block" [errors]="form.controls.last_name.errors"></app-form-error>
     }
   </div>
   <div class="owl-form-field">
     <label class="owl-label" for="email">Email</label>
     <input class="owl-input" formControlName="email" type="email" id="email" />
-    @if (form.controls.email.touched && form.controls.email.invalid) {
+    @if (submitted() && form.controls.email.invalid) {
       <app-form-error class="block" [errors]="form.controls.email.errors"></app-form-error>
     }
   </div>
