@@ -1,31 +1,24 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthPaths } from '@modules/auth/shared/auth-routes';
-import { AuthService } from '@modules/auth/shared/auth.service';
-import { RegisterRequest } from '@modules/auth/shared/interfaces/register-request';
-import { FormErrorComponent } from '@modules/shared/components/form-error/form-error.component';
-import { MessageComponent } from '@modules/shared/components/message/message.component';
-import { FormatHttpError } from '@modules/shared/utils/error';
-import { passwordsMatchValidator } from '@modules/shared/validators/passwords-match';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { finalize, first } from 'rxjs';
+import { HttpErrorResponse } from "@angular/common/http";
+import { ChangeDetectionStrategy, Component, inject, signal } from "@angular/core";
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { AuthPaths } from "@modules/auth/shared/auth-routes";
+import { AuthService } from "@modules/auth/shared/auth.service";
+import { RegisterRequest } from "@modules/auth/shared/interfaces/register-request";
+import { FormErrorComponent } from "@modules/shared/components/form-error/form-error.component";
+import { MessageComponent } from "@modules/shared/components/message/message.component";
+import { FormatHttpError } from "@modules/shared/utils/error";
+import { passwordsMatchValidator } from "@modules/shared/validators/passwords-match";
+import { finalize, first } from "rxjs";
 
 @Component({
-  selector: 'app-register-form',
-  standalone: true,
-  imports: [
-    HlmButtonDirective,
-    HlmInputDirective,
-    HlmLabelDirective,
-    ReactiveFormsModule,
-    MessageComponent,
-    FormErrorComponent,
-  ],
-  templateUrl: './register-form.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: "app-register-form",
+    imports: [
+        ReactiveFormsModule,
+        MessageComponent,
+        FormErrorComponent
+    ],
+    templateUrl: "./register-form.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegisterFormComponent {
   protected readonly AuthPaths = AuthPaths;
@@ -36,28 +29,28 @@ export class RegisterFormComponent {
 
   form = new FormGroup(
     {
-      first_name: new FormControl('', {
+      first_name: new FormControl("", {
         nonNullable: true,
-        validators: [Validators.required],
+        validators: [Validators.required]
       }),
-      last_name: new FormControl('', {
+      last_name: new FormControl("", {
         nonNullable: true,
-        validators: [Validators.required],
+        validators: [Validators.required]
       }),
-      email: new FormControl('', {
+      email: new FormControl("", {
         nonNullable: true,
-        validators: [Validators.required, Validators.email],
+        validators: [Validators.required, Validators.email]
       }),
-      password: new FormControl('', {
+      password: new FormControl("", {
         nonNullable: true,
-        validators: [Validators.required, Validators.minLength(6)],
+        validators: [Validators.required, Validators.minLength(6)]
       }),
-      password_confirm: new FormControl('', {
+      password_confirm: new FormControl("", {
         nonNullable: true,
-        validators: [Validators.required],
-      }),
+        validators: [Validators.required]
+      })
     },
-    { validators: passwordsMatchValidator },
+    { validators: passwordsMatchValidator }
   );
 
   private authService = inject(AuthService);
@@ -74,17 +67,17 @@ export class RegisterFormComponent {
       first_name: this.form.value.first_name,
       last_name: this.form.value.last_name,
       email: this.form.value.email,
-      password: this.form.value.password,
+      password: this.form.value.password
     } as RegisterRequest;
     this.authService
       .register(data)
       .pipe(
         first(),
-        finalize(() => this.handleFinish()),
+        finalize(() => this.handleFinish())
       )
       .subscribe({
         next: () => this.handleSuccess(),
-        error: (error) => this.handleError(error),
+        error: (error) => this.handleError(error)
       });
   }
 
@@ -100,7 +93,7 @@ export class RegisterFormComponent {
     if (error instanceof HttpErrorResponse) {
       this.errors.set(FormatHttpError(error));
     } else {
-      this.errors.set(['Something went wrong please try again.']);
+      this.errors.set(["Something went wrong please try again."]);
       console.error(error);
     }
   }

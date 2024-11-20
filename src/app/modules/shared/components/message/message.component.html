@@ -1,7 +1,12 @@
-<div hlmAlert [variant]="variant()" class="my-6">
-  <hlm-icon hlmAlertIcon name="lucideAlertTriangle" />
-  <h4 hlmAlertTitle>{{ title() }}</h4>
-  <p hlmAlertDesc>
+<div class="owl-alert my-6"
+     [class.owl-alert-destructive]="variant() === 'destructive'"
+>
+  <svg class="owl-alert-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="m4 17l6-6l-6-6m8 14h8"></path>
+  </svg>
+  <h4 class="owl-alert-title">{{ title() }}</h4>
+  <p class="owl-alert-description">
     <ng-content></ng-content>
   </p>
 </div>

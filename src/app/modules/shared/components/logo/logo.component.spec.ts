@@ -1,21 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { LogoComponent } from './logo.component';
+import { LogoComponent } from "./logo.component";
 
-describe('LogoComponent', () => {
+describe("LogoComponent", () => {
   let component: LogoComponent;
   let fixture: ComponentFixture<LogoComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [LogoComponent],
+      imports: [LogoComponent]
     });
     fixture = TestBed.createComponent(LogoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

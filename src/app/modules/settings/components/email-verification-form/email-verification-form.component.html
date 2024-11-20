@@ -14,28 +14,26 @@
       </app-message>
     }
 
-    <button hlmBtn variant="secondary" (click)="request($event)" [disabled]="submitting()">
+    <button class="owl-button owl-button-secondary" (click)="request($event)" [disabled]="submitting()">
       Send me a verification email
     </button>
 
     @if (requested()) {
       <form (ngSubmit)="verify()" [formGroup]="form" class="mt-6 grid gap-6">
         <div>
-          <label hlmLabel for="token">Verification Token</label>
+          <label class="owl-label" for="token">Verification Token</label>
           <textarea
-            hlmInput
+            class="owl-textarea min-h-[80px]"
             formControlName="token"
-            class="w-full min-h-[80px]"
             placeholder="Please enter the verification token provided in the email"
             id="token"
           ></textarea>
-          <app-form-error
-            [errors]="form.controls.token.errors"
-            [show]="form.controls.token.touched && form.controls.token.invalid"
-          ></app-form-error>
+          @if (form.controls.token.touched && form.controls.token.invalid) {
+            <app-form-error class="block" [errors]="form.controls.token.errors"></app-form-error>
+          }
         </div>
         <div>
-          <button hlmBtn [disabled]="submitting()">Verify Account</button>
+          <button class="owl-button" [disabled]="submitting()">Verify Account</button>
         </div>
       </form>
     }

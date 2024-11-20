@@ -1,21 +1,19 @@
 <div class="w-screen min-h-screen">
   <app-nav></app-nav>
-  <div class="container mx-auto px-6">
-    <header>
-      <h1 class="text-3xl font-bold">Settings</h1>
-    </header>
+  <div class="container mx-auto p-5">
     <div class="sm:grid sm:grid-cols-4 gap-10">
       <div>
-        <ul class="my-8">
+        <h4 class="owl-h4">Settings</h4>
+        <ul class="space-y-1 my-8">
           @for (item of navItems; track item) {
-            <li class="mb-1">
+            <li>
               <a
-                hlmBtn
-                class="w-full justify-start gap-2"
+                class="owl-button justify-start w-full"
                 #rla="routerLinkActive"
+                [class.owl-button-secondary]="rla.isActive"
+                [class.owl-button-ghost]="!rla.isActive"
                 [routerLink]="item.route"
                 routerLinkActive
-                [variant]="rla.isActive ? 'secondary' : 'ghost'"
               >
                 {{ item.label }}
               </a>

@@ -1,8 +1,8 @@
 export const DashboardRoutes = {
-  base: 'dashboard',
-  dashboard: '',
+  base: "dashboard",
+  dashboard: ""
 };
 
 export const DashboardPaths = {
-  dashboard: `/${DashboardRoutes.base}`,
+  dashboard: `/${DashboardRoutes.base}`
 };

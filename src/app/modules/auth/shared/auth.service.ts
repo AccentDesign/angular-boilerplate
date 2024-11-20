@@ -1,17 +1,17 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { environment } from '@environments/environment';
-import { AuthRepository } from '@modules/auth/shared/auth.repository';
-import { LoginRequest } from '@modules/auth/shared/interfaces/login-request';
-import { LoginResponse } from '@modules/auth/shared/interfaces/login-response';
-import { RegisterRequest } from '@modules/auth/shared/interfaces/register-request';
-import { ResetPasswordRequest } from '@modules/auth/shared/interfaces/reset-password-request';
-import { UpdateUserRequest } from '@modules/auth/shared/interfaces/update-user-request';
-import { User } from '@modules/auth/shared/interfaces/user';
-import { catchError, finalize, first, map, Observable, of, switchMap, tap, throwError } from 'rxjs';
+import { HttpClient } from "@angular/common/http";
+import { inject, Injectable } from "@angular/core";
+import { environment } from "@environments/environment";
+import { AuthRepository } from "@modules/auth/shared/auth.repository";
+import { LoginRequest } from "@modules/auth/shared/interfaces/login-request";
+import { LoginResponse } from "@modules/auth/shared/interfaces/login-response";
+import { RegisterRequest } from "@modules/auth/shared/interfaces/register-request";
+import { ResetPasswordRequest } from "@modules/auth/shared/interfaces/reset-password-request";
+import { UpdateUserRequest } from "@modules/auth/shared/interfaces/update-user-request";
+import { User } from "@modules/auth/shared/interfaces/user";
+import { catchError, finalize, first, map, Observable, of, switchMap, tap, throwError } from "rxjs";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root"
 })
 export class AuthService {
   private authRepository = inject(AuthRepository);
@@ -24,7 +24,7 @@ export class AuthService {
       this.getUser()
         .pipe(first())
         .subscribe({
-          error: (err) => console.error(err),
+          error: (err) => console.error(err)
         });
     }
   }
@@ -42,13 +42,13 @@ export class AuthService {
   logIn({ username, password }: LoginRequest): Observable<LoginResponse> {
     const url = `${this.baseURL}/auth/token/login`;
     const data = new FormData();
-    data.append('username', username);
-    data.append('password', password);
+    data.append("username", username);
+    data.append("password", password);
     return this.http.post<LoginResponse>(url, data).pipe(
       tap((data) => this.authRepository.setAccessToken(data.access_token)),
       switchMap((original) => {
         return this.getUser().pipe(switchMap(() => of(original)));
-      }),
+      })
     );
   }
 
@@ -57,7 +57,7 @@ export class AuthService {
     return this.http.post<null>(url, {}).pipe(
       finalize(() => this.authRepository.clear()),
       map(() => null),
-      catchError(() => of(null)),
+      catchError(() => of(null))
     );
   }
 
@@ -79,7 +79,7 @@ export class AuthService {
   verifyRequest(): Observable<null> {
     const user = this.authRepository.currentUser();
     if (user === null) {
-      return throwError(() => new Error('no current user'));
+      return throwError(() => new Error("no current user"));
     }
     const url = `${this.baseURL}/auth/verify-request`;
     const request = { email: user.email };

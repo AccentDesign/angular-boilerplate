@@ -1,11 +1,11 @@
-import { inject, Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
-import { AuthPaths } from '@modules/auth/shared/auth-routes';
-import { AuthRepository } from '@modules/auth/shared/auth.repository';
-import { SettingsPaths } from '@modules/settings/shared/settings-routes';
+import { inject, Injectable } from "@angular/core";
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from "@angular/router";
+import { AuthPaths } from "@modules/auth/shared/auth-routes";
+import { AuthRepository } from "@modules/auth/shared/auth.repository";
+import { SettingsPaths } from "@modules/settings/shared/settings-routes";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root"
 })
 export class AuthGuard {
   private authRepository = inject(AuthRepository);

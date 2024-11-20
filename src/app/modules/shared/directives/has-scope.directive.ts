@@ -1,6 +1,6 @@
-import { NgIf, NgIfContext } from '@angular/common';
-import { computed, Directive, inject, Input, signal, TemplateRef } from '@angular/core';
-import { AuthRepository } from '@modules/auth/shared/auth.repository';
+import { NgIf, NgIfContext } from "@angular/common";
+import { computed, Directive, inject, Input, signal, TemplateRef } from "@angular/core";
+import { AuthRepository } from "@modules/auth/shared/auth.repository";
 
 /**
  * <p *appHasScope="'admin'">admin</p>
@@ -8,9 +8,9 @@ import { AuthRepository } from '@modules/auth/shared/auth.repository';
  * <ng-template #denied>denied</ng-template>
  */
 @Directive({
-  selector: '[appHasScope]',
+  selector: "[appHasScope]",
   standalone: true,
-  hostDirectives: [NgIf],
+  hostDirectives: [NgIf]
 })
 export class HasScopeDirective {
   private ngIfRef = inject(NgIf);

@@ -29,5 +29,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Links
 
 * [https://angular.io](https://angular.io)
-* [https://www.spartan.ng](https://www.spartan.ng)
 * [https://github.com/stuartaccent/fastapi-boilerplate](https://github.com/stuartaccent/fastapi-boilerplate)
+* [https://github.com/AccentDesign/owl](https://github.com/AccentDesign/owl)

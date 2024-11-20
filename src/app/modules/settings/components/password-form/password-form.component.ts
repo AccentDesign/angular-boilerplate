@@ -1,30 +1,23 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '@modules/auth/shared/auth.service';
-import { UpdateUserRequest } from '@modules/auth/shared/interfaces/update-user-request';
-import { FormErrorComponent } from '@modules/shared/components/form-error/form-error.component';
-import { MessageComponent } from '@modules/shared/components/message/message.component';
-import { FormatHttpError } from '@modules/shared/utils/error';
-import { passwordsMatchValidator } from '@modules/shared/validators/passwords-match';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { finalize, first } from 'rxjs';
+import { HttpErrorResponse } from "@angular/common/http";
+import { ChangeDetectionStrategy, Component, inject, signal } from "@angular/core";
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { AuthService } from "@modules/auth/shared/auth.service";
+import { UpdateUserRequest } from "@modules/auth/shared/interfaces/update-user-request";
+import { FormErrorComponent } from "@modules/shared/components/form-error/form-error.component";
+import { MessageComponent } from "@modules/shared/components/message/message.component";
+import { FormatHttpError } from "@modules/shared/utils/error";
+import { passwordsMatchValidator } from "@modules/shared/validators/passwords-match";
+import { finalize, first } from "rxjs";
 
 @Component({
-  selector: 'app-password-form',
-  standalone: true,
-  imports: [
-    HlmButtonDirective,
-    HlmInputDirective,
-    HlmLabelDirective,
-    MessageComponent,
-    ReactiveFormsModule,
-    FormErrorComponent,
-  ],
-  templateUrl: './password-form.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: "app-password-form",
+    imports: [
+        MessageComponent,
+        ReactiveFormsModule,
+        FormErrorComponent
+    ],
+    templateUrl: "./password-form.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PasswordFormComponent {
   errors = signal<string[]>([]);
@@ -33,16 +26,16 @@ export class PasswordFormComponent {
 
   form = new FormGroup(
     {
-      password: new FormControl('', {
+      password: new FormControl("", {
         nonNullable: true,
-        validators: [Validators.required, Validators.minLength(6)],
+        validators: [Validators.required, Validators.minLength(6)]
       }),
-      password_confirm: new FormControl('', {
+      password_confirm: new FormControl("", {
         nonNullable: true,
-        validators: [Validators.required],
-      }),
+        validators: [Validators.required]
+      })
     },
-    { validators: passwordsMatchValidator },
+    { validators: passwordsMatchValidator }
   );
 
   private authService = inject(AuthService);
@@ -56,17 +49,17 @@ export class PasswordFormComponent {
     this.submitting.set(true);
     this.success.set(false);
     const data = {
-      password: this.form.value.password,
+      password: this.form.value.password
     } as UpdateUserRequest;
     this.authService
       .updateUser(data)
       .pipe(
         first(),
-        finalize(() => this.handleFinish()),
+        finalize(() => this.handleFinish())
       )
       .subscribe({
         next: () => this.handleSuccess(),
-        error: (error) => this.handleError(error),
+        error: (error) => this.handleError(error)
       });
   }
 
@@ -83,7 +76,7 @@ export class PasswordFormComponent {
     if (error instanceof HttpErrorResponse) {
       this.errors.set(FormatHttpError(error));
     } else {
-      this.errors.set(['Something went wrong please try again.']);
+      this.errors.set(["Something went wrong please try again."]);
       console.error(error);
     }
   }

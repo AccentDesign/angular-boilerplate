@@ -12,7 +12,6 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
-    "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
@@ -29,30 +28,6 @@
       ],
       "@modules/*": [
         "src/app/modules/*"
-      ],
-      "@spartan-ng/ui-alert-helm": [
-        "./src/ui/ui-alert-helm/src/index.ts"
-      ],
-      "@spartan-ng/ui-button-helm": [
-        "./src/ui/ui-button-helm/src/index.ts"
-      ],
-      "@spartan-ng/ui-icon-helm": [
-        "./src/ui/ui-icon-helm/src/index.ts"
-      ],
-      "@spartan-ng/ui-input-helm": [
-        "./src/ui/ui-input-helm/src/index.ts"
-      ],
-      "@spartan-ng/ui-label-helm": [
-        "./src/ui/ui-label-helm/src/index.ts"
-      ],
-      "@spartan-ng/ui-menu-helm": [
-        "./src/ui/ui-menu-helm/src/index.ts"
-      ],
-      "@spartan-ng/ui-separator-helm": [
-        "./src/ui/ui-separator-helm/src/index.ts"
-      ],
-      "@spartan-ng/ui-tabs-helm": [
-        "./src/ui/ui-tabs-helm/src/index.ts"
       ]
     }
   },

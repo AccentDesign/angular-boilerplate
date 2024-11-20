@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
-import { EmailVerificationFormComponent } from '@modules/settings/components/email-verification-form/email-verification-form.component';
-import { ProfileFormComponent } from '@modules/settings/components/profile-form/profile-form.component';
-import { HlmSeparatorDirective } from '@spartan-ng/ui-separator-helm';
+import { Component } from "@angular/core";
+import {
+  EmailVerificationFormComponent
+} from "@modules/settings/components/email-verification-form/email-verification-form.component";
+import { ProfileFormComponent } from "@modules/settings/components/profile-form/profile-form.component";
 
 @Component({
-  selector: 'app-my-profile',
-  standalone: true,
-  imports: [EmailVerificationFormComponent, HlmSeparatorDirective, ProfileFormComponent],
-  templateUrl: './my-profile.component.html',
+    selector: "app-my-profile",
+    imports: [EmailVerificationFormComponent, ProfileFormComponent],
+    templateUrl: "./my-profile.component.html"
 })
-export default class MyProfileComponent {}
+export default class MyProfileComponent {
+}

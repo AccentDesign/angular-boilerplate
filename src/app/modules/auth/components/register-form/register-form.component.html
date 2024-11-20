@@ -13,46 +13,41 @@
   </app-message>
 } @else {
   <form (ngSubmit)="submit()" [formGroup]="form" class="grid gap-6">
-    <div>
-      <label hlmLabel for="r-first_name">First Name</label>
-      <input hlmInput class="w-full" formControlName="first_name" type="text" id="r-first_name" />
-      <app-form-error
-        [errors]="form.controls.first_name.errors"
-        [show]="form.controls.first_name.touched && form.controls.first_name.invalid"
-      ></app-form-error>
+    <div class="owl-form-field">
+      <label class="owl-label" for="r-first_name">First Name</label>
+      <input class="owl-input" formControlName="first_name" type="text" id="r-first_name" />
+      @if (form.controls.first_name.touched && form.controls.first_name.invalid) {
+        <app-form-error class="block" [errors]="form.controls.first_name.errors"></app-form-error>
+      }
     </div>
-    <div>
-      <label hlmLabel for="r-last_name">Last Name</label>
-      <input hlmInput class="w-full" formControlName="last_name" type="text" id="r-last_name" />
-      <app-form-error
-        [errors]="form.controls.last_name.errors"
-        [show]="form.controls.last_name.touched && form.controls.last_name.invalid"
-      ></app-form-error>
+    <div class="owl-form-field">
+      <label class="owl-label" for="r-last_name">Last Name</label>
+      <input class="owl-input" formControlName="last_name" type="text" id="r-last_name" />
+      @if (form.controls.last_name.touched && form.controls.last_name.invalid) {
+        <app-form-error class="block" [errors]="form.controls.last_name.errors"></app-form-error>
+      }
     </div>
-    <div>
-      <label hlmLabel for="r-email">Email</label>
-      <input hlmInput class="w-full" formControlName="email" type="email" id="r-email" />
-      <app-form-error
-        [errors]="form.controls.email.errors"
-        [show]="form.controls.email.touched && form.controls.email.invalid"
-      ></app-form-error>
+    <div class="owl-form-field">
+      <label class="owl-label" for="r-email">Email</label>
+      <input class="owl-input" formControlName="email" type="email" id="r-email" />
+      @if (form.controls.email.touched && form.controls.email.invalid) {
+        <app-form-error class="block" [errors]="form.controls.email.errors"></app-form-error>
+      }
     </div>
-    <div>
-      <label hlmLabel for="r-password">Password</label>
-      <input hlmInput class="w-full" formControlName="password" type="password" id="r-password" />
-      <app-form-error
-        [errors]="form.controls.password.errors"
-        [show]="form.controls.password.touched && form.controls.password.invalid"
-      ></app-form-error>
+    <div class="owl-form-field">
+      <label class="owl-label" for="r-password">Password</label>
+      <input class="owl-input" formControlName="password" type="password" id="r-password" />
+      @if (form.controls.password.touched && form.controls.password.invalid) {
+        <app-form-error class="block" [errors]="form.controls.password.errors"></app-form-error>
+      }
     </div>
-    <div>
-      <label hlmLabel for="r-password_confirm">Confirm your Password</label>
-      <input hlmInput class="w-full" formControlName="password_confirm" type="password" id="r-password_confirm" />
-      <app-form-error
-        [errors]="form.controls.password_confirm.errors"
-        [show]="form.controls.password_confirm.touched && form.controls.password_confirm.invalid"
-      ></app-form-error>
+    <div class="owl-form-field">
+      <label class="owl-label" for="r-password_confirm">Confirm your Password</label>
+      <input class="owl-input" formControlName="password_confirm" type="password" id="r-password_confirm" />
+      @if (form.controls.password_confirm.touched && form.controls.password_confirm.invalid) {
+        <app-form-error class="block" [errors]="form.controls.password_confirm.errors"></app-form-error>
+      }
     </div>
-    <button hlmBtn [disabled]="submitting()" class="w-full" type="submit">Register</button>
+    <button class="owl-button" [disabled]="submitting()" type="submit">Register</button>
   </form>
 }

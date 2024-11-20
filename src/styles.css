@@ -1,54 +1,156 @@
-@import '@angular/cdk/overlay-prebuilt.css';
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
---font-sans: ''
+/* typography */
+
+@layer components {
+  .owl-h1 {
+    @apply text-3xl font-semibold tracking-tight;
+  }
+  .owl-h2 {
+    @apply text-2xl font-semibold tracking-tight;
+  }
+  .owl-h3 {
+    @apply text-xl font-semibold tracking-tight;
+  }
+  .owl-h4 {
+    @apply text-lg font-semibold tracking-tight;
+  }
+  .owl-p {
+    @apply leading-7 [&:not(:first-child)]:mt-6;
+  }
+  .owl-anchor {
+    @apply font-medium hover:underline hover:underline-offset-4;
+  }
 }
 
-:root {
---background: 0 0% 100%;
---foreground: 0 0% 3.9%;
---muted: 0 0% 96.1%;
---muted-foreground: 0 0% 45.1%;
---popover: 0 0% 100%;
---popover-foreground: 0 0% 3.9%;
---card: 0 0% 100%;
---card-foreground: 0 0% 3.9%;
---border: 0 0% 89.8%;
---input: 0 0% 89.8%;
---primary: 0 72.2% 50.6%;
---primary-foreground: 0 85.7% 97.3%;
---secondary: 0 0% 96.1%;
---secondary-foreground: 0 0% 9%;
---accent: 0 0% 96.1%;
---accent-foreground: 0 0% 9%;
---destructive: 0 84.2% 60.2%;
---destructive-foreground: 0 0% 98%;
---ring: 0 72.2% 50.6%;
---radius: 0.5rem;
+/* alerts */
+
+@layer components {
+  .owl-alert {
+    @apply relative w-full rounded-lg border p-4;
+  }
+  .owl-alert-title {
+    @apply mb-1 font-medium leading-none tracking-tight;
+  }
+  .owl-alert-description {
+    @apply text-sm;
+  }
+  .owl-alert-icon {
+    @apply absolute top-4 left-4 size-4;
+  }
+  .owl-alert-icon ~ * {
+    @apply pl-7;
+  }
+  .owl-alert-destructive {
+    @apply bg-red-50 border-red-100 text-red-600;
+  }
 }
 
-.dark {
---background: 0 0% 3.9%;
---foreground: 0 0% 98%;
---muted: 0 0% 14.9%;
---muted-foreground: 0 0% 63.9%;
---popover: 0 0% 3.9%;
---popover-foreground: 0 0% 98%;
---card: 0 0% 3.9%;
---card-foreground: 0 0% 98%;
---border: 0 0% 14.9%;
---input: 0 0% 14.9%;
---primary: 0 72.2% 50.6%;
---primary-foreground: 0 85.7% 97.3%;
---secondary: 0 0% 14.9%;
---secondary-foreground: 0 0% 98%;
---accent: 0 0% 14.9%;
---accent-foreground: 0 0% 98%;
---destructive: 0 62.8% 30.6%;
---destructive-foreground: 0 0% 98%;
---ring: 0 72.2% 50.6%;
+/* buttons */
+
+@layer components {
+  .owl-button {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md h-10 px-4 py-2 text-sm font-medium bg-black text-white hover:bg-black/80;
+  }
+  .owl-button-icon {
+    @apply size-10 p-0;
+  }
+  .owl-button-secondary {
+    @apply bg-gray-100 text-black hover:bg-gray-100/80;
+  }
+  .owl-button-destructive {
+    @apply bg-red-500 text-white hover:bg-red-500/90;
+  }
+  .owl-button-outline {
+    @apply bg-transparent text-black border hover:bg-gray-100/80;
+  }
+  .owl-button-ghost {
+    @apply bg-transparent text-black hover:bg-gray-100/80;
+  }
+  .owl-button-link {
+    @apply bg-transparent text-black hover:bg-transparent hover:underline hover:underline-offset-4;
+  }
+}
+
+/* forms */
+
+@layer components {
+  .owl-label {
+    @apply text-sm font-medium leading-none;
+  }
+  .owl-input, .owl-select, .owl-textarea {
+    @apply flex w-full rounded-md border px-3 py-2 text-sm;
+  }
+  .owl-input {
+    @apply h-10 file:border-0 file:bg-transparent file:text-sm file:font-medium;
+  }
+  .owl-select {
+    @apply h-10;
+  }
+  .owl-textarea {
+    @apply min-h-[80px];
+  }
+  .owl-checkbox {
+    @apply size-4 shrink-0 rounded-sm border accent-black;
+  }
+  .owl-form-field {
+    @apply space-y-2;
+  }
+  .owl-form-field-error {
+    @apply text-sm text-red-500;
+  }
+  .owl-form-field-description {
+    @apply text-sm text-gray-500;
+  }
+  .owl-form-field:has(.owl-form-field-error) {
+    .owl-label {
+      @apply text-red-500;
+    }
+    .owl-input, .owl-select, .owl-textarea, .owl-checkbox {
+      @apply border-red-500;
+    }
+  }
+}
+
+/* menu */
+
+@layer components {
+  .owl-dropdown-menu {
+    @apply relative inline-flex;
+  }
+  .owl-dropdown-menu-content {
+    @apply z-50 min-w-[8rem] overflow-hidden rounded-md border bg-white p-1 shadow-md w-56 absolute top-11;
+  }
+  .owl-dropdown-menu-content:not(.owl-open) {
+    @apply hidden;
+  }
+  .owl-dropdown-menu-label {
+    @apply px-2 py-1.5 text-sm font-semibold;
+  }
+  .owl-dropdown-menu-separator {
+    @apply -mx-1 my-1 h-px bg-gray-200;
+  }
+  .owl-dropdown-menu-item {
+    @apply w-full relative flex select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-gray-100;
+  }
+}
+
+/* tabs */
+
+@layer components {
+  .owl-tabs {}
+  .owl-tabs-list {
+    @apply grid w-full h-10 grid-cols-2 items-center justify-center rounded-md bg-gray-100 p-1;
+  }
+  .owl-tabs-trigger {
+    @apply inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium text-gray-500;
+  }
+  .owl-tabs-trigger[aria-selected=true] {
+    @apply bg-white text-black shadow-sm;
+  }
+  .owl-tabs-content {
+    @apply mt-2;
+  }
 }
